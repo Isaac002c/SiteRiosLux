@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 export default function CTASection() {
   const handleWhatsApp = () => {
     const message = encodeURIComponent('Olá! Gostaria de agendar uma consultoria para meu evento.')
-    window.open('https://wa.me/5511999999999?' + message, '_blank')
+    window.open('https://wa.me/5521972522076?' + message, '_blank')
   }
 
   return (
@@ -31,7 +31,6 @@ export default function CTASection() {
             whileTap={{ scale: 0.95 }}
           >
             Fale pelo WhatsApp
-            <span>📱</span>
           </motion.button>
         </motion.div>
       </div>

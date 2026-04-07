@@ -25,8 +25,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="text-2xl md:text-3xl font-serif gradient-text font-bold">
-            Rios Lux
+          <Link href="/" className="flex-shrink-0">
+            <img 
+              src="/logo.png" 
+              alt="RiosLux" 
+              className="h-12 w-auto md:h-16 rounded-full shadow-lg ring-2 ring-gold/30 hover:ring-gold/50 transition-all duration-300"
+            />
           </Link>
 
           {/* Desktop Menu */}
@@ -50,7 +54,7 @@ export default function Navbar() {
 
           {/* CTA Button */}
           <Link
-            href="#contato"
+            href="/contato"
             className="hidden md:inline-flex bg-gold text-primary px-8 py-3 rounded-full font-medium hover:bg-beige transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
           >
             Agendar Consultoria

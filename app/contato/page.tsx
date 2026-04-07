@@ -23,7 +23,7 @@ export default function Contato() {
 
   const handleWhatsApp = () => {
     const message = `Olá! Gostaria de agendar uma consultoria para meu evento.`
-    window.open(`https://wa.me/5511999999999?text=${encodeURIComponent(message)}`, '_blank')
+    window.open(`https://wa.me/5521972522076?text=${encodeURIComponent(message)}`, '_blank')
   }
 
   return (

@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Card from '@/components/Card'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import CardCarousel from '@/components/CardCarousel'
 import CTASection from '@/components/CTASection'
 
 export default function Home() {
@@ -45,7 +46,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <a
-              href="#contato"
+              href="/contato"
               className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
             >
               Agendar Consultoria
@@ -67,30 +68,14 @@ export default function Home() {
             className="text-center mb-24"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-6">
-              Sobre a Rios Lux
+              Sobre a RiosLux
             </h2>
             <p className="text-xl text-beige/80 max-w-2xl mx-auto">
               A agência especializada em eventos de alto padrão que transforma ocasiões em experiências sofisticadas e exclusivas.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card 
-              title="Exclusividade" 
-              desc="Eventos únicos para clientes que buscam experiências memoráveis e personalizadas."
-              icon="🎩"
-            />
-            <Card 
-              title="Alto Padrão" 
-              desc="Perfeição em cada detalhe, do planejamento à execução impecável."
-              icon="⭐"
-            />
-            <Card 
-              title="Sem Preocupações" 
-              desc="Concierge completo - você só aproveita a experiência."
-              icon="🛡️"
-            />
-          </div>
+          <CardCarousel />
         </div>
       </section>
 

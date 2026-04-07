@@ -5,46 +5,34 @@ export default function Footer() {
   return (
     <footer className="bg-primary/90 backdrop-blur-md border-t border-gold/20 py-12 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          <div className="text-center md:text-left">
-            <h3 className="text-2xl font-serif gradient-text font-bold mb-4">
-              Rios Lux
-            </h3>
+        <div className="flex flex-col lg:flex-row gap-12 items-center justify-between">
+          <div className="text-center lg:text-left">
+            <img 
+              src="/logo.png" 
+              alt="RiosLux" 
+              className="h-12 w-auto mx-auto lg:mx-0 rounded-full shadow-lg mb-4"
+            />
             <p className="text-beige/80 text-sm opacity-80">
               Eventos premium para experiências exclusivas.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 text-center md:text-left">
-            <Link href="/" className="hover:text-gold transition-colors flex items-center justify-center md:justify-start gap-2">
-              Home
-            </Link>
-            <Link href="/sobre" className="hover:text-gold transition-colors flex items-center justify-center md:justify-start gap-2">
-              Sobre
-            </Link>
-            <Link href="/servicos" className="hover:text-gold transition-colors flex items-center justify-center md:justify-start gap-2">
-              Serviços
-            </Link>
-            <Link href="/experiencias" className="hover:text-gold transition-colors flex items-center justify-center md:justify-start gap-2">
-              Experiências
-            </Link>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-end items-center">
-            <a href="tel:+5511999999999" className="flex items-center gap-2 hover:text-gold transition-colors p-2">
-              <Phone size={20} />
-              <span>+55 (11) 99999-9999</span>
+          <div className="flex flex-col sm:flex-row gap-6 items-center">
+            <a href="tel:+5521972522076" className="flex items-center gap-2 hover:text-gold transition-colors p-3 rounded-xl backdrop-blur-sm hover:bg-white/5">
+              +55 21 97252-2076
             </a>
-            <a href="mailto:contato@rioslux.com.br" className="flex items-center gap-2 hover:text-gold transition-colors p-2">
-              <Mail size={20} />
-              contato@rioslux.com.br
+            <a href="mailto:agenciarioslux@gmail.com" className="flex items-center gap-2 hover:text-gold transition-colors p-3 rounded-xl backdrop-blur-sm hover:bg-white/5">
+              agenciarioslux@gmail.com
             </a>
           </div>
         </div>
 
         <div className="border-t border-gold/20 mt-12 pt-8 text-center">
-          <p className="text-beige/60 text-sm">
-            © 2024 Rios Lux. Todos os direitos reservados.
+          <p className="text-beige/60 text-xs">
+            © 2024 RiosLux. Todos os direitos reservados.
+          </p>
+          <p className="text-beige/40 text-xs mt-2">
+            Feito por ChronosTek
           </p>
         </div>
       </div>

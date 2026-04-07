@@ -7,17 +7,21 @@ interface CardProps {
   icon: string
 }
 
-export default function Card({ title, desc, icon }: CardProps) {
+interface CardProps {
+  title: string
+  desc: string
+}
+
+export default function Card({ title, desc }: CardProps) {
   return (
     <motion.div
       whileHover={{ y: -10, scale: 1.02 }}
-      className="glass p-10 rounded-3xl border border-gold/20 backdrop-blur-md hover:border-gold hover:bg-white/5 transition-all duration-500 cursor-pointer group shadow-xl hover:shadow-2xl"
+      className="glass p-12 rounded-3xl border border-gold/20 backdrop-blur-md hover:border-gold hover:bg-white/5 transition-all duration-500 cursor-pointer group shadow-xl hover:shadow-2xl text-center"
     >
-      <div className="text-5xl mb-6">{icon}</div>
-      <h3 className="text-2xl font-serif font-semibold mb-4 gradient-text group-hover:translate-y-2 transition-transform">
+      <h3 className="text-2xl md:text-3xl font-serif font-semibold mb-6 gradient-text group-hover:translate-y-2 transition-transform leading-tight">
         {title}
       </h3>
-      <p className="text-beige/80 leading-relaxed">
+      <p className="text-beige/80 leading-relaxed text-lg">
         {desc}
       </p>
     </motion.div>

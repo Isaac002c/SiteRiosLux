@@ -12,7 +12,7 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Rios Lux - Eventos Premium',
+  title: 'RiosLux - Eventos Premium',
   description: 'Experiências exclusivas para quem exige excelência. Eventos de luxo no Rio de Janeiro.',
 }
 

@@ -18,8 +18,8 @@ export default function Sobre() {
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-              Sobre a Rios Lux
+<h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
+              Sobre a RiosLux
             </h1>
             <div className="space-y-6 text-xl leading-relaxed">
               <p>
@@ -74,23 +74,7 @@ export default function Sobre() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text text-center mb-16">
             Nosso Público
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="glass p-8 rounded-3xl border border-gold/20 backdrop-blur-md text-center hover:border-gold transition-all hover:scale-105">
-              <div className="text-4xl mb-4">💼</div>
-              <h3 className="text-2xl font-serif font-semibold mb-4 gradient-text">Executivos & Empresários</h3>
-              <p className="text-beige/80">Profissionais que exigem perfeição</p>
-            </div>
-            <div className="glass p-8 rounded-3xl border border-gold/20 backdrop-blur-md text-center hover:border-gold transition-all hover:scale-105">
-              <div className="text-4xl mb-4">🏖️</div>
-              <h3 className="text-2xl font-serif font-semibold mb-4 gradient-text">Eventos Privados</h3>
-              <p className="text-beige/80">Mansões, barcos e locais exclusivos</p>
-            </div>
-            <div className="glass p-8 rounded-3xl border border-gold/20 backdrop-blur-md text-center hover:border-gold transition-all hover:scale-105">
-              <div className="text-4xl mb-4">👑</div>
-              <h3 className="text-2xl font-serif font-semibold mb-4 gradient-text">Alto Padrão</h3>
-              <p className="text-beige/80">Para quem valoriza qualidade premium</p>
-            </div>
-          </div>
+          <PublicoCarousel />
         </motion.section>
       </motion.div>
     </div>
