@@ -4,12 +4,6 @@ import Link from 'next/link'
 interface CardProps {
   title: string
   desc: string
-  icon: string
-}
-
-interface CardProps {
-  title: string
-  desc: string
 }
 
 export default function Card({ title, desc }: CardProps) {
