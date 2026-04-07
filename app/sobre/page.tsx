@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import PublicoCarousel from '@/components/PublicoCarousel'
 
 export default function Sobre() {
   return (
