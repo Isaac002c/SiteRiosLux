@@ -16,14 +16,26 @@ export default function Home() {
           transition={{ duration: 1 }}
           className="text-center px-4 max-w-4xl mx-auto z-10"
         >
-          <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-8 gradient-text leading-tight"
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Rios Lux
-          </motion.h1>
+            <motion.div 
+              className="flex flex-col items-center justify-center mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <img 
+                src="/logo.png" 
+                alt="Rios Lux" 
+                className="h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40 rounded-full shadow-2xl ring-4 ring-gold/50 mb-6 drop-shadow-2xl"
+              />
+              <motion.h1 
+                className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text leading-tight tracking-tight"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Rios Lux
+              </motion.h1>
+            </motion.div>
           <motion.p 
             className="text-xl md:text-2xl lg:text-3xl font-sans mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}

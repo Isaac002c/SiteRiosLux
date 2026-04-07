@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
         <Navbar />
-        <main className="pt-20 min-h-screen">
+<main className="pt-20 min-h-screen">
           {children}
         </main>
         <Footer />

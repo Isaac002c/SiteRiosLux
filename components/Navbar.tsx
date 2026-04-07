@@ -19,7 +19,7 @@ export default function Navbar() {
   const toggleMenu = () => setOpen(!open)
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
       scrolled ? 'bg-primary/95 backdrop-blur-md shadow-xl' : 'bg-primary/90 backdrop-blur-md'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +28,7 @@ export default function Navbar() {
           <Link href="/" className="flex-shrink-0">
             <img 
               src="/logo.png" 
-              alt="RiosLux" 
+              alt="Rios Lux" 
               className="h-12 w-auto md:h-16 rounded-full shadow-lg ring-2 ring-gold/30 hover:ring-gold/50 transition-all duration-300"
             />
           </Link>
@@ -73,24 +73,24 @@ export default function Navbar() {
         {open && (
           <div className="md:hidden bg-primary/95 backdrop-blur-md pb-4">
             <div className="px-4 pt-2 pb-3 space-y-1">
-              <Link href="/" className="block hover:text-gold py-2" onClick={toggleMenu}>
+              <Link href="/" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Home
               </Link>
-              <Link href="/sobre" className="block hover:text-gold py-2" onClick={toggleMenu}>
+              <Link href="/sobre" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Sobre
               </Link>
-              <Link href="/servicos" className="block hover:text-gold py-2" onClick={toggleMenu}>
+              <Link href="/servicos" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Serviços
               </Link>
-              <Link href="/experiencias" className="block hover:text-gold py-2" onClick={toggleMenu}>
+              <Link href="/experiencias" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Experiências
               </Link>
-              <Link href="/contato" className="block hover:text-gold py-2" onClick={toggleMenu}>
+              <Link href="/contato" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Contato
               </Link>
               <Link
-                href="#contato"
-                className="block bg-gold text-primary px-8 py-3 rounded-full font-medium mx-4 mt-4 hover:bg-beige transition-all"
+                href="/contato"
+                className="block bg-gold text-primary px-8 py-3 rounded-full font-semibold mx-4 mt-4 hover:bg-beige transition-all"
                 onClick={toggleMenu}
               >
                 Agendar Consultoria
@@ -102,4 +102,3 @@ export default function Navbar() {
     </nav>
   )
 }
-
