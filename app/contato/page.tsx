@@ -2,6 +2,17 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Agendar Consultoria | Eventos Premium RJ | RiosLux',
+  description: 'Agende sua consultoria gratuita com especialistas em eventos premium. Fale com a RiosLux e transforme sua visão em realidade. WhatsApp disponível 24h.',
+  openGraph: {
+    title: 'Agendar Consultoria | RiosLux',
+    description: 'Consultoria gratuita para sua experiência premium no Rio de Janeiro.',
+    url: 'https://riooslux.com.br/contato',
+  }
+}
 
 export default function Contato() {
   const [formData, setFormData] = useState({
@@ -35,10 +46,10 @@ export default function Contato() {
           className="text-center mb-24"
         >
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-6 leading-tight">
-            Vamos Criar Sua Experiência
+            Vamos Criar Sua Experiência Premium
           </h1>
           <p className="text-xl md:text-2xl text-beige/80 max-w-2xl mx-auto">
-            Fale com nossos especialistas e transforme sua visão em realidade
+            Fale com nossos especialistas em eventos de luxo e transforme sua visão em realidade
           </p>
         </motion.div>
 
@@ -50,7 +61,7 @@ export default function Contato() {
             className="space-y-6"
           >
             <h2 className="text-3xl font-serif font-bold gradient-text">
-              Orçamento Personalizado
+              Solicitação de Orçamento Personalizado
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -84,19 +95,19 @@ export default function Contato() {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     className="w-full p-5 rounded-2xl bg-white/10 border border-gold/30 backdrop-blur-md text-white placeholder-beige/60 focus:border-gold focus:outline-none transition-all"
-                    placeholder="(11) 99999-9999"
+                    placeholder="(21) 99999-9999"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-beige/80 mb-2 font-medium">Mensagem</label>
+                <label className="block text-beige/80 mb-2 font-medium">Sobre seu Evento</label>
                 <textarea
                   rows={5}
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   className="w-full p-5 rounded-2xl bg-white/10 border border-gold/30 backdrop-blur-md text-white placeholder-beige/60 focus:border-gold focus:outline-none transition-all resize-vertical"
-                  placeholder="Conte-nos sobre seu evento..."
+                  placeholder="Tipo de evento, data, local, número de convidados e sua visão..."
                 />
               </div>
               <motion.button
@@ -124,8 +135,8 @@ export default function Contato() {
               <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
                 WhatsApp Direto
               </h3>
-              <p className="text-beige/80 mb-6">Fale imediatamente com nosso time</p>
-              <p className="font-mono text-lg mb-4">+55 (11) 99999-9999</p>
+              <p className="text-beige/80 mb-6">Fale imediatamente com nosso time especializado</p>
+              <p className="font-mono text-lg mb-4">+55 21 97252-2076</p>
               <div className="bg-white/10 px-6 py-3 rounded-full inline-block">
                 Iniciar Chat
               </div>
@@ -136,9 +147,9 @@ export default function Contato() {
                 Atendimento Premium
               </h3>
               <div className="space-y-3 text-beige/80">
-                <p>• Disponível 24/7</p>
-                <p>• Resposta em até 2h</p>
-                <p>• Consultoria gratuita inicial</p>
+                <p>✓ Disponível 24/7</p>
+                <p>✓ Resposta em até 2h</p>
+                <p>✓ Consultoria gratuita inicial</p>
               </div>
             </div>
           </motion.div>

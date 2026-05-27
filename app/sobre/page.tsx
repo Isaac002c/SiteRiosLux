@@ -2,7 +2,18 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import PublicoCarousel from '@/components/PublicoCarousel'
+
+export const metadata: Metadata = {
+  title: 'Sobre RiosLux | Agência de Eventos Premium RJ',
+  description: 'Conheça a RiosLux: especialista em eventos de alto padrão. Excelência, exclusividade e detalhes sofisticados para clientes que exigem qualidade. Rio de Janeiro.',
+  openGraph: {
+    title: 'Sobre RiosLux | Agência de Eventos Premium',
+    description: 'Especialista em eventos premium e concierge exclusivo no Rio de Janeiro desde 2020.',
+    url: 'https://riooslux.com.br/sobre',
+  }
+}
 
 export default function Sobre() {
   return (
@@ -19,12 +30,12 @@ export default function Sobre() {
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1"
           >
-<h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
               Sobre a RiosLux
             </h1>
             <div className="space-y-6 text-xl leading-relaxed">
               <p>
-                A Rios Lux é uma agência especializada na criação e execução de <strong>eventos de alto padrão</strong>.
+                A <strong>RiosLux</strong> é uma agência especializada na criação e execução de <strong>eventos de alto padrão</strong> no Rio de Janeiro.
               </p>
               <p>
                 Cuidamos de <strong>cada detalhe</strong> para transformar ocasiões especiais em experiências sofisticadas, exclusivas e sem preocupações para nossos clientes.
@@ -72,10 +83,56 @@ export default function Sobre() {
           viewport={{ once: true }}
           className="mb-32"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text text-center mb-6">
             Nosso Público
           </h2>
+          <p className="text-xl text-beige/80 max-w-2xl mx-auto text-center mb-16">
+            Atendemos clientes de alto padrão que buscam exclusividade e sofisticação
+          </p>
           <PublicoCarousel />
+        </motion.section>
+
+        {/* Valores */}
+        <motion.section
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12">
+            Nossos Valores
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="glass p-8 rounded-2xl border border-gold/20"
+            >
+              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">Excelência</h3>
+              <p className="text-beige/80">Qualidade inquestionável em cada detalhe de cada evento</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="glass p-8 rounded-2xl border border-gold/20"
+            >
+              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">Exclusividade</h3>
+              <p className="text-beige/80">Acesso privilegiado a locais e serviços únicos no Rio</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="glass p-8 rounded-2xl border border-gold/20"
+            >
+              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">Inovação</h3>
+              <p className="text-beige/80">Ideias criativas que transformam sonhos em realidade</p>
+            </motion.div>
+          </div>
         </motion.section>
       </motion.div>
     </div>

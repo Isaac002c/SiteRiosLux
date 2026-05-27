@@ -1,0 +1,38 @@
+{
+  "name": "RiosLux - Eventos Premium e Concierge Exclusivo",
+  "short_name": "RiosLux",
+  "description": "Agência especializada em eventos de alto padrão e concierge exclusivo no Rio de Janeiro",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1a1a2e",
+  "theme_color": "#d4af37",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["events", "business", "lifestyle"],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "540x720",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ]
+}

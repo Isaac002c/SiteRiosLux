@@ -2,23 +2,34 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Serviços de Eventos Luxo | Produção Premium RJ | RiosLux',
+  description: 'Produção de eventos premium, concierge, gestão completa. Corporativos, casamentos, experiências exclusivas. Qualidade inquestionável. Consulte a RiosLux.',
+  openGraph: {
+    title: 'Serviços de Eventos Luxo | RiosLux',
+    description: 'Eventos corporativos, casamentos, despedidas de solteiro premium e experiências exclusivas no Rio de Janeiro.',
+    url: 'https://riooslux.com.br/servicos',
+  }
+}
 
 const services = [
   {
-    title: 'Eventos Corporativos',
-    desc: 'Conferências, lançamentos e eventos para empresas de alto padrão.',
+    title: 'Eventos Corporativos Premium',
+    desc: 'Conferências, lançamentos e eventos para empresas de alto padrão com produção impecável.',
     icon: '💼',
     features: ['Networking premium', 'Locais exclusivos', 'Produção impecável']
   },
   {
-    title: 'Eventos Privados',
-    desc: 'Casamentos, aniversários e celebrações familiares sofisticadas.',
+    title: 'Casamentos e Eventos Privados',
+    desc: 'Casamentos, aniversários e celebrações familiares sofisticadas personalizadas.',
     icon: '💍',
     features: ['Planejamento completo', 'Fornecedores selecionados', 'Detalhes personalizados']
   },
   {
     title: 'Experiências Exclusivas',
-    desc: 'Mansões, iates, rooftops e locais únicos no Rio de Janeiro.',
+    desc: 'Mansões, iates, rooftops e locais únicos no Rio de Janeiro com acesso privilegiado.',
     icon: '🛥️',
     features: ['Acesso privilegiado', 'Concierge 24h', 'Experiência white-glove']
   }
@@ -34,10 +45,10 @@ export default function Servicos() {
           className="text-center mb-24"
         >
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Nossos Serviços
+            Nossos Serviços de Eventos Premium
           </h1>
           <p className="text-xl text-beige/80 max-w-2xl mx-auto">
-            Soluções completas para eventos que impressionam
+            Soluções completas para eventos que impressionam e transformam ocasiões em experiências memoráveis
           </p>
         </motion.div>
 
@@ -75,29 +86,85 @@ export default function Servicos() {
           ))}
         </div>
 
-        <motion.div
+        {/* Diferenciais */}
+        <motion.section
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text">
             Diferenciais que Fazem a Diferença
           </h2>
+          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
+            O que torna a RiosLux a referência em eventos de luxo no Rio de Janeiro
+          </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-20">
-            {[
-              { title: 'Exclusividade Absoluta', desc: 'Acesso a locais e serviços únicos' },
-              { title: 'Organização Impecável', desc: 'Zero imprevistos, 100% satisfação' },
-              { title: 'Concierge Completo', desc: 'Do conceito à execução perfeita' }
-            ].map((diferencial, index) => (
-              <div key={index} className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all">
-                <h4 className="text-2xl font-serif font-bold mb-4 gradient-text">
-                  {diferencial.title}
-                </h4>
-                <p className="text-beige/80">
-                  {diferencial.desc}
-                </p>
-              </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all"
+            >
+              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
+                Exclusividade Absoluta
+              </h3>
+              <p className="text-beige/80">
+                Acesso a locais e serviços únicos no Rio de Janeiro
+              </p>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all"
+            >
+              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
+                Organização Impecável
+              </h3>
+              <p className="text-beige/80">
+                Zero imprevistos, 100% satisfação garantida
+              </p>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all"
+            >
+              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
+                Concierge Completo
+              </h3>
+              <p className="text-beige/80">
+                Do conceito à execução perfeita, disponível 24h
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-24"
+        >
+          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 gradient-text">
+            Pronto para Criar Uma Experiência Premium?
+          </h2>
+          <Link 
+            href="/contato"
+            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
+          >
+            Agendar Consultoria Gratuita
+          </Link>
+        </motion.div>
+      </div>
+    </div>
+  )
+}
             ))}
           </div>
         </motion.div>

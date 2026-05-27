@@ -38,14 +38,36 @@ export default function Navbar() {
             <Link href="/" className="hover:text-gold transition-colors py-2">
               Home
             </Link>
+            <div className="group relative">
+              <button className="hover:text-gold transition-colors py-2">
+                Serviços
+              </button>
+              <div className="absolute left-0 mt-0 w-48 bg-primary/95 backdrop-blur-md rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gold/20">
+                <Link href="/servicos" className="block px-4 py-2 text-sm hover:text-gold">Todos os Serviços</Link>
+                <Link href="/despedida-solteiro-luxo-rj" className="block px-4 py-2 text-sm hover:text-gold">Despedida Solteiro</Link>
+                <Link href="/eventos-corporativos-premium-rj" className="block px-4 py-2 text-sm hover:text-gold">Corporativos</Link>
+                <Link href="/concierge-eventos-rio" className="block px-4 py-2 text-sm hover:text-gold">Concierge</Link>
+              </div>
+            </div>
+            <div className="group relative">
+              <button className="hover:text-gold transition-colors py-2">
+                Localizações
+              </button>
+              <div className="absolute left-0 mt-0 w-48 bg-primary/95 backdrop-blur-md rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gold/20">
+                <Link href="/eventos-barra-tijuca" className="block px-4 py-2 text-sm hover:text-gold">Barra da Tijuca</Link>
+                <Link href="/casamentos-luxo-ipanema" className="block px-4 py-2 text-sm hover:text-gold">Ipanema</Link>
+                <Link href="/producao-eventos-leblon" className="block px-4 py-2 text-sm hover:text-gold">Leblon</Link>
+                <Link href="/eventos-mansoes-rio" className="block px-4 py-2 text-sm hover:text-gold">Mansões</Link>
+              </div>
+            </div>
+            <Link href="/experiencias" className="hover:text-gold transition-colors py-2">
+              Galeria
+            </Link>
+            <Link href="/faq" className="hover:text-gold transition-colors py-2">
+              FAQ
+            </Link>
             <Link href="/sobre" className="hover:text-gold transition-colors py-2">
               Sobre
-            </Link>
-            <Link href="/servicos" className="hover:text-gold transition-colors py-2">
-              Serviços
-            </Link>
-            <Link href="/experiencias" className="hover:text-gold transition-colors py-2">
-              Experiências
             </Link>
             <Link href="/contato" className="hover:text-gold transition-colors py-2">
               Contato
@@ -76,14 +98,44 @@ export default function Navbar() {
               <Link href="/" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Home
               </Link>
+              <div className="py-2">
+                <p className="text-xs uppercase text-gold/80 font-semibold px-4 mb-2">Serviços</p>
+                <Link href="/servicos" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Todos
+                </Link>
+                <Link href="/despedida-solteiro-luxo-rj" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Despedida Solteiro
+                </Link>
+                <Link href="/eventos-corporativos-premium-rj" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Corporativos
+                </Link>
+                <Link href="/concierge-eventos-rio" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Concierge
+                </Link>
+              </div>
+              <div className="py-2">
+                <p className="text-xs uppercase text-gold/80 font-semibold px-4 mb-2">Locais</p>
+                <Link href="/eventos-barra-tijuca" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Barra da Tijuca
+                </Link>
+                <Link href="/casamentos-luxo-ipanema" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Ipanema
+                </Link>
+                <Link href="/producao-eventos-leblon" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Leblon
+                </Link>
+                <Link href="/eventos-mansoes-rio" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
+                  Mansões
+                </Link>
+              </div>
+              <Link href="/experiencias" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
+                Galeria
+              </Link>
+              <Link href="/faq" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
+                FAQ
+              </Link>
               <Link href="/sobre" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Sobre
-              </Link>
-              <Link href="/servicos" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                Serviços
-              </Link>
-              <Link href="/experiencias" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                Experiências
               </Link>
               <Link href="/contato" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
                 Contato
