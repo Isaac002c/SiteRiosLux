@@ -1,8 +1,6 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { motion } from 'framer-motion'
 
 export const metadata: Metadata = {
   title: 'Blog RiosLux | Eventos Premium, Concierge e Dicas de Luxo RJ',
