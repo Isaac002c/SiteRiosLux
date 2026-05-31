@@ -2,17 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Agendar Consultoria | Eventos Premium RJ | RiosLux',
-  description: 'Agende sua consultoria gratuita com especialistas em eventos premium. Fale com a RiosLux e transforme sua visão em realidade. WhatsApp disponível 24h.',
-  openGraph: {
-    title: 'Agendar Consultoria | RiosLux',
-    description: 'Consultoria gratuita para sua experiência premium no Rio de Janeiro.',
-    url: 'https://riooslux.com.br/contato',
-  }
-}
 
 export default function Contato() {
   const [formData, setFormData] = useState({

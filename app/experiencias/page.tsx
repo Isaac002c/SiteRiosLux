@@ -3,16 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Galeria de Eventos Premium | Portfólio RiosLux | Rio de Janeiro',
-  description: 'Veja nosso portfólio: gala corporativa em rooftop, casamento em iate, aniversário em mansão. Eventos exclusivos na Baía de Guanabara. Inspire-se com a RiosLux.',
-  openGraph: {
-    title: 'Galeria de Eventos Premium | RiosLux',
-    description: 'Portfólio de experiências exclusivas: eventos corporativos, casamentos e celebrações premium.',
-    url: 'https://riooslux.com.br/experiencias',
-  }
 }
 
 const galleryItems = [

@@ -2,19 +2,8 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import type { Metadata } from 'next'
 import CardCarousel from '@/components/CardCarousel'
 import CTASection from '@/components/CTASection'
-
-export const metadata: Metadata = {
-  title: 'Eventos Premium Rio de Janeiro | Concierge RiosLux',
-  description: 'Experiências exclusivas para clientes de alto padrão. Eventos corporativos, casamentos e despedidas de solteiro sofisticadas. Concierge 24h.',
-  openGraph: {
-    title: 'RiosLux | Eventos Premium e Concierge Exclusivo',
-    description: 'Experiências sofisticadas para clientes de alto padrão no Rio de Janeiro.',
-    url: 'https://riooslux.com.br',
-  }
-}
 
 export default function Home() {
   return (
@@ -34,9 +23,9 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <img 
-                src="/logo.png" 
+                src="/logo.svg" 
                 alt="RiosLux - Eventos Premium no Rio de Janeiro" 
-                className="h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40 rounded-full shadow-2xl ring-4 ring-gold/50 mb-6 drop-shadow-2xl"
+                className="h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40 shadow-2xl drop-shadow-2xl mb-6"
               />
               <motion.h1 
                 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text leading-tight tracking-tight"

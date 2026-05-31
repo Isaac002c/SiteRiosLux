@@ -2,17 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import type { Metadata } from 'next'
 import PublicoCarousel from '@/components/PublicoCarousel'
-
-export const metadata: Metadata = {
-  title: 'Sobre RiosLux | Agência de Eventos Premium RJ',
-  description: 'Conheça a RiosLux: especialista em eventos de alto padrão. Excelência, exclusividade e detalhes sofisticados para clientes que exigem qualidade. Rio de Janeiro.',
-  openGraph: {
-    title: 'Sobre RiosLux | Agência de Eventos Premium',
-    description: 'Especialista em eventos premium e concierge exclusivo no Rio de Janeiro desde 2020.',
-    url: 'https://riooslux.com.br/sobre',
-  }
 }
 
 export default function Sobre() {

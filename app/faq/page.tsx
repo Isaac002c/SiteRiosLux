@@ -1,8 +1,6 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import Link from 'next/link'
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export const metadata: Metadata = {
   title: 'FAQ - Perguntas Frequentes | Eventos Premium RJ | RiosLux',

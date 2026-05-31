@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f1e;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="95" fill="url(#bgGradient)" stroke="url(#goldGradient)" stroke-width="3"/>
+  
+  <!-- Inner circle background -->
+  <circle cx="100" cy="100" r="85" fill="#1a1a2e" opacity="0.9"/>
+  
+  <!-- Gold accent rings -->
+  <circle cx="100" cy="100" r="80" fill="none" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="100" cy="100" r="75" fill="none" stroke="url(#goldGradient)" stroke-width="0.8" opacity="0.3"/>
+  
+  <!-- Main symbol: Stylized "R" for RiosLux -->
+  <g transform="translate(100, 100)">
+    <!-- Left vertical line of R -->
+    <rect x="-12" y="-25" width="5" height="50" fill="url(#goldGradient)" rx="2.5"/>
+    
+    <!-- Top curve of R -->
+    <path d="M -7 -25 Q 15 -25 15 -8 Q 15 5 -7 5" fill="none" stroke="url(#goldGradient)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Diagonal leg of R -->
+    <line x1="-5" y1="5" x2="18" y2="25" stroke="url(#goldGradient)" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Decorative star point accent -->
+    <g opacity="0.8">
+      <polygon points="0,-40 4,-28 13,-30 6,-24 9,-14 0,-20 -9,-14 -6,-24 -13,-30 -4,-28" fill="url(#goldGradient)"/>
+    </g>
+  </g>
+  
+  <!-- Text: RiosLux -->
+  <text x="100" y="155" font-family="'Playfair Display', serif" font-size="18" font-weight="700" text-anchor="middle" fill="url(#goldGradient)" letter-spacing="2">RIOSILUX</text>
+  
+  <!-- Bottom subtitle accent -->
+  <line x1="60" y1="168" x2="140" y2="168" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.6"/>
+  <text x="100" y="185" font-family="'Inter', sans-serif" font-size="8" text-anchor="middle" fill="#d4af37" opacity="0.8" letter-spacing="1">EVENTOS PREMIUM</text>
+</svg>
