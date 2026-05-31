@@ -1,8 +1,18 @@
 'use client'
 
+import type { Metadata } from 'next'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Experiências Premium | Portfólio de Eventos Luxo RJ | RiosLux',
+  description: 'Galeria de eventos premium realizados pela RiosLux. Experiências exclusivas em iates, mansões, rooftops e locais únicos do Rio de Janeiro.',
+  openGraph: {
+    title: 'Galeria de Eventos Premium | RiosLux',
+    description: 'Conheça nosso portfólio de experiências sofisticadas e exclusivas.',
+    url: 'https://riooslux.com.br/experiencias',
+  }
 }
 
 const galleryItems = [

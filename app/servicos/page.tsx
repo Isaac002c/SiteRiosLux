@@ -163,11 +163,4 @@ export default function Servicos() {
     </div>
   )
 }
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  )
-}
 
