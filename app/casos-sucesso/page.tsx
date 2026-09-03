@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Casos de Sucesso | Portfólio de Eventos Premium | RiosLux',
   description: '50+ eventos premium realizados com sucesso. Casamentos, corporativos, despedidas. Veja nosso portfólio completo de experiências sofisticadas.',
+  alternates: { canonical: '/casos-sucesso' },
   openGraph: {
     title: 'Casos de Sucesso RiosLux | Eventos Premium',
     description: 'Conheça os 50+ eventos premium que transformamos em experiências memoráveis.',
-    url: 'https://riooslux.com.br/casos-sucesso',
+    url: 'https://www.agenciarioslux.com.br/casos-sucesso',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -55,7 +57,7 @@ export default function CasosSucesso() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -66,10 +68,10 @@ export default function CasosSucesso() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
             Mais de 50 eventos premium realizados com excelência, sofisticação e zero imprevistos
           </p>
-        </motion.div>
+        </MotionDiv>
 
         {/* Estatísticas */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -81,7 +83,7 @@ export default function CasosSucesso() {
             { numero: '5★', label: 'Classificação Média' },
             { numero: '24h', label: 'Atendimento' }
           ].map((stat, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -91,12 +93,12 @@ export default function CasosSucesso() {
             >
               <p className="text-5xl font-serif font-bold gradient-text mb-3">{stat.numero}</p>
               <p className="text-beige/80">{stat.label}</p>
-            </motion.div>
+            </MotionDiv>
           ))}
-        </motion.div>
+        </MotionDiv>
 
         {/* Casos */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -107,7 +109,7 @@ export default function CasosSucesso() {
           </h2>
 
           {casosSuccesso.map((caso, index) => (
-            <motion.div
+            <MotionDiv
               key={index}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -134,12 +136,12 @@ export default function CasosSucesso() {
                   Ver Detalhes
                 </button>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
-        </motion.div>
+        </MotionDiv>
 
         {/* Testimonial */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -149,14 +151,14 @@ export default function CasosSucesso() {
             "A RiosLux transformou nossa visão em realidade. Não apenas produziram um evento impecável, mas criaram uma experiência que nossos convidados não esquecem."
           </p>
           <p className="text-gold font-semibold text-lg mb-12">— Cliente Premium, Rio de Janeiro</p>
-          
-          <Link 
+
+          <Link
             href="/contato"
             className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
           >
             Criar Seu Caso de Sucesso
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

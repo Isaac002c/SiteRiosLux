@@ -15,13 +15,13 @@ A infraestrutura SEO está **100% pronta**. Agora você precisa ativar para come
 1. Ir para: https://search.google.com/search-console
 2. Clicar em "Adicionar Propriedade"
 3. Selecionar "Domínio"
-4. Digitar: riooslux.com.br
+4. Digitar: www.agenciarioslux.com.br
 5. Copiar código DNS fornecido
 6. Ir para seu provedor DNS
 7. Adicionar registro TXT
 8. Voltar ao GSC e confirmar
 9. Uma vez verificado:
-   - Submeter sitemap: https://riooslux.com.br/sitemap.xml
+   - Submeter sitemap: https://www.agenciarioslux.com.br/sitemap.xml
    - Aguardar indexação (48-72h)
 ```
 
@@ -30,7 +30,7 @@ A infraestrutura SEO está **100% pronta**. Agora você precisa ativar para come
 1. Ir para: https://analytics.google.com
 2. Criar nova propriedade: "RiosLux - Eventos Premium"
 3. Plataforma: Web
-4. URL: https://riooslux.com.br
+4. URL: https://www.agenciarioslux.com.br
 5. Copiar ID da medida: G-XXXXXXXXXX
 6. Adicionar ao next.config.mjs ou _document:
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -49,7 +49,7 @@ A infraestrutura SEO está **100% pronta**. Agora você precisa ativar para come
    - Descrição: Agência especializada em eventos premium e concierge exclusivo
    - Categoria: Event Planning Services
    - Telefone: +55 21 97252-2076
-   - Website: https://riooslux.com.br
+   - Website: https://www.agenciarioslux.com.br
    - Endereço: [ADICIONAR ENDEREÇO REAL DO RJ]
    - Horário: Segunda-Sábado 9h-20h / Domingo Fechado
 4. Upload 10+ fotos premium dos eventos
@@ -343,4 +343,4 @@ A RiosLux está pronta para dominar o mercado de eventos premium no Rio de Janei
 
 **Data**: Maio 2026  
 **Status**: ✅ READY TO LAUNCH  
-**Contato**: https://riooslux.com.br
+**Contato**: https://www.agenciarioslux.com.br

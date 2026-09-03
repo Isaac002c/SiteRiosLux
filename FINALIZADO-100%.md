@@ -240,7 +240,7 @@ SEO:
 
 | Serviço | URL |
 |---------|-----|
-| **Website** | https://riooslux.com.br |
+| **Website** | https://www.agenciarioslux.com.br |
 | **WhatsApp** | https://wa.me/5521972522076 |
 | **Telefone** | +55 21 97252-2076 |
 | **GSC** | https://search.google.com/search-console |

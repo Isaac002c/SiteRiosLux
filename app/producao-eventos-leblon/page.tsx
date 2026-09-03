@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Produção Eventos Leblon | Agência Luxo Premium RJ | RiosLux',
   description: 'Produção de eventos premium em Leblon. Experiências sofisticadas, concierge 24h, locais exclusivos. RiosLux - especialista em eventos de alto padrão.',
+  alternates: { canonical: '/producao-eventos-leblon' },
   openGraph: {
     title: 'Produção Eventos Leblon | RiosLux',
     description: 'Eventos premium e concierge exclusivo em Leblon e Zona Sul do Rio.',
-    url: 'https://riooslux.com.br/producao-eventos-leblon',
+    url: 'https://www.agenciarioslux.com.br/producao-eventos-leblon',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -16,7 +18,7 @@ export default function ProducaoLeblon() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -27,15 +29,15 @@ export default function ProducaoLeblon() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
             Eventos sofisticados no bairro mais charmoso e elegante do Rio de Janeiro
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Agendar Consultoria em Leblon
           </Link>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,9 +49,9 @@ export default function ProducaoLeblon() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto">
             Restaurantes premium, boutiques exclusivas e paisagem única: o cenário perfeito para eventos memoráveis.
           </p>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -61,13 +63,13 @@ export default function ProducaoLeblon() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Transforme sua visão em uma experiência inesquecível em um dos cenários mais lindos do Rio.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Solicitar Proposta Premium
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

@@ -1,15 +1,17 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Guia Completo: Despedida de Solteiro Luxo no Rio | RiosLux',
   description: 'Aprenda como organizar a despedida de solteiro premium perfeita. Locais exclusivos, ideias criativas, orçamento e dicas de sucesso na RiosLux.',
   keywords: 'despedida solteiro luxo, despedida de solteiro premium, festa solteiro rio',
+  alternates: { canonical: '/blog/guia-despedida-solteiro-luxo' },
   openGraph: {
     title: 'Guia: Despedida de Solteiro Luxo no Rio',
     description: 'Tudo que você precisa saber para organizar um evento inesquecível',
-    url: 'https://riooslux.com.br/blog/guia-despedida-solteiro-luxo',
+    url: 'https://www.agenciarioslux.com.br/blog/guia-despedida-solteiro-luxo',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
     type: 'article',
   },
 }
@@ -27,8 +29,8 @@ export default function GuiaDespedidaSolteiro() {
 
   return (
     <main className="min-h-screen py-24 px-4 md:px-8 bg-gradient-to-b from-slate-950 to-black">
-      <motion.div className="max-w-4xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
-        <motion.div variants={itemVariants} className="mb-8">
+      <MotionDiv className="max-w-4xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
+        <MotionDiv variants={itemVariants} className="mb-8">
           <Link href="/blog" className="text-gold hover:text-yellow-300 transition-colors mb-4 inline-block">
             ← Voltar ao Blog
           </Link>
@@ -40,15 +42,15 @@ export default function GuiaDespedidaSolteiro() {
             <span>⏱️ 12 min de leitura</span>
             <span>📂 Eventos Premium</span>
           </div>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div variants={itemVariants} className="p-6 border border-gold/20 rounded-lg bg-white/5 backdrop-blur mb-12">
+        <MotionDiv variants={itemVariants} className="p-6 border border-gold/20 rounded-lg bg-white/5 backdrop-blur mb-12">
           <p className="text-lg text-gray-200">
             Uma despedida de solteiro premium não é só uma festa - é um marco na vida do noivo ou noiva. Neste guia, você aprenderá como organizar um evento que será lembrado para sempre, com elegância, exclusividade e logística perfeita.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">1. Define o Conceito & Vibe</h2>
           <div className="space-y-4 text-gray-200">
             <p>O sucesso começa com clareza. Existem 4 vibes principais:</p>
@@ -71,9 +73,9 @@ export default function GuiaDespedidaSolteiro() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">2. Escolha o Local Perfeito</h2>
           <div className="space-y-4 text-gray-200 mb-6">
             <p className="font-bold">Os melhores locais para despedida solteiro no Rio:</p>
@@ -93,9 +95,9 @@ export default function GuiaDespedidaSolteiro() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">3. Planejamento Cronológico</h2>
           <div className="space-y-3">
             {[
@@ -113,9 +115,9 @@ export default function GuiaDespedidaSolteiro() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">4. Orçamento Estimado</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -147,9 +149,9 @@ export default function GuiaDespedidaSolteiro() {
             </table>
           </div>
           <p className="text-yellow-400 font-bold mt-4">Total Estimado: R$ 28k - 73k</p>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">5. 10 Ideias Criativas Comprovadas</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -169,16 +171,16 @@ export default function GuiaDespedidaSolteiro() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12 p-6 border-l-4 border-gold bg-white/5 rounded">
+        <MotionSection variants={itemVariants} className="mb-12 p-6 border-l-4 border-gold bg-white/5 rounded">
           <h2 className="text-2xl font-bold text-gold mb-4">💡 Dica de Ouro</h2>
           <p className="text-gray-200 mb-4">
             A melhor despedida de solteiro não é aquela com o maior orçamento, mas aquela que reflete a personalidade do homenageado. Um iate modesto com amigos verdadeiros é superior a uma festa de 500 pessoas sem conexão.
           </p>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">6. Erros Comuns a Evitar</h2>
           <div className="space-y-3">
             {[
@@ -195,9 +197,9 @@ export default function GuiaDespedidaSolteiro() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="text-center py-12">
+        <MotionSection variants={itemVariants} className="text-center py-12">
           <h2 className="text-3xl font-serif font-bold mb-6 text-white">Pronto para Organizar?</h2>
           <p className="text-gray-300 mb-8">
             Nossa equipe especializada em despedidas solteiro pode ajudar com todo o planejamento e execução.
@@ -208,8 +210,8 @@ export default function GuiaDespedidaSolteiro() {
           >
             🎉 Começar Planejamento
           </a>
-        </motion.section>
-      </motion.div>
+        </MotionSection>
+      </MotionDiv>
     </main>
   )
 }

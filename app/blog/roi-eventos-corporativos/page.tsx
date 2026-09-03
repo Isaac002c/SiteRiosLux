@@ -1,15 +1,17 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'ROI em Eventos Corporativos Premium: Como Mensurar | RiosLux',
   description: 'Aprenda como calcular o retorno financeiro e comercial de eventos corporativos premium. Métricas, fórmulas e case studies reais.',
   keywords: 'ROI eventos corporativos, retorno evento, ROI corporativo, eventos B2B',
+  alternates: { canonical: '/blog/roi-eventos-corporativos' },
   openGraph: {
     title: 'ROI em Eventos Corporativos: Guia Completo',
     description: 'Como mensurar o sucesso financeiro de seus eventos',
-    url: 'https://riooslux.com.br/blog/roi-eventos-corporativos',
+    url: 'https://www.agenciarioslux.com.br/blog/roi-eventos-corporativos',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
     type: 'article',
   },
 }
@@ -27,8 +29,8 @@ export default function ROIEventosCorporativos() {
 
   return (
     <main className="min-h-screen py-24 px-4 md:px-8 bg-gradient-to-b from-slate-950 to-black">
-      <motion.div className="max-w-4xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
-        <motion.div variants={itemVariants} className="mb-8">
+      <MotionDiv className="max-w-4xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
+        <MotionDiv variants={itemVariants} className="mb-8">
           <Link href="/blog" className="text-gold hover:text-yellow-300 transition-colors mb-4 inline-block">
             ← Voltar ao Blog
           </Link>
@@ -40,15 +42,15 @@ export default function ROIEventosCorporativos() {
             <span>⏱️ 10 min de leitura</span>
             <span>📂 B2B & Corporativo</span>
           </div>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div variants={itemVariants} className="p-6 border border-gold/20 rounded-lg bg-white/5 backdrop-blur mb-12">
+        <MotionDiv variants={itemVariants} className="p-6 border border-gold/20 rounded-lg bg-white/5 backdrop-blur mb-12">
           <p className="text-lg text-gray-200">
             Evento corporativo premium custa dinheiro. Mas quanto ele vai gerar em retorno? Neste guia, descubra como mensurar ROI de eventos como um executive e justificar investimentos para o CFO.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">A Fórmula Básica do ROI</h2>
           <div className="p-6 bg-gold/10 border border-gold/30 rounded-lg mb-6">
             <p className="font-mono text-lg text-gold font-bold mb-4">ROI % = (Ganho Líquido / Investimento Total) × 100</p>
@@ -60,9 +62,9 @@ export default function ROIEventosCorporativos() {
           <p className="text-gray-200">
             Mas ROI em eventos corporativos é mais complexo que isso. Você precisa rastrear múltiplas métricas financeiras e não-financeiras.
           </p>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">5 Métricas Financeiras Críticas</h2>
           <div className="space-y-4">
             {[
@@ -99,9 +101,9 @@ export default function ROIEventosCorporativos() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">3 Métricas Não-Financeiras (Mas Valiosas)</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {[
@@ -124,9 +126,9 @@ export default function ROIEventosCorporativos() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">Como Estruturar Rastreamento</h2>
           <div className="space-y-4">
             <div className="p-4 border border-gold/20 rounded">
@@ -157,9 +159,9 @@ export default function ROIEventosCorporativos() {
               </ul>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">Case Study Real: Gala Corporativa XYZ</h2>
           <div className="p-6 border-l-4 border-gold bg-white/5 rounded space-y-4">
             <div>
@@ -180,9 +182,9 @@ export default function ROIEventosCorporativos() {
               <p className="text-sm text-gray-300">Lucro Líquido: R$ 600.000 em 6 meses</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">Benchmarks por Setor</h2>
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -208,9 +210,9 @@ export default function ROIEventosCorporativos() {
               ))}
             </tbody>
           </table>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="text-center py-12">
+        <MotionSection variants={itemVariants} className="text-center py-12">
           <h2 className="text-3xl font-serif font-bold mb-6 text-white">Planeja um Evento com ROI Garantido?</h2>
           <p className="text-gray-300 mb-8">
             Especiamos em eventos corporativos que geram retorno mensurável. Vamos estruturar seu evento para máximo ROI.
@@ -221,8 +223,8 @@ export default function ROIEventosCorporativos() {
           >
             💼 Consultar ROI Estratégico
           </a>
-        </motion.section>
-      </motion.div>
+        </MotionSection>
+      </MotionDiv>
     </main>
   )
 }

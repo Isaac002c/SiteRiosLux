@@ -4,44 +4,54 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const playfair = Playfair_Display({ 
-  subsets: ['latin'], 
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
+const playfair = Playfair_Display({
+  subsets: ['latin'],
   variable: '--font-playfair',
-  weight: ['400', '500', '600', '700']
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://riooslux.com.br'),
-  title: 'Eventos Premium Rio de Janeiro | Concierge RiosLux',
-  description: 'Experiências exclusivas para clientes de alto padrão. Eventos corporativos, casamentos e despedidas de solteiro sofisticadas no Rio. Concierge 24h.',
-  keywords: ['eventos premium Rio de Janeiro', 'concierge eventos RJ', 'eventos corporativos premium', 'despedida solteiro luxo', 'agência eventos luxo'],
+  metadataBase: new URL('https://www.agenciarioslux.com.br'),
+  title: 'Eventos Premium no Rio de Janeiro | RiosLux',
+  description: 'Planejamento de eventos premium e concierge no Rio de Janeiro para empresas, casamentos e celebrações exclusivas. Fale com a RiosLux.',
+  applicationName: 'RiosLux',
   authors: [{ name: 'RiosLux' }],
   creator: 'RiosLux',
   publisher: 'RiosLux',
-  robots: 'index, follow',
+  category: 'eventos',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://riooslux.com.br',
-    siteName: 'RiosLux - Eventos Premium',
-    title: 'RiosLux | Eventos Premium e Concierge Exclusivo no Rio',
-    description: 'Experiências sofisticadas para clientes de alto padrão. Concierge 24h, eventos corporativos, casamentos e despedidas exclusivas.',
+    url: '/',
+    siteName: 'RiosLux',
+    title: 'Eventos Premium no Rio de Janeiro | RiosLux',
+    description: 'Planejamento de eventos premium e concierge no Rio de Janeiro para empresas, casamentos e celebrações exclusivas.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: 'https://www.agenciarioslux.com.br/og.png',
         width: 1200,
         height: 630,
-        alt: 'RiosLux - Eventos Premium Rio de Janeiro',
-        type: 'image/jpeg',
-      }
-    ]
+        alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RiosLux | Eventos Premium RJ',
-    description: 'Concierge exclusivo e eventos de luxo no Rio de Janeiro.',
-    images: ['/og-image.jpg'],
+    images: ['https://www.agenciarioslux.com.br/og.png'],
   },
   appleWebApp: {
     capable: true,
@@ -49,16 +59,17 @@ export const metadata: Metadata = {
     title: 'RiosLux - Eventos Premium',
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: [{ url: '/favicon.png', type: 'image/png', sizes: '192x192' }],
+    shortcut: '/favicon.png',
+    apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://riooslux.com.br',
+    canonical: '/',
     languages: {
-      'pt-BR': 'https://riooslux.com.br',
-    }
-  }
+      'pt-BR': '/',
+    },
+  },
 }
 
 export default function RootLayout({
@@ -67,41 +78,38 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const schemaData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://riooslux.com.br",
-    "name": "RiosLux",
-    "description": "Agência especializada em eventos premium e concierge exclusivo no Rio de Janeiro",
-    "url": "https://riooslux.com.br",
-    "telephone": "+5521972522076",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Rio de Janeiro",
-      "addressRegion": "RJ",
-      "addressCountry": "BR"
-    },
-    "service": [
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        "@type": "Service",
-        "name": "Eventos Corporativos Premium",
-        "description": "Produção de eventos corporativos de alto padrão no Rio de Janeiro",
-        "areaServed": ["Barra da Tijuca", "Ipanema", "Leblon", "Copacabana", "Zona Sul RJ"]
+        '@type': 'Organization',
+        '@id': 'https://www.agenciarioslux.com.br/#organization',
+        name: 'RiosLux',
+        alternateName: 'Rios Lux',
+        description: 'Planejamento de eventos premium e concierge no Rio de Janeiro.',
+        url: 'https://www.agenciarioslux.com.br/',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://www.agenciarioslux.com.br/logo.png',
+          width: 512,
+          height: 509,
+        },
+        email: 'agenciarioslux@gmail.com',
+        telephone: '+5521972522076',
+        areaServed: {
+          '@type': 'City',
+          name: 'Rio de Janeiro',
+        },
       },
       {
-        "@type": "Service",
-        "name": "Despedidas de Solteiro Luxo",
-        "description": "Despedidas de solteiro e solteira exclusivas e sofisticadas"
+        '@type': 'WebSite',
+        '@id': 'https://www.agenciarioslux.com.br/#website',
+        url: 'https://www.agenciarioslux.com.br/',
+        name: 'RiosLux',
+        alternateName: 'Rios Lux',
+        inLanguage: 'pt-BR',
+        publisher: { '@id': 'https://www.agenciarioslux.com.br/#organization' },
       },
-      {
-        "@type": "Service",
-        "name": "Concierge para Eventos",
-        "description": "Serviço completo de concierge 24h para eventos premium"
-      }
     ],
-    "areaServed": {
-      "@type": "City",
-      "name": "Rio de Janeiro"
-    }
   }
 
   return (
@@ -122,4 +130,3 @@ export default function RootLayout({
     </html>
   )
 }
-

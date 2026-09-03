@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Phone, Mail, MapPin, Instagram, Linkedin } from 'lucide-react'
 
 export default function Footer() {
@@ -9,9 +10,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div className="md:col-span-1">
-            <img 
-              src="/logo.png" 
-              alt="RiosLux - Eventos Premium e Concierge" 
+            <Image
+              src="/logo.png"
+              alt="RiosLux - Eventos Premium e Concierge"
+              width={512}
+              height={509}
+              sizes="48px"
               className="h-12 w-auto rounded-full shadow-lg mb-4"
             />
             <h3 className="text-lg font-serif font-bold gradient-text mb-3">RiosLux</h3>
@@ -86,7 +90,7 @@ export default function Footer() {
           <p className="text-beige/60 text-xs">
             © 2024-2025 RiosLux - Eventos Premium e Concierge no Rio de Janeiro. Todos os direitos reservados.
           </p>
-          
+
           <div className="flex gap-6 text-xs">
             <Link href="/faq" className="text-beige/60 hover:text-gold transition-colors">
               Perguntas Frequentes
@@ -106,23 +110,7 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Schema Markup Location */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "name": "RiosLux - Agência de Eventos Premium",
-          "description": "Especialista em eventos premium, concierge 24h e experiências exclusivas no Rio de Janeiro",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Rio de Janeiro",
-            "addressRegion": "RJ",
-            "addressCountry": "BR"
-          },
-          "telephone": "+5521972522076",
-          "url": "https://riooslux.com.br"
-        })}} />
       </div>
     </footer>
   )
 }
-

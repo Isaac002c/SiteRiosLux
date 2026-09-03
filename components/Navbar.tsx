@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -26,9 +27,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <img 
-              src="/logo.png" 
-              alt="Rios Lux" 
+            <Image
+              src="/logo.png"
+              alt="Rios Lux"
+              width={512}
+              height={509}
+              sizes="(min-width: 768px) 64px, 48px"
+              priority
               className="h-12 w-auto md:h-16 rounded-full shadow-lg ring-2 ring-gold/30 hover:ring-gold/50 transition-all duration-300"
             />
           </Link>

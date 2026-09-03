@@ -1,24 +1,13 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PublicoCarousel from '@/components/PublicoCarousel'
 
-export const metadata: Metadata = {
-  title: 'Sobre RiosLux | Agência Especializada em Eventos Premium RJ',
-  description: 'Conheça a história, valores e expertise da RiosLux. Agência premiada em eventos corporativos, casamentos e experiências exclusivas no Rio de Janeiro.',
-  openGraph: {
-    title: 'RiosLux - Quem Somos',
-    description: 'A história de dedicação e excelência em eventos premium',
-    url: 'https://riooslux.com.br/sobre',
-  }
-}
-
 export default function Sobre() {
   return (
     <div className="min-h-screen py-24">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -138,4 +127,3 @@ export default function Sobre() {
     </div>
   )
 }
-

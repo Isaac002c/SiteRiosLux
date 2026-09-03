@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Guia: Diferença Entre Concierge e Agência | RiosLux Premium',
   description: 'Qual é a diferença entre contratar um concierge ou uma agência de eventos? Guia completo para escolher a melhor solução para seu evento premium no Rio.',
+  alternates: { canonical: '/blog/concierge-vs-agencia-eventos' },
   openGraph: {
     title: 'Concierge vs Agência de Eventos | RiosLux Guide',
     description: 'Entenda as diferenças e escolha a melhor opção para seu evento.',
-    url: 'https://riooslux.com.br/blog/concierge-vs-agencia-eventos',
+    url: 'https://www.agenciarioslux.com.br/blog/concierge-vs-agencia-eventos',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -16,7 +18,7 @@ export default function GuiaConciergeCorporativo() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -30,9 +32,9 @@ export default function GuiaConciergeCorporativo() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
             Qual é a diferença? Quando usar cada um? Conheça todas as respostas neste guia premium.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,7 +46,7 @@ export default function GuiaConciergeCorporativo() {
           <p className="text-xl text-beige/80 leading-relaxed mb-8">
             Concierge é um serviço personalizado focado em atender solicitações específicas com discrição e elegância. Oferece soluções customizadas, acesso a conexões exclusivas e atendimento white-glove.
           </p>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {[
               '✓ Personalização extrema',
@@ -57,9 +59,9 @@ export default function GuiaConciergeCorporativo() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -71,7 +73,7 @@ export default function GuiaConciergeCorporativo() {
           <p className="text-xl text-beige/80 leading-relaxed mb-8">
             Agência de eventos é especializada em planejamento, coordenação e execução completa de eventos. Oferece soluções turnkey com gerenciamento de fornecedores e cronograma.
           </p>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             {[
               '✓ Planejamento estruturado',
@@ -84,9 +86,9 @@ export default function GuiaConciergeCorporativo() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -95,7 +97,7 @@ export default function GuiaConciergeCorporativo() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12">
             Comparação Lado a Lado
           </h2>
-          
+
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
@@ -122,9 +124,9 @@ export default function GuiaConciergeCorporativo() {
               </tbody>
             </table>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -136,13 +138,13 @@ export default function GuiaConciergeCorporativo() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Combinamos excelência em concierge premium com produção impecável de eventos. Planejamento estruturado + personalização extrema + discrição absoluta.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Fale com Especialista
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

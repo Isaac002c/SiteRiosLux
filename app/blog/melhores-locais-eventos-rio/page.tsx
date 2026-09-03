@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Melhores Locais para Eventos Premium Rio | Guia Exclusivo RiosLux',
   description: 'Guia completo dos melhores locais para eventos premium no Rio: iates, mansões, rooftops, restaurantes. Descubra os espaços mais exclusivos e sofisticados.',
+  alternates: { canonical: '/blog/melhores-locais-eventos-rio' },
   openGraph: {
     title: 'Melhores Locais para Eventos Premium Rio | RiosLux',
     description: 'Iates, mansões, rooftops: conheça os espaços mais exclusivos do Rio de Janeiro.',
-    url: 'https://riooslux.com.br/blog/melhores-locais-eventos-rio',
+    url: 'https://www.agenciarioslux.com.br/blog/melhores-locais-eventos-rio',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -55,7 +57,7 @@ export default function MelhoresLocais() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -69,11 +71,11 @@ export default function MelhoresLocais() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
             Iates, mansões, rooftops e espaços exclusivos: conheça os cenários mais sofisticados para seu evento inesquecível.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
           {locais.map((local, index) => (
-            <motion.div
+            <MotionDiv
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -84,23 +86,23 @@ export default function MelhoresLocais() {
               <div className="mb-4">
                 <span className="text-xs font-semibold text-gold uppercase tracking-widest">{local.zona}</span>
               </div>
-              
+
               <h3 className="text-2xl font-serif font-bold gradient-text mb-3">
                 {local.name}
               </h3>
-              
+
               <p className="text-beige/80 text-lg mb-6 flex-grow leading-relaxed">
                 {local.desc}
               </p>
-              
+
               <div className="pt-6 border-t border-gold/10">
                 <p className="text-sm text-gold font-semibold">Capacidade: {local.capacidade}</p>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -112,13 +114,13 @@ export default function MelhoresLocais() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Nossos especialistas conhecem cada local exclusivo do Rio. Vamos encontrar o espaço ideal para sua visão premium.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Agendar Visita aos Locais
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

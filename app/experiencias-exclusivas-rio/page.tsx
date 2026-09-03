@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Experiências Exclusivas Rio de Janeiro | Iates Luxo | RiosLux Premium',
   description: 'Experiências exclusivas no Rio: iates luxo, rooftops, mansões. Concierge premium, soluções únicas. Transforme sua visão em realidade. RiosLux.',
+  alternates: { canonical: '/experiencias-exclusivas-rio' },
   openGraph: {
     title: 'Experiências Exclusivas Rio de Janeiro | RiosLux',
     description: 'Iates de luxo, mansões, rooftops e experiências sofisticadas na Baía de Guanabara.',
-    url: 'https://riooslux.com.br/experiencias-exclusivas-rio',
+    url: 'https://www.agenciarioslux.com.br/experiencias-exclusivas-rio',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -16,7 +18,7 @@ export default function ExperienciasExclusivas() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -27,15 +29,15 @@ export default function ExperienciasExclusivas() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
             Iates de luxo, mansões, rooftops e locais únicos: experiências que transcendem o ordinário
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Reservar Experiência Premium
           </Link>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -44,7 +46,7 @@ export default function ExperienciasExclusivas() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             Nossas Experiências
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
@@ -72,7 +74,7 @@ export default function ExperienciasExclusivas() {
                 desc: 'Chef particular, adega premium, menu degustação customizado.'
               }
             ].map((exp, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -82,12 +84,12 @@ export default function ExperienciasExclusivas() {
               >
                 <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{exp.exp}</h3>
                 <p className="text-beige/80">{exp.desc}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -99,13 +101,13 @@ export default function ExperienciasExclusivas() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Cada experiência é única. Conte-nos sua visão e nós a transformaremos em realidade premium.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Consultar Especialista
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

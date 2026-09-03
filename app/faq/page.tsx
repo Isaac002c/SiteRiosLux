@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'FAQ - Perguntas Frequentes | Eventos Premium RJ | RiosLux',
   description: 'Perguntas frequentes sobre eventos premium, concierge e serviços de luxo no Rio de Janeiro. Tudo que você precisa saber sobre a RiosLux.',
+  alternates: { canonical: '/faq' },
   openGraph: {
     title: 'FAQ - Dúvidas Sobre Eventos Premium | RiosLux',
     description: 'Tire suas dúvidas sobre eventos de luxo e serviços de concierge.',
-    url: 'https://riooslux.com.br/faq',
+    url: 'https://www.agenciarioslux.com.br/faq',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -68,7 +70,7 @@ export default function FAQ() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
       />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -79,11 +81,11 @@ export default function FAQ() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-2xl mx-auto">
             Tire todas as suas dúvidas sobre eventos premium e serviços de concierge
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="space-y-6 mb-32">
           {faqs.map((faq, index) => (
-            <motion.div
+            <MotionDiv
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -97,12 +99,12 @@ export default function FAQ() {
               <p className="text-beige/80 text-lg leading-relaxed">
                 {faq.a}
               </p>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
         {/* Não achou sua resposta? */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -115,13 +117,13 @@ export default function FAQ() {
             Fale diretamente com nossos especialistas. Estamos aqui para ajudar com qualquer dúvida.
           </p>
           <div className="flex gap-6 justify-center flex-wrap">
-            <Link 
+            <Link
               href="/contato"
               className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
             >
               Enviar Mensagem
             </Link>
-            <a 
+            <a
               href="https://wa.me/5521972522076"
               target="_blank"
               rel="noopener noreferrer"
@@ -130,7 +132,7 @@ export default function FAQ() {
               WhatsApp 24h
             </a>
           </div>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

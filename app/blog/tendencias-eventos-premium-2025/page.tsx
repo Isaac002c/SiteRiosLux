@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionA, MotionArticle, MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Blog - Tendências de Eventos Premium 2025 | RiosLux',
   description: 'Tendências em eventos de luxo para 2025. Conheça as novas experiências, iates premium, locais exclusivos e concierge white-glove no Rio de Janeiro.',
+  alternates: { canonical: '/blog/tendencias-eventos-premium-2025' },
   openGraph: {
     title: 'Tendências Eventos Premium 2025 | RiosLux Blog',
     description: 'As tendências mais quentes em eventos premium para o próximo ano.',
-    url: 'https://riooslux.com.br/blog/tendencias-eventos-premium-2025',
+    url: 'https://www.agenciarioslux.com.br/blog/tendencias-eventos-premium-2025',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -43,7 +45,7 @@ export default function BlogTendencias() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -54,11 +56,11 @@ export default function BlogTendencias() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
             Tendências, dicas e insights sobre eventos premium no Rio de Janeiro
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-2 gap-8 mb-32">
           {articles.map((article, index) => (
-            <motion.article
+            <MotionArticle
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,26 +74,26 @@ export default function BlogTendencias() {
                 </span>
                 <span className="text-sm text-beige/60">{article.date}</span>
               </div>
-              
+
               <h3 className="text-2xl font-serif font-bold gradient-text mb-4 group-hover:translate-y-1 transition-transform">
                 {article.title}
               </h3>
-              
+
               <p className="text-beige/80 text-lg mb-6 leading-relaxed">
                 {article.excerpt}
               </p>
-              
-              <Link 
+
+              <Link
                 href="#"
                 className="inline-flex items-center gap-2 text-gold hover:text-beige transition-colors font-medium"
               >
                 Ler Artigo Completo <span>→</span>
               </Link>
-            </motion.article>
+            </MotionArticle>
           ))}
         </div>
 
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -104,7 +106,7 @@ export default function BlogTendencias() {
             Inscreva-se para receber insights exclusivos sobre eventos premium.
           </p>
           <div className="max-w-md mx-auto">
-            <input 
+            <input
               type="email"
               placeholder="seu@email.com"
               className="w-full px-6 py-4 bg-white/10 border border-gold/30 rounded-full text-white placeholder-beige/50 focus:outline-none focus:border-gold transition-all mb-4"
@@ -113,7 +115,7 @@ export default function BlogTendencias() {
               Inscrever-se
             </button>
           </div>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

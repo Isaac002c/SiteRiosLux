@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Por Que RiosLux | Garantias Premium | Eventos de Luxo RJ',
   description: 'Por que escolher RiosLux? Garantias premium, concierge 24h, 50+ eventos sucesso, zero imprevistos. Referência em eventos premium no Rio.',
+  alternates: { canonical: '/por-que-riosilux' },
   openGraph: {
     title: 'Por Que Escolher RiosLux | Garantias Premium',
     description: 'Conheça os diferenciais que nos tornam referência em eventos premium.',
-    url: 'https://riooslux.com.br/por-que-riosilux',
+    url: 'https://www.agenciarioslux.com.br/por-que-riosilux',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -78,7 +80,7 @@ export default function PorQueRiosLux() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -89,10 +91,10 @@ export default function PorQueRiosLux() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
             Referência em eventos premium no Rio de Janeiro. Qualidade, exclusividade e excelência garantidas.
           </p>
-        </motion.div>
+        </MotionDiv>
 
         {/* Diferenciais */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
@@ -104,7 +106,7 @@ export default function PorQueRiosLux() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {diferenciais.map((diff, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -115,13 +117,13 @@ export default function PorQueRiosLux() {
                 <p className="text-6xl mb-4 group-hover:scale-110 transition-transform">{diff.icone}</p>
                 <h3 className="text-xl font-serif font-bold gradient-text mb-3">{diff.titulo}</h3>
                 <p className="text-beige/80 text-sm">{diff.descricao}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Garantias */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -133,7 +135,7 @@ export default function PorQueRiosLux() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {garantias.map((garantia, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -143,13 +145,13 @@ export default function PorQueRiosLux() {
               >
                 <h3 className="text-2xl font-serif font-bold gradient-text mb-4">{garantia.titulo}</h3>
                 <p className="text-beige/80 text-lg">{garantia.descricao}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Nossa Equipe */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -164,10 +166,10 @@ export default function PorQueRiosLux() {
           <p className="text-lg text-beige/80 mb-12">
             Cada membro traz expertise, paixão e compromisso com a excelência.
           </p>
-        </motion.section>
+        </MotionSection>
 
         {/* Process */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -184,7 +186,7 @@ export default function PorQueRiosLux() {
               { step: '3', title: 'Execução', desc: 'Transformamos em realidade' },
               { step: '4', title: 'Celebração', desc: 'Você aproveita perfeito' }
             ].map((item, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -200,13 +202,13 @@ export default function PorQueRiosLux() {
                 {i < 3 && (
                   <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2 text-gold text-2xl">→</div>
                 )}
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* CTA Final */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -218,13 +220,13 @@ export default function PorQueRiosLux() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Sua próxima experiência memorável começa com uma consultoria gratuita.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
           >
             Agendar Consultoria Agora
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

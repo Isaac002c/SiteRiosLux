@@ -1,15 +1,17 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Tecnologia em Eventos Premium: O Futuro do Luxo | RiosLux',
   description: 'Descubra as tecnologias que transformam eventos premium. From VR/AR até hologramas e inteligência artificial para experiências inesquecíveis.',
   keywords: 'tecnologia eventos, eventos premium 2025, AR eventos, VR experiências',
+  alternates: { canonical: '/blog/tecnologia-eventos-premium' },
   openGraph: {
     title: 'Tecnologia em Eventos Premium: O Futuro',
     description: 'As inovações que estão mudando eventos de luxo',
-    url: 'https://riooslux.com.br/blog/tecnologia-eventos-premium',
+    url: 'https://www.agenciarioslux.com.br/blog/tecnologia-eventos-premium',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
     type: 'article',
   },
 }
@@ -27,8 +29,8 @@ export default function TecnologiaEventos() {
 
   return (
     <main className="min-h-screen py-24 px-4 md:px-8 bg-gradient-to-b from-slate-950 to-black">
-      <motion.div className="max-w-4xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
-        <motion.div variants={itemVariants} className="mb-8">
+      <MotionDiv className="max-w-4xl mx-auto" initial="hidden" animate="visible" variants={containerVariants}>
+        <MotionDiv variants={itemVariants} className="mb-8">
           <Link href="/blog" className="text-gold hover:text-yellow-300 transition-colors mb-4 inline-block">
             ← Voltar ao Blog
           </Link>
@@ -40,15 +42,15 @@ export default function TecnologiaEventos() {
             <span>⏱️ 9 min de leitura</span>
             <span>📂 Inovação & Eventos</span>
           </div>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div variants={itemVariants} className="p-6 border border-gold/20 rounded-lg bg-white/5 backdrop-blur mb-12">
+        <MotionDiv variants={itemVariants} className="p-6 border border-gold/20 rounded-lg bg-white/5 backdrop-blur mb-12">
           <p className="text-lg text-gray-200">
             Tecnologia deixou de ser "legal" em eventos para ser "essencial". Conheça as 7 inovações que estão transformando experiências premium em 2025/2026.
           </p>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">1. Realidade Aumentada (AR)</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -68,9 +70,9 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Engajamento 3x maior + conteúdo viral</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">2. Realidade Virtual (VR)</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -90,9 +92,9 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Memorabilidade excepcional + diferenciação</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">3. Hologramas 3D</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -112,9 +114,9 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Viral garantido + cobertura de mídia</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">4. Inteligência Artificial (AI)</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -134,9 +136,9 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Otimização de recursos + experiência personalizada</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">5. Mapeamento de Projeção 3D (Mapping)</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -156,9 +158,9 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Impacto visual inesquecível + conteúdo 10/10</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">6. Livestream Profissional + 360°</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -178,9 +180,9 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Alcance 5-10x maior + inclusão remota</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">7. IoT & Ambientes Inteligentes</h2>
           <div className="space-y-4 text-gray-200">
             <p>
@@ -200,18 +202,18 @@ export default function TecnologiaEventos() {
               <p className="text-sm">ROI: Experiência fluida + luxo invisível</p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12 p-6 border-l-4 border-gold bg-white/5 rounded">
+        <MotionSection variants={itemVariants} className="mb-12 p-6 border-l-4 border-gold bg-white/5 rounded">
           <h2 className="text-2xl font-bold text-gold mb-4">🎯 Stack Recomendado para Evento Premium</h2>
           <div className="space-y-3 text-gray-200">
             <p><strong>Budget R$ 50k-100k:</strong> AR + Livestream + AI Chatbot</p>
             <p><strong>Budget R$ 100k-200k:</strong> VR + Hologramas + Mapping + AI</p>
             <p><strong>Budget 200k+:</strong> Stack completo + IoT + Experiência imersiva total</p>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="mb-12">
+        <MotionSection variants={itemVariants} className="mb-12">
           <h2 className="text-4xl font-serif font-bold mb-8 text-white">Top 3 Tendências 2025</h2>
           <div className="grid md:grid-cols-3 gap-4">
             <div className="p-6 bg-white/5 border border-gold/10 rounded">
@@ -233,9 +235,9 @@ export default function TecnologiaEventos() {
               </p>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
-        <motion.section variants={itemVariants} className="text-center py-12">
+        <MotionSection variants={itemVariants} className="text-center py-12">
           <h2 className="text-3xl font-serif font-bold mb-6 text-white">Quer Levar Seu Evento ao Futuro?</h2>
           <p className="text-gray-300 mb-8">
             Nossa equipe domina todas as tecnologias de ponta para criar eventos que transcendem a realidade.
@@ -246,8 +248,8 @@ export default function TecnologiaEventos() {
           >
             🚀 Explorar Inovações
           </a>
-        </motion.section>
-      </motion.div>
+        </MotionSection>
+      </MotionDiv>
     </main>
   )
 }

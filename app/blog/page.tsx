@@ -1,14 +1,16 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
+import { MotionA, MotionArticle, MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Blog RiosLux | Eventos Premium, Concierge e Dicas de Luxo RJ',
   description: 'Blog especializado em eventos premium, concierge white-glove, tendências de luxo e experiências exclusivas no Rio de Janeiro. Conteúdo estratégico e insights.',
+  alternates: { canonical: '/blog' },
   openGraph: {
     title: 'Blog RiosLux - Eventos Premium e Concierge',
     description: 'Artigos, tendências e insights sobre eventos de luxo no Rio.',
-    url: 'https://riooslux.com.br/blog',
+    url: 'https://www.agenciarioslux.com.br/blog',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -67,7 +69,7 @@ export default function BlogHub() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -78,10 +80,10 @@ export default function BlogHub() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
             Insights estratégicos, tendências e dicas sobre eventos premium no Rio de Janeiro
           </p>
-        </motion.div>
+        </MotionDiv>
 
         {/* Featured Article */}
-        <motion.article
+        <MotionArticle
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -93,25 +95,25 @@ export default function BlogHub() {
             </span>
             <span className="text-sm text-beige/60">22 de Maio, 2025 • 12 min</span>
           </div>
-          
+
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-6">
             Concierge vs Agência de Eventos: Qual a Diferença?
           </h2>
-          
+
           <p className="text-beige/80 text-xl mb-8 leading-relaxed max-w-3xl">
             Muitos clientes premium confundem os dois serviços. Neste artigo, explicamos as diferenças fundamentais, quando usar cada um, e por que a RiosLux oferece ambos integrados para máxima experiência.
           </p>
-          
-          <Link 
+
+          <Link
             href="/blog/concierge-vs-agencia-eventos"
             className="inline-flex items-center gap-2 text-gold hover:text-beige transition-colors font-medium text-lg"
           >
             Ler Artigo Completo <span className="text-xl">→</span>
           </Link>
-        </motion.article>
+        </MotionArticle>
 
         {/* Articles Grid */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -123,7 +125,7 @@ export default function BlogHub() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.slice(1).map((article, index) => (
-              <motion.article
+              <MotionArticle
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -137,31 +139,31 @@ export default function BlogHub() {
                   </span>
                   <span className="text-xs text-beige/60">{article.readTime}</span>
                 </div>
-                
+
                 <h3 className="text-2xl font-serif font-bold gradient-text mb-4 group-hover:translate-y-1 transition-transform">
                   {article.title}
                 </h3>
-                
+
                 <p className="text-beige/80 text-sm mb-6 leading-relaxed">
                   {article.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between pt-4 border-t border-gold/20">
                   <span className="text-xs text-beige/60">{article.date}</span>
-                  <Link 
+                  <Link
                     href={`/blog/${article.slug}`}
                     className="text-gold hover:text-beige transition-colors font-medium text-sm"
                   >
                     Ler →
                   </Link>
                 </div>
-              </motion.article>
+              </MotionArticle>
             ))}
           </div>
-        </motion.div>
+        </MotionDiv>
 
         {/* Newsletter CTA */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -174,7 +176,7 @@ export default function BlogHub() {
             Tendências, dicas e conteúdo premium direto no seu email. Apenas para clientes VIP.
           </p>
           <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
-            <input 
+            <input
               type="email"
               placeholder="seu@email.com"
               className="flex-1 px-6 py-4 bg-white/10 border border-gold/30 rounded-full text-white placeholder-beige/50 focus:outline-none focus:border-gold transition-all"
@@ -183,7 +185,7 @@ export default function BlogHub() {
               Inscrever
             </button>
           </div>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

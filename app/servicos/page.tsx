@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Serviços de Eventos Luxo | Produção Premium RJ | RiosLux',
   description: 'Produção de eventos premium, concierge, gestão completa. Corporativos, casamentos, experiências exclusivas. Qualidade inquestionável. Consulte a RiosLux.',
+  alternates: { canonical: '/servicos' },
   openGraph: {
     title: 'Serviços de Eventos Luxo | RiosLux',
     description: 'Eventos corporativos, casamentos, despedidas de solteiro premium e experiências exclusivas no Rio de Janeiro.',
-    url: 'https://riooslux.com.br/servicos',
+    url: 'https://www.agenciarioslux.com.br/servicos',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -37,7 +39,7 @@ export default function Servicos() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-center mb-24"
@@ -48,11 +50,11 @@ export default function Servicos() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto">
             Soluções completas para eventos que impressionam e transformam ocasiões em experiências memoráveis
           </p>
-        </motion.div>
+        </MotionDiv>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-32">
           {services.map((service, index) => (
-            <motion.div
+            <MotionDiv
               key={service.title}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -80,12 +82,12 @@ export default function Servicos() {
                   Saiba mais <span>→</span>
                 </Link>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
 
         {/* Diferenciais */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -98,7 +100,7 @@ export default function Servicos() {
             O que torna a RiosLux a referência em eventos de luxo no Rio de Janeiro
           </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-20">
-            <motion.div 
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -110,8 +112,8 @@ export default function Servicos() {
               <p className="text-beige/80">
                 Acesso a locais e serviços únicos no Rio de Janeiro
               </p>
-            </motion.div>
-            <motion.div 
+            </MotionDiv>
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -124,8 +126,8 @@ export default function Servicos() {
               <p className="text-beige/80">
                 Zero imprevistos, 100% satisfação garantida
               </p>
-            </motion.div>
-            <motion.div 
+            </MotionDiv>
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -138,12 +140,12 @@ export default function Servicos() {
               <p className="text-beige/80">
                 Do conceito à execução perfeita, disponível 24h
               </p>
-            </motion.div>
+            </MotionDiv>
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* CTA */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -152,15 +154,14 @@ export default function Servicos() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 gradient-text">
             Pronto para Criar Uma Experiência Premium?
           </h2>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Agendar Consultoria Gratuita
           </Link>
-        </motion.div>
+        </MotionDiv>
       </div>
     </div>
   )
 }
-

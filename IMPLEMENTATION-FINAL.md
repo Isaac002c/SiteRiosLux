@@ -315,7 +315,7 @@ SEMANA 5-6:
 - [ ] Criar perfil (Event Planning Services)
 - [ ] Endereço: [ADICIONAR - Rua XXX, Rio RJ]
 - [ ] Telefone: +55 21 97252-2076
-- [ ] Website: riooslux.com.br
+- [ ] Website: www.agenciarioslux.com.br
 - [ ] 10+ fotos premium
 - [ ] Descrição 750-1000 chars otimizado
 - [ ] Categorias corretas
@@ -402,7 +402,7 @@ Technical:
 
 ## 🔗 TODAS AS URLs
 
-**Domínio Principal**: https://riooslux.com.br
+**Domínio Principal**: https://www.agenciarioslux.com.br
 
 ### Core (8)
 - `/` - Homepage
@@ -457,7 +457,7 @@ Technical:
 
 ## 📞 CONTACTS & RESOURCES
 
-**Website**: https://riooslux.com.br
+**Website**: https://www.agenciarioslux.com.br
 **WhatsApp**: https://wa.me/5521972522076
 **Telefone**: +55 21 97252-2076
 

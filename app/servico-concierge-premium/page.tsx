@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Serviço de Concierge Premium | Atendimento 24h | RiosLux',
   description: 'Concierge white-glove 24h para eventos premium. Soluções personalizadas, acesso privilegiado, disponibilidade total. Luxo que você não vê.',
+  alternates: { canonical: '/servico-concierge-premium' },
   openGraph: {
     title: 'Concierge Premium 24h | RiosLux',
     description: 'Serviço de concierge exclusivo com atendimento VIP permanente.',
-    url: 'https://riooslux.com.br/servico-concierge-premium',
+    url: 'https://www.agenciarioslux.com.br/servico-concierge-premium',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -51,7 +53,7 @@ export default function ConciergePremium() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -62,16 +64,16 @@ export default function ConciergePremium() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
             Atendimento white-glove 24h/7. Luxo que você não vê, mas sente em cada detalhe.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
           >
             Ativar Concierge Agora
           </Link>
-        </motion.div>
+        </MotionDiv>
 
         {/* O Que é Concierge? */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -81,15 +83,15 @@ export default function ConciergePremium() {
             O Que é Concierge Premium?
           </h2>
           <p className="text-xl text-beige/80 leading-relaxed max-w-3xl mx-auto">
-            Concierge é mais do que um serviço—é uma <strong>filosofia de cuidado premium</strong>. 
-            Nosso concierge está disponível 24/7 para resolver qualquer situação, antecipar necessidades 
-            e criar experiências memoráveis. Você não pensa em logística, detalhes ou soluções. 
+            Concierge é mais do que um serviço—é uma <strong>filosofia de cuidado premium</strong>.
+            Nosso concierge está disponível 24/7 para resolver qualquer situação, antecipar necessidades
+            e criar experiências memoráveis. Você não pensa em logística, detalhes ou soluções.
             Você apenas aproveita.
           </p>
-        </motion.section>
+        </MotionSection>
 
         {/* Serviços Concierge */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -101,7 +103,7 @@ export default function ConciergePremium() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {servicosConcierge.map((svc, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -111,13 +113,13 @@ export default function ConciergePremium() {
               >
                 <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{svc.servico}</h3>
                 <p className="text-beige/80 text-lg">{svc.detalhes}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Como Funciona */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -135,7 +137,7 @@ export default function ConciergePremium() {
               { etapa: 'Execução Perfeita', desc: 'Tudo resolvido discretamente e com excelência' },
               { etapa: 'Avaliação', desc: 'Ajustamos conforme seu feedback' }
             ].map((item, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -148,13 +150,13 @@ export default function ConciergePremium() {
                   <h3 className="text-2xl font-serif font-bold text-beige mb-2">{item.etapa}</h3>
                   <p className="text-beige/80 text-lg">{item.desc}</p>
                 </div>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Exemplo Real */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -164,15 +166,15 @@ export default function ConciergePremium() {
             Um Exemplo Real
           </h2>
           <p className="text-xl text-beige/80 max-w-3xl mx-auto italic mb-8">
-            "Você chega no Rio sem conhecer ninguém. Ao invés de pesquisar, decidir e se preocupar, 
-            liga para nosso concierge. Ele faz a reserva no melhor restaurante de Leblon, 
-            agenda transfer privativo, confirma preferências dietéticas com chef, 
+            "Você chega no Rio sem conhecer ninguém. Ao invés de pesquisar, decidir e se preocupar,
+            liga para nosso concierge. Ele faz a reserva no melhor restaurante de Leblon,
+            agenda transfer privativo, confirma preferências dietéticas com chef,
             e garante que tudo esteja perfeito. Você só aproveita uma noite inesquecível."
           </p>
-        </motion.section>
+        </MotionSection>
 
         {/* White-Glove Standards */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -191,7 +193,7 @@ export default function ConciergePremium() {
               { padrao: 'Qualidade Premium', desc: 'Apenas os melhores fornecedores' },
               { padrao: 'Flexibilidade', desc: 'Adaptamos a qualquer situação' }
             ].map((item, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -201,13 +203,13 @@ export default function ConciergePremium() {
               >
                 <h3 className="text-xl font-serif font-bold gradient-text mb-3">{item.padrao}</h3>
                 <p className="text-beige/80">{item.desc}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* CTA Final */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -220,13 +222,13 @@ export default function ConciergePremium() {
             Experiência white-glove disponível para você a partir de hoje.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
-            <Link 
+            <Link
               href="/contato"
               className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
             >
               Falar com Especialista
             </Link>
-            <a 
+            <a
               href="https://wa.me/5521972522076"
               target="_blank"
               rel="noopener noreferrer"
@@ -235,7 +237,7 @@ export default function ConciergePremium() {
               WhatsApp 24h
             </a>
           </div>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

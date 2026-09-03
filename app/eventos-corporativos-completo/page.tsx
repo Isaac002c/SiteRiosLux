@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
-  title: 'Eventos Corporativos Premium RJ | Produção Luxo | RiosLux',
-  description: 'Eventos corporativos premium no Rio de Janeiro. Conferências, lançamentos, galas, jantares executivos. Produção de classe mundial, ROI garantido.',
+  title: 'Produção Completa de Eventos Corporativos | RiosLux',
+  description: 'Produção completa de conferências, lançamentos, galas e jantares executivos no Rio de Janeiro, com planejamento e resultados mensuráveis.',
+  alternates: { canonical: '/eventos-corporativos-completo' },
   openGraph: {
-    title: 'Eventos Corporativos Premium | RiosLux',
+    title: 'Produção Completa de Eventos Corporativos | RiosLux',
     description: 'Produção de eventos corporativos de luxo com ROI mensurável.',
-    url: 'https://riooslux.com.br/eventos-corporativos-completo',
+    url: 'https://www.agenciarioslux.com.br/eventos-corporativos-completo',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -64,7 +66,7 @@ export default function EventosCorporativosCompleto() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -75,16 +77,16 @@ export default function EventosCorporativosCompleto() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
             Produção de classe mundial com ROI comprovado para empresas que exigem excelência
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
           >
             Solicitar Proposta Executiva
           </Link>
-        </motion.div>
+        </MotionDiv>
 
         {/* Tipos de Eventos */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -96,7 +98,7 @@ export default function EventosCorporativosCompleto() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tiposEventosCorporativos.map((evento, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -110,13 +112,13 @@ export default function EventosCorporativosCompleto() {
                   <p className="text-beige/60"><span className="font-semibold text-gold">Capacidade:</span> {evento.capacidade}</p>
                   <p className="text-beige/60"><span className="font-semibold text-gold">Duração:</span> {evento.duracao}</p>
                 </div>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Benefícios */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -128,7 +130,7 @@ export default function EventosCorporativosCompleto() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {beneficios.map((ben, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -140,13 +142,13 @@ export default function EventosCorporativosCompleto() {
                   <span className="text-2xl text-gold">✓</span>
                   {ben}
                 </p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Processo */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -164,7 +166,7 @@ export default function EventosCorporativosCompleto() {
               { fase: 'Execução Perfeita', desc: 'Coordenação total, zero margens de erro' },
               { fase: 'Análise de Resultado', desc: 'Medimos ROI e impacto gerado' }
             ].map((item, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -174,13 +176,13 @@ export default function EventosCorporativosCompleto() {
               >
                 <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{item.fase}</h3>
                 <p className="text-beige/80 text-lg">{item.desc}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* CTA */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -192,13 +194,13 @@ export default function EventosCorporativosCompleto() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Transformamos visões corporativas em experiências inesquecíveis com ROI mensurável.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
           >
             Solicitar Proposta Executiva
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )

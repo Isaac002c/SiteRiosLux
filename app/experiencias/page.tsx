@@ -1,19 +1,8 @@
 'use client'
 
-import type { Metadata } from 'next'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'Experiências Premium | Portfólio de Eventos Luxo RJ | RiosLux',
-  description: 'Galeria de eventos premium realizados pela RiosLux. Experiências exclusivas em iates, mansões, rooftops e locais únicos do Rio de Janeiro.',
-  openGraph: {
-    title: 'Galeria de Eventos Premium | RiosLux',
-    description: 'Conheça nosso portfólio de experiências sofisticadas e exclusivas.',
-    url: 'https://riooslux.com.br/experiencias',
-  }
-}
 
 const galleryItems = [
   {
@@ -67,7 +56,7 @@ export default function Experiencias() {
   return (
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-center mb-24"
@@ -89,8 +78,8 @@ export default function Experiencias() {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  <img 
-                    src={item.img} 
+                  <img
+                    src={item.img}
                     alt={item.title}
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -101,7 +90,7 @@ export default function Experiencias() {
                       {item.title}
                     </h3>
                     <p className="opacity-90 mb-6">{item.desc}</p>
-                    <Link 
+                    <Link
                       href="/contato"
                       className="inline-flex items-center gap-2 bg-gold/90 text-primary px-6 py-3 rounded-full font-medium hover:bg-gold transition-all backdrop-blur-sm"
                     >
@@ -124,8 +113,8 @@ export default function Experiencias() {
                 className="relative group cursor-pointer"
               >
                 <div className="relative w-full h-80 rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  <img 
-                    src={item.img} 
+                  <img
+                    src={item.img}
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
@@ -138,7 +127,7 @@ export default function Experiencias() {
                     <p className="text-beige/90 mb-6">
                       {item.desc}
                     </p>
-                    <Link 
+                    <Link
                       href="/contato"
                       className="inline-flex items-center gap-2 bg-gold text-primary px-6 py-3 rounded-full font-medium hover:bg-beige transition-all w-fit backdrop-blur-sm"
                     >
@@ -164,7 +153,7 @@ export default function Experiencias() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Transforme sua visão em uma experiência inesquecível. Consulte nossos especialistas hoje.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
@@ -175,55 +164,3 @@ export default function Experiencias() {
     </div>
   )
 }
-                      Ver Projeto
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500 hover:-translate-y-4">
-                  <img 
-                    src={item.img} 
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/60" />
-                  <div className="absolute bottom-8 left-8 right-8">
-                    <motion.h3 
-                      className="text-2xl font-serif font-bold mb-4"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                    >
-                      {item.title}
-                    </motion.h3>
-                    <p className="opacity-90 mb-6">{item.desc}</p>
-                    <Link 
-                      href="/contato"
-                      className="inline-flex items-center gap-2 bg-gold/90 text-primary px-6 py-3 rounded-full font-medium hover:bg-gold transition-all backdrop-blur-sm"
-                    >
-                      Ver Projeto
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
-

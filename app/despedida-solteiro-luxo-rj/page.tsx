@@ -1,15 +1,17 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
   title: 'Despedida de Solteiro de Luxo RJ | Experiências Exclusivas RiosLux',
   description: 'Despedidas de solteiro e solteira premium no Rio de Janeiro. Experiências sofisticadas em iates, mansões e rooftops. Concierge 24h. Consulte a RiosLux.',
   keywords: ['despedida solteiro luxo RJ', 'despedida de solteiro premium', 'festa exclusiva Rio', 'despedida sofisticada'],
+  alternates: { canonical: '/despedida-solteiro-luxo-rj' },
   openGraph: {
     title: 'Despedida de Solteiro de Luxo | RiosLux Rio de Janeiro',
     description: 'Crie uma despedida de solteiro inesquecível. Concierge, locais exclusivos, produção impecável.',
-    url: 'https://riooslux.com.br/despedida-solteiro-luxo-rj',
+    url: 'https://www.agenciarioslux.com.br/despedida-solteiro-luxo-rj',
+    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
   }
 }
 
@@ -18,7 +20,7 @@ export default function DespedidaSolteiro() {
     <div className="min-h-screen py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero */}
-        <motion.div 
+        <MotionDiv
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-32"
@@ -29,16 +31,16 @@ export default function DespedidaSolteiro() {
           <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
             Experiências exclusivas e sofisticadas para despedidas inesquecíveis em locais premium do Rio
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Agendar Consultoria Gratuita
           </Link>
-        </motion.div>
+        </MotionDiv>
 
         {/* Locais Exclusivos */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,7 +49,7 @@ export default function DespedidaSolteiro() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             Locais Exclusivos para Despedidas Premium
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               { title: 'Iates de Luxo', desc: 'Navegue na Baía de Guanabara com concierge premium', icon: '⛵' },
@@ -57,7 +59,7 @@ export default function DespedidaSolteiro() {
               { title: 'Resorts Premium', desc: 'All-inclusive luxuoso com acesso VIP', icon: '🏨' },
               { title: 'Clubes Selectos', desc: 'Espaços exclusivos com infraestrutura completa', icon: '🎭' }
             ].map((local, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -68,13 +70,13 @@ export default function DespedidaSolteiro() {
                 <div className="text-5xl mb-4">{local.icon}</div>
                 <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{local.title}</h3>
                 <p className="text-beige/80">{local.desc}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Serviços Inclusos */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -83,7 +85,7 @@ export default function DespedidaSolteiro() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             O Que Incluímos em Sua Despedida
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               { title: 'Planejamento Completo', items: ['Roteiro personalizado', 'Seleção de locais', 'Coordenação de horários'] },
@@ -91,7 +93,7 @@ export default function DespedidaSolteiro() {
               { title: 'Experiências Sofisticadas', items: ['Catering premium', 'Animação de luxo', 'Fotografia profissional'] },
               { title: 'Logística Premium', items: ['Transporte VIP', 'Segurança discreta', 'Check-in simplificado'] }
             ].map((servico, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -108,13 +110,13 @@ export default function DespedidaSolteiro() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Por Que Escolher RiosLux */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -123,7 +125,7 @@ export default function DespedidaSolteiro() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             Por Que Escolher a RiosLux
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             <div className="space-y-6">
               <div>
@@ -146,10 +148,10 @@ export default function DespedidaSolteiro() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Testimonios/Social Proof */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -158,7 +160,7 @@ export default function DespedidaSolteiro() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             O Que Nossos Clientes Dizem
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               { name: 'Fernando B.', text: 'A despedida de solteiro foi perfeita! Todos os detalhes impecáveis.', rating: 5 },
@@ -176,10 +178,10 @@ export default function DespedidaSolteiro() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* Regiões Atendidas */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -188,7 +190,7 @@ export default function DespedidaSolteiro() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             Regiões Atendidas
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {['Barra da Tijuca', 'Ipanema', 'Leblon', 'Copacabana', 'Joá', 'Joatinga', 'São Conrado', 'Zona Sul', 'Todo Rio de Janeiro'].map((region, i) => (
               <div key={i} className="glass p-6 rounded-2xl border border-gold/20 text-center">
@@ -196,10 +198,10 @@ export default function DespedidaSolteiro() {
               </div>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* FAQ */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -208,7 +210,7 @@ export default function DespedidaSolteiro() {
           <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
             Perguntas Frequentes
           </h2>
-          
+
           <div className="space-y-6 max-w-3xl mx-auto">
             {[
               { q: 'Qual é o valor mínimo para uma despedida premium?', a: 'Não há valor fixo. Customizamos conforme sua visão e orçamento. Agende consultoria gratuita para proposta personalizada.' },
@@ -216,7 +218,7 @@ export default function DespedidaSolteiro() {
               { q: 'Vocês coordenam alimentação e bebidas?', a: 'Sim! Coordenamos com os melhores caterers, sommeliers e bartenders premium do Rio de Janeiro.' },
               { q: 'É possível personalizar totalmente a experiência?', a: 'Absolutamente! Cada despedida é única. Personalizamos tudo conforme suas preferências e tema desejado.' }
             ].map((faq, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -226,13 +228,13 @@ export default function DespedidaSolteiro() {
               >
                 <h3 className="text-xl font-serif font-bold gradient-text mb-4">{faq.q}</h3>
                 <p className="text-beige/80">{faq.a}</p>
-              </motion.div>
+              </MotionDiv>
             ))}
           </div>
-        </motion.section>
+        </MotionSection>
 
         {/* CTA Final */}
-        <motion.section
+        <MotionSection
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -244,13 +246,13 @@ export default function DespedidaSolteiro() {
           <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
             Transforme este momento especial em uma experiência inesquecível. Nossos especialistas estão prontos para fazer a diferença.
           </p>
-          <Link 
+          <Link
             href="/contato"
             className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
           >
             Solicitar Orçamento Premium
           </Link>
-        </motion.section>
+        </MotionSection>
       </div>
     </div>
   )
