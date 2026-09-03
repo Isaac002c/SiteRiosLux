@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import CardCarousel from '@/components/CardCarousel'
 import CTASection from '@/components/CTASection'
@@ -9,39 +8,30 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden gradient-hero">
+      <section className="relative min-h-[calc(100svh-5rem)] flex items-center justify-center overflow-hidden gradient-hero py-16 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center px-4 max-w-4xl mx-auto z-10"
+          className="text-center px-4 max-w-5xl mx-auto z-10"
         >
-            <motion.div
-              className="flex flex-col items-center justify-center mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+          <motion.div
+            className="mx-auto mb-8 max-w-5xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.h1
+              className="text-balance text-4xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text leading-[1.08] tracking-tight"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Image
-                src="/logo.png"
-                alt="RiosLux - Eventos Premium no Rio de Janeiro"
-                width={512}
-                height={509}
-                sizes="(min-width: 1024px) 160px, (min-width: 768px) 128px, 96px"
-                priority
-                className="h-24 w-24 md:h-32 md:w-32 lg:h-40 lg:w-40 shadow-2xl drop-shadow-2xl mb-6"
-              />
-              <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text leading-tight tracking-tight"
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Eventos Premium e Concierge Exclusivo no Rio de Janeiro
-              </motion.h1>
-            </motion.div>
+              Eventos Premium e Concierge Exclusivo no Rio de Janeiro
+            </motion.h1>
+          </motion.div>
           <motion.p
-            className="text-xl md:text-2xl lg:text-3xl font-sans mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl lg:text-3xl font-sans mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -49,7 +39,7 @@ export default function Home() {
             Experiências Sofisticadas para Clientes de Alto Padrão
           </motion.p>
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl mb-12 text-beige/80 max-w-xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl lg:text-2xl mb-10 text-beige/80 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
