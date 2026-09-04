@@ -1,17 +1,12 @@
-import type { Metadata } from 'next'
 import BlogArticle from '@/components/BlogArticle'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: "Como Planejar uma Celebração Pré-casamento | Rios Lux",
-  description: "Um guia para planejar despedidas e celebrações pré-casamento com personalidade, cuidado e logística.",
-  alternates: { canonical: "/blog/guia-despedida-solteiro-luxo" },
-  openGraph: {
-    title: "Como Planejar uma Celebração Pré-casamento | Rios Lux",
-    description: "Um guia para planejar despedidas e celebrações pré-casamento com personalidade, cuidado e logística.",
-    url: "/blog/guia-despedida-solteiro-luxo",
-    type: 'article',
-  },
-}
+export const metadata = createPageMetadata({
+  title: 'Como Planejar uma Celebração Pré-casamento | Rios Lux',
+  description: 'Um guia para planejar celebrações pré-casamento com personalidade, cuidado e logística.',
+  path: '/blog/guia-despedida-solteiro-luxo',
+  type: 'article',
+})
 
 export default function ArticlePage() {
   return (

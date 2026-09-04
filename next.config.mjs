@@ -71,6 +71,31 @@ const nextConfig = {
         source: '/events-rio',
         destination: '/experiencias',
         permanent: true
+      },
+      {
+        source: '/eventos-corporativos-premium-rj',
+        destination: '/eventos-corporativos-rio-de-janeiro',
+        permanent: true
+      },
+      {
+        source: '/eventos-corporativos-completo',
+        destination: '/eventos-corporativos-rio-de-janeiro',
+        permanent: true
+      },
+      {
+        source: '/concierge-eventos-rio',
+        destination: '/concierge-rio-de-janeiro',
+        permanent: true
+      },
+      {
+        source: '/servico-concierge-premium',
+        destination: '/concierge-rio-de-janeiro',
+        permanent: true
+      },
+      {
+        source: '/casos-sucesso',
+        destination: '/cases',
+        permanent: true
       }
     ]
   }

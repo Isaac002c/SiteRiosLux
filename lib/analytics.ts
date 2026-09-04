@@ -1,9 +1,13 @@
 export type AnalyticsEvent =
-  | 'click_whatsapp'
-  | 'click_consultoria'
-  | 'form_start'
-  | 'form_submit'
-  | 'view_experience'
+  | 'whatsapp_click'
+  | 'contact_start'
+  | 'contact_submit'
+  | 'phone_click'
+  | 'email_click'
+  | 'corporate_cta_click'
+  | 'private_cta_click'
+  | 'concierge_cta_click'
+  | 'experience_view'
 
 declare global {
   interface Window {

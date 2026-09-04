@@ -1,17 +1,12 @@
-import type { Metadata } from 'next'
 import BlogArticle from '@/components/BlogArticle'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: "Resultados em Eventos Corporativos | Rios Lux",
-  description: "Como definir objetivos e indicadores para acompanhar resultados de eventos corporativos.",
-  alternates: { canonical: "/blog/roi-eventos-corporativos" },
-  openGraph: {
-    title: "Resultados em Eventos Corporativos | Rios Lux",
-    description: "Como definir objetivos e indicadores para acompanhar resultados de eventos corporativos.",
-    url: "/blog/roi-eventos-corporativos",
-    type: 'article',
-  },
-}
+export const metadata = createPageMetadata({
+  title: 'Resultados em Eventos Corporativos | Rios Lux',
+  description: 'Como definir objetivos e indicadores para acompanhar resultados de eventos corporativos.',
+  path: '/blog/roi-eventos-corporativos',
+  type: 'article',
+})
 
 export default function ArticlePage() {
   return (

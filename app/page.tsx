@@ -1,27 +1,31 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowDownRight, ArrowRight } from 'lucide-react'
-import { motion } from 'framer-motion'
 import CTASection from '@/components/CTASection'
+import SocialProof from '@/components/SocialProof'
 
 const services = [
   {
     number: '01',
     label: 'Corporate',
+    href: '/eventos-corporativos-rio-de-janeiro',
+    event: 'corporate_cta_click' as const,
     title: 'Encontros que movimentam negócios e relações.',
     description: 'Eventos corporativos, lançamentos, encontros executivos e experiências de marca.',
   },
   {
     number: '02',
     label: 'Private',
+    href: '/eventos-privados-rio-de-janeiro',
+    event: 'private_cta_click' as const,
     title: 'Celebrações desenhadas a partir de cada história.',
     description: 'Casamentos, aniversários, jantares e ocasiões privadas conduzidas com atenção integral.',
   },
   {
     number: '03',
     label: 'Lifestyle',
+    href: '/concierge-rio-de-janeiro',
+    event: 'concierge_cta_click' as const,
     title: 'Consultoria para viver o Rio de outra maneira.',
     description: 'Experiências, hospitalidade e concierge conectados ao ritmo de cada cliente.',
   },
@@ -55,29 +59,25 @@ export default function Home() {
           src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2400&q=85"
           alt="Ambiente preparado para uma experiência especial"
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/25 via-ink/35 to-ink/95" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/65 via-transparent to-transparent" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="page-shell relative z-10 pb-14 pt-28 sm:pb-20 lg:pb-24"
-        >
+        <div className="hero-reveal page-shell relative z-10 pb-14 pt-28 sm:pb-20 lg:pb-24">
           <p className="eyebrow mb-6 text-sand/80">Rios Lux</p>
-          <h1 className="max-w-5xl text-balance font-serif text-[clamp(3.35rem,9vw,8.5rem)] uppercase leading-[0.83] tracking-[-0.055em] text-white">
-            Experiências<br />que não se repetem.
+          <p className="mb-5 font-serif text-2xl text-brass sm:text-3xl">Experiências que não se repetem.</p>
+          <h1 className="max-w-6xl text-balance font-serif text-[clamp(3rem,7.4vw,7.25rem)] leading-[0.9] tracking-[-0.045em] text-white">
+            Eventos e experiências de alto padrão no Rio de Janeiro.
           </h1>
           <div className="mt-8 grid max-w-5xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end">
             <p className="max-w-2xl text-base leading-relaxed text-sand/85 sm:text-lg">
               Eventos corporativos, celebrações privadas e experiências com consultoria, concierge e execução completa.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Link href="/contato" data-track-event="click_consultoria" data-track-label="hero" className="button-primary">
+              <Link href="/contato" data-track-event="contact_start" data-track-label="hero" className="button-primary">
                 Solicitar uma consultoria <ArrowRight className="ml-2" size={16} />
               </Link>
               <Link href="/experiencias" className="button-secondary">
@@ -85,7 +85,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       <section className="section-space bg-canvas text-ink">
@@ -100,7 +100,7 @@ export default function Home() {
             <p className="max-w-2xl text-lg leading-relaxed text-ink/72 sm:text-xl">
               A Rios Lux transforma uma intenção em uma operação coordenada. Conceito, planejamento, consultoria de parceiros, produção e experiência caminham sob uma mesma direção.
             </p>
-            <p className="mt-7 max-w-xl text-sm leading-relaxed text-ink/58">
+            <p className="mt-7 max-w-xl text-sm leading-relaxed text-ink/70">
               Antecipamos riscos e conduzimos cada etapa para que você possa estar presente no que realmente importa.
             </p>
           </div>
@@ -120,14 +120,25 @@ export default function Home() {
           </div>
           <div className="grid border-t border-white/15 lg:grid-cols-3">
             {services.map((service, index) => (
-              <article key={service.label} className={`py-10 lg:px-9 lg:py-12 ${index > 0 ? 'border-t border-white/15 lg:border-l lg:border-t-0' : ''}`}>
+              <Link
+                href={service.href}
+                key={service.label}
+                data-track-event={service.event}
+                data-track-label="home_service"
+                className={`group py-10 transition hover:bg-white/[0.035] lg:px-9 lg:py-12 ${index > 0 ? 'border-t border-white/15 lg:border-l lg:border-t-0' : ''}`}
+              >
+              <article>
                 <div className="mb-12 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-brass">
                   <span>{service.number}</span>
                   <span>{service.label}</span>
                 </div>
                 <h3 className="max-w-sm font-serif text-3xl leading-tight text-white">{service.title}</h3>
                 <p className="mt-6 max-w-sm leading-relaxed text-sand/65">{service.description}</p>
+                <p className="mt-8 inline-flex items-center text-sm font-semibold text-brass transition group-hover:text-sand">
+                  Conhecer esta frente <ArrowRight className="ml-2" size={16} />
+                </p>
               </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -145,11 +156,11 @@ export default function Home() {
               <Link
                 href="/experiencias"
                 key={concept.title}
-                data-track-event="view_experience"
+                data-track-event="experience_view"
                 data-track-label={concept.category.toLowerCase()}
                 className={`group relative min-h-[28rem] overflow-hidden ${index === 0 ? 'lg:col-span-6' : 'lg:col-span-3'}`}
               >
-                <Image src={concept.image} alt={`Referência visual para ${concept.title.toLowerCase()}`} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-[1.03]" />
+                <Image src={concept.image} alt={`Referência visual para ${concept.title.toLowerCase()}`} fill sizes={index === 0 ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 25vw, 100vw'} className="object-cover transition duration-700 group-hover:scale-[1.03]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-7">
                   <p className="mb-2 text-[10px] uppercase tracking-[0.25em] text-brass">{concept.category} · referência visual</p>
@@ -160,6 +171,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SocialProof reviews={[]} />
 
       <section className="section-space bg-forest">
         <div className="page-shell">

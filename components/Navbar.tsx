@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
@@ -13,22 +13,13 @@ const navigation = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24)
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition duration-500 ${
-        scrolled || open
-          ? 'border-white/10 bg-ink/95 backdrop-blur-xl'
-          : 'border-transparent bg-ink/65 backdrop-blur-sm'
-      }`}
+      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/90 backdrop-blur-xl"
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') setOpen(false)
+      }}
     >
       <nav className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Navegação principal">
         <Link href="/" className="group flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
@@ -46,7 +37,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contato"
-            data-track-event="click_consultoria"
+            data-track-event="contact_start"
             data-track-label="header"
             className="button-primary !px-6 !py-3"
           >
@@ -81,7 +72,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/contato"
-              data-track-event="click_consultoria"
+              data-track-event="contact_start"
               data-track-label="mobile_header"
               className="button-primary mt-6 justify-center"
               onClick={() => setOpen(false)}

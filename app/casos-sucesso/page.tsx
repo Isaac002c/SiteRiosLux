@@ -30,7 +30,7 @@ export default function CasosReais() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/experiencias" className="button-dark">Ver conceitos de experiência</Link>
-            <Link href="/contato" data-track-event="click_consultoria" data-track-label="cases_empty" className="inline-flex min-h-12 items-center justify-center border border-ink/30 px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white">
+            <Link href="/contato" data-track-event="contact_start" data-track-label="cases_empty" className="inline-flex min-h-12 items-center justify-center border border-ink/30 px-7 py-3.5 text-sm font-semibold text-ink transition hover:bg-ink hover:text-white">
               Solicitar consultoria <ArrowRight className="ml-2" size={16} />
             </Link>
           </div>

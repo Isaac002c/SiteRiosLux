@@ -16,6 +16,7 @@ const config: Config = {
         ink: '#0B1E1B',
         forest: '#17352F',
         brass: '#B8945B',
+        'brass-dark': '#71542A',
         canvas: '#F3EFE7',
         sand: '#E4DAC9',
         gold: '#B8945B',

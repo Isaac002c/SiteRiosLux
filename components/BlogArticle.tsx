@@ -15,11 +15,17 @@ type BlogArticleProps = {
 }
 
 export default function BlogArticle({ category, title, intro, sections }: BlogArticleProps) {
+  const related = category === 'Private'
+    ? { href: '/eventos-privados-rio-de-janeiro', label: 'Conheça nossas experiências privadas' }
+    : category === 'Rio de Janeiro'
+      ? { href: '/servicos', label: 'Conheça as frentes de atuação da Rios Lux' }
+      : { href: '/eventos-corporativos-rio-de-janeiro', label: 'Conheça nossa produção de eventos corporativos' }
+
   return (
     <article className="bg-canvas text-ink">
       <header className="section-space">
         <div className="mx-auto max-w-5xl px-5 pt-10 sm:px-8 sm:pt-16">
-          <Link href="/blog" className="mb-10 inline-flex items-center text-sm text-ink/60 transition hover:text-ink">
+          <Link href="/blog" className="mb-10 inline-flex min-h-11 items-center text-sm text-ink/70 transition hover:text-ink">
             <ArrowLeft className="mr-2" size={16} /> Voltar ao editorial
           </Link>
           <p className="eyebrow mb-6">{category}</p>
@@ -48,11 +54,16 @@ export default function BlogArticle({ category, title, intro, sections }: BlogAr
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col justify-between gap-6 bg-ink p-7 text-white sm:flex-row sm:items-center sm:p-10">
-          <p className="max-w-xl font-serif text-2xl">Quer transformar o contexto do seu projeto em uma direção clara?</p>
-          <Link href="/contato" data-track-event="click_consultoria" data-track-label="blog_article" className="button-primary shrink-0">
-            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
+        <div className="mt-14 bg-ink p-7 text-white sm:p-10">
+          <Link href={related.href} className="text-sm font-semibold text-brass underline decoration-brass/50 underline-offset-4 transition hover:text-sand">
+            {related.label}
           </Link>
+          <div className="mt-8 flex flex-col justify-between gap-6 border-t border-white/15 pt-8 sm:flex-row sm:items-center">
+            <p className="max-w-xl font-serif text-2xl">Quer transformar o contexto do seu projeto em uma direção clara?</p>
+            <Link href="/contato" data-track-event="contact_start" data-track-label="blog_article" className="button-primary shrink-0">
+              Solicitar consultoria <ArrowRight className="ml-2" size={16} />
+            </Link>
+          </div>
         </div>
       </div>
     </article>

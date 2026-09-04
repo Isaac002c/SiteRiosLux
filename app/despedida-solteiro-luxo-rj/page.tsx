@@ -1,18 +1,11 @@
-import type { Metadata } from 'next'
 import EditorialLanding from '@/components/EditorialLanding'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Celebrações Pré-casamento no Rio de Janeiro | Rios Lux',
   description: 'Consultoria e produção de despedidas e celebrações pré-casamento no Rio de Janeiro.',
-  alternates: { canonical: '/despedida-solteiro-luxo-rj' },
-  openGraph: {
-    type: 'website',
-    title: 'Celebrações Pré-casamento no Rio de Janeiro | Rios Lux',
-    description: 'Consultoria e produção de despedidas e celebrações pré-casamento no Rio de Janeiro.',
-    url: '/despedida-solteiro-luxo-rj',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/despedida-solteiro-luxo-rj',
+})
 
 export default function Page() {
   return (

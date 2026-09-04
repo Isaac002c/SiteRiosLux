@@ -1,17 +1,12 @@
-import type { Metadata } from 'next'
 import BlogArticle from '@/components/BlogArticle'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: "Tecnologia em Eventos e Experiências | Rios Lux",
-  description: "Como avaliar audiovisual, automação e recursos digitais a partir da experiência e do objetivo do evento.",
-  alternates: { canonical: "/blog/tecnologia-eventos-premium" },
-  openGraph: {
-    title: "Tecnologia em Eventos e Experiências | Rios Lux",
-    description: "Como avaliar audiovisual, automação e recursos digitais a partir da experiência e do objetivo do evento.",
-    url: "/blog/tecnologia-eventos-premium",
-    type: 'article',
-  },
-}
+export const metadata = createPageMetadata({
+  title: 'Tecnologia em Eventos e Experiências | Rios Lux',
+  description: 'Como avaliar audiovisual, automação e recursos digitais a partir da experiência e do objetivo do evento.',
+  path: '/blog/tecnologia-eventos-premium',
+  type: 'article',
+})
 
 export default function ArticlePage() {
   return (

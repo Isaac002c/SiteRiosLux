@@ -39,7 +39,7 @@ export default function Sobre() {
           <p className="eyebrow">Nossa perspectiva</p>
           <div className="space-y-7 font-serif text-2xl leading-relaxed text-sand sm:text-3xl lg:text-4xl">
             <p>Uma boa experiência não começa pela decoração. Começa pela intenção.</p>
-            <p className="text-sand/60">
+            <p className="text-sand/70">
               É a partir dela que organizamos conceito, planejamento, consultoria, parceiros e operação — com decisões coerentes do início ao fim.
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function Sobre() {
               Por isso, nosso processo começa com uma conversa.
             </h2>
           </div>
-          <Link href="/contato" data-track-event="click_consultoria" data-track-label="about" className="button-primary">
+          <Link href="/contato" data-track-event="contact_start" data-track-label="about" className="button-primary">
             Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>

@@ -1,18 +1,11 @@
-import type { Metadata } from 'next'
 import EditorialLanding from '@/components/EditorialLanding'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Eventos na Barra da Tijuca | Rios Lux',
   description: 'Planejamento e produção de eventos corporativos e celebrações privadas na Barra da Tijuca, Rio de Janeiro.',
-  alternates: { canonical: '/eventos-barra-tijuca' },
-  openGraph: {
-    type: 'website',
-    title: 'Eventos na Barra da Tijuca | Rios Lux',
-    description: 'Planejamento e produção de eventos corporativos e celebrações privadas na Barra da Tijuca, Rio de Janeiro.',
-    url: '/eventos-barra-tijuca',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/eventos-barra-tijuca',
+})
 
 export default function Page() {
   return (

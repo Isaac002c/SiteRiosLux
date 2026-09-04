@@ -1,63 +1,71 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
+import StructuredData from '@/components/StructuredData'
+import { siteConfig } from '@/config/site'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Perguntas Frequentes | Rios Lux',
   description: 'Respostas sobre o processo de consultoria, planejamento e produção de experiências da Rios Lux no Rio de Janeiro.',
-  alternates: { canonical: '/faq' },
-  openGraph: {
-    type: 'website',
-    title: 'Perguntas Frequentes | Rios Lux',
-    description: 'Entenda como começa e funciona um projeto com a Rios Lux.',
-    url: '/faq',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/faq',
+})
 
 const faqs = [
   {
-    q: 'Que tipos de projetos a Rios Lux desenvolve?',
-    a: 'A Rios Lux atua em eventos corporativos, celebrações privadas e experiências de lifestyle e concierge. O formato e o escopo são definidos a partir de cada briefing.',
+    q: 'Que tipos de eventos corporativos a Rios Lux produz?',
+    a: 'A Rios Lux pode produzir convenções, encontros executivos, lançamentos, ativações, jantares corporativos, confraternizações, eventos para clientes e experiências de marca. O formato e o escopo são definidos no briefing.',
   },
   {
-    q: 'O que a Rios Lux pode coordenar?',
-    a: 'Conforme a necessidade do projeto, a coordenação pode incluir conceito, planejamento, parceiros, espaços, gastronomia, decoração, audiovisual, logística, recepção, concierge, produção e operação.',
+    q: 'A Rios Lux atende empresas no Rio de Janeiro?',
+    a: 'Sim. A comunicação e a atuação apresentadas neste site estão concentradas no Rio de Janeiro. Cada projeto é avaliado conforme data, local, dimensão e viabilidade.',
   },
   {
-    q: 'Como começa um projeto?',
-    a: 'Com uma conversa de briefing. É nesse momento que entendemos intenção, contexto, data, local, número de convidados, prioridades e o que já está definido.',
+    q: 'Como funciona o planejamento de um evento?',
+    a: 'O processo começa com um briefing sobre objetivo, público, data, local, prioridades e o que já está definido. A partir disso, são organizados conceito, escopo, cronograma, parceiros, logística e operação.',
   },
   {
-    q: 'Com quanto tempo de antecedência devo entrar em contato?',
-    a: 'Quanto maior o prazo, mais opções costumam estar disponíveis. A viabilidade e o cronograma são avaliados caso a caso, de acordo com a complexidade e a data desejada.',
+    q: 'Com quanto tempo de antecedência devo contratar uma empresa de eventos?',
+    a: 'Quanto maior a complexidade, mais importante é começar cedo. O prazo adequado depende da data, do espaço, do número de convidados, do escopo e da disponibilidade dos parceiros.',
   },
   {
-    q: 'Existe um orçamento mínimo?',
-    a: 'O site não publica um valor mínimo. O investimento depende do formato, do escopo, dos parceiros envolvidos e das prioridades definidas no briefing.',
+    q: 'A Rios Lux cuida dos fornecedores?',
+    a: 'A seleção e a coordenação de fornecedores podem fazer parte do escopo. Também é possível avaliar parceiros já escolhidos pelo cliente, alinhando responsabilidades, prazos e padrão de entrega.',
   },
   {
-    q: 'A Rios Lux trabalha com fornecedores escolhidos pelo cliente?',
-    a: 'Essa possibilidade pode ser avaliada no briefing. O mais importante é alinhar responsabilidades, padrão de entrega, prazos e integração com a operação.',
+    q: 'Vocês realizam lançamentos e experiências de marca?',
+    a: 'Sim. A atuação pode integrar direção de experiência, conteúdo presencial, espaço, audiovisual, hospitalidade, logística, fornecedores e produção, conforme o objetivo e o escopo do projeto.',
   },
   {
-    q: 'O atendimento é somente no Rio de Janeiro?',
-    a: 'A comunicação atual da Rios Lux está concentrada no Rio de Janeiro. Outros locais podem ser avaliados diretamente com a equipe.',
+    q: 'Como solicitar uma proposta?',
+    a: 'Use o formulário de consultoria ou o WhatsApp oficial. As informações iniciais ajudam a compreender objetivo, público, data, local, dimensão e prioridades antes dos próximos passos.',
   },
   {
-    q: 'Como envio as informações do meu projeto?',
-    a: 'Use o formulário de consultoria na página de contato. Ele organiza os dados essenciais e abre uma mensagem pronta para envio no WhatsApp oficial.',
+    q: 'A Rios Lux atende eventos fora do Rio de Janeiro?',
+    a: 'A comunicação atual está concentrada no Rio de Janeiro. Projetos em outros locais podem ser avaliados diretamente com a equipe, sem promessa prévia de disponibilidade.',
   },
 ]
 
 export default function FAQ() {
   const schemaFAQ = {
     '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
-    })),
+    '@graph': [
+      {
+        '@type': 'FAQPage',
+        '@id': `${siteConfig.url}/faq#faq`,
+        mainEntity: faqs.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${siteConfig.url}/faq#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: `${siteConfig.url}/` },
+          { '@type': 'ListItem', position: 2, name: 'Perguntas frequentes', item: `${siteConfig.url}/faq` },
+        ],
+      },
+    ],
   }
 
   return (
@@ -72,7 +80,7 @@ export default function FAQ() {
       </section>
 
       <section className="bg-canvas pb-24 text-ink lg:pb-32">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }} />
+        <StructuredData data={schemaFAQ} />
         <div className="page-shell max-w-5xl">
           <div className="divide-y divide-ink/20 border-y border-ink/20">
             {faqs.map((faq, index) => (
@@ -87,8 +95,14 @@ export default function FAQ() {
           </div>
           <div className="mt-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <p className="font-serif text-2xl">Ainda quer conversar sobre algum ponto?</p>
-            <Link href="/contato" data-track-event="click_consultoria" data-track-label="faq" className="button-dark">Falar com a Rios Lux</Link>
+            <Link href="/contato" data-track-event="contact_start" data-track-label="faq" className="button-dark">Falar com a Rios Lux</Link>
           </div>
+          <nav aria-label="Serviços relacionados" className="mt-12 grid gap-3 border-t border-ink/20 pt-8 sm:grid-cols-2">
+            <Link href="/eventos-corporativos-rio-de-janeiro" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Eventos corporativos no Rio de Janeiro</Link>
+            <Link href="/eventos-privados-rio-de-janeiro" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Eventos privados no Rio de Janeiro</Link>
+            <Link href="/experiencias-de-marca" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Experiências de marca</Link>
+            <Link href="/concierge-rio-de-janeiro" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Concierge no Rio de Janeiro</Link>
+          </nav>
         </div>
       </section>
     </div>

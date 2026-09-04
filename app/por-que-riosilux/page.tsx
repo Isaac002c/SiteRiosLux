@@ -1,19 +1,12 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Como Trabalhamos | Rios Lux',
   description: 'Conheça o processo de briefing, conceito, consultoria, planejamento e produção da Rios Lux.',
-  alternates: { canonical: '/por-que-riosilux' },
-  openGraph: {
-    type: 'website',
-    title: 'Como Trabalhamos | Rios Lux',
-    description: 'Uma direção clara para transformar ideias em experiências bem coordenadas.',
-    url: '/por-que-riosilux',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/por-que-riosilux',
+})
 
 const steps = [
   ['01', 'Briefing', 'Entendemos intenção, contexto, pessoas, prioridades e limites do projeto.'],
@@ -57,7 +50,7 @@ export default function ComoTrabalhamos() {
       <section className="section-space bg-ink">
         <div className="page-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">A tranquilidade está no processo — antes de estar no resultado.</h2>
-          <Link href="/contato" data-track-event="click_consultoria" data-track-label="process_page" className="button-primary">
+          <Link href="/contato" data-track-event="contact_start" data-track-label="process_page" className="button-primary">
             Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>

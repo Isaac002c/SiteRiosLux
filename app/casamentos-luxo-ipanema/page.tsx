@@ -1,18 +1,11 @@
-import type { Metadata } from 'next'
 import EditorialLanding from '@/components/EditorialLanding'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Casamentos em Ipanema e Zona Sul | Rios Lux',
   description: 'Planejamento e produção de casamentos e celebrações privadas em Ipanema e na Zona Sul do Rio de Janeiro.',
-  alternates: { canonical: '/casamentos-luxo-ipanema' },
-  openGraph: {
-    type: 'website',
-    title: 'Casamentos em Ipanema e Zona Sul | Rios Lux',
-    description: 'Planejamento e produção de casamentos e celebrações privadas em Ipanema e na Zona Sul do Rio de Janeiro.',
-    url: '/casamentos-luxo-ipanema',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/casamentos-luxo-ipanema',
+})
 
 export default function Page() {
   return (

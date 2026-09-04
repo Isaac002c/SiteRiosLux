@@ -1,17 +1,12 @@
-import type { Metadata } from 'next'
 import BlogArticle from '@/components/BlogArticle'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: "Tendências em Eventos e Experiências | Rios Lux",
-  description: "Perspectivas sobre hospitalidade, personalização, sustentabilidade e tecnologia em experiências presenciais.",
-  alternates: { canonical: "/blog/tendencias-eventos-premium-2025" },
-  openGraph: {
-    title: "Tendências em Eventos e Experiências | Rios Lux",
-    description: "Perspectivas sobre hospitalidade, personalização, sustentabilidade e tecnologia em experiências presenciais.",
-    url: "/blog/tendencias-eventos-premium-2025",
-    type: 'article',
-  },
-}
+export const metadata = createPageMetadata({
+  title: 'Tendências em Eventos e Experiências | Rios Lux',
+  description: 'Perspectivas sobre hospitalidade, personalização, sustentabilidade e tecnologia em experiências presenciais.',
+  path: '/blog/tendencias-eventos-premium-2025',
+  type: 'article',
+})
 
 export default function ArticlePage() {
   return (

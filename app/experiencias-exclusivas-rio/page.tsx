@@ -1,18 +1,11 @@
-import type { Metadata } from 'next'
 import EditorialLanding from '@/components/EditorialLanding'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Experiências no Rio de Janeiro | Rios Lux',
   description: 'Consultoria de experiências, hospitalidade e concierge no Rio de Janeiro.',
-  alternates: { canonical: '/experiencias-exclusivas-rio' },
-  openGraph: {
-    type: 'website',
-    title: 'Experiências no Rio de Janeiro | Rios Lux',
-    description: 'Consultoria de experiências, hospitalidade e concierge no Rio de Janeiro.',
-    url: '/experiencias-exclusivas-rio',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/experiencias-exclusivas-rio',
+})
 
 export default function Page() {
   return (

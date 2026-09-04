@@ -1,25 +1,21 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import CTASection from '@/components/CTASection'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Eventos Corporativos e Experiências Exclusivas | Rios Lux',
+export const metadata = createPageMetadata({
+  title: 'Serviços de Eventos e Experiências | Rios Lux',
   description: 'Consultoria, planejamento e produção de eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
-  alternates: { canonical: '/servicos' },
-  openGraph: {
-    type: 'website',
-    title: 'Eventos Corporativos e Experiências Exclusivas | Rios Lux',
-    description: 'Conheça as frentes de atuação e o escopo de coordenação da Rios Lux no Rio de Janeiro.',
-    url: '/servicos',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/servicos',
+})
 
 const categories = [
   {
     number: '01',
     label: 'Corporate',
+    href: '/eventos-corporativos-rio-de-janeiro',
+    cta: 'Conheça nossa produção de eventos corporativos',
+    event: 'corporate_cta_click',
     title: 'Eventos que fortalecem marcas, negócios e relações.',
     description: 'Encontros executivos, experiências para clientes, lançamentos, eventos corporativos e ativações de marca.',
     examples: ['Encontros executivos', 'Lançamentos', 'Experiências de marca', 'Recepção de clientes'],
@@ -27,6 +23,9 @@ const categories = [
   {
     number: '02',
     label: 'Private',
+    href: '/eventos-privados-rio-de-janeiro',
+    cta: 'Conheça nossas experiências privadas',
+    event: 'private_cta_click',
     title: 'Celebrações que traduzem histórias pessoais.',
     description: 'Casamentos, aniversários, jantares e ocasiões especiais com planejamento sob medida.',
     examples: ['Casamentos', 'Aniversários', 'Jantares', 'Celebrações especiais'],
@@ -34,6 +33,9 @@ const categories = [
   {
     number: '03',
     label: 'Lifestyle',
+    href: '/concierge-rio-de-janeiro',
+    cta: 'Conheça o concierge da Rios Lux',
+    event: 'concierge_cta_click',
     title: 'Hospitalidade e experiências pensadas para cada ritmo.',
     description: 'Consultoria de experiências e concierge para momentos no Rio de Janeiro.',
     examples: ['Consultoria local', 'Hospitalidade', 'Reservas e logística', 'Concierge'],
@@ -82,6 +84,14 @@ export default function Servicos() {
                   <p className="eyebrow mb-5">{category.label}</p>
                   <h2 className="max-w-lg font-serif text-3xl leading-tight sm:text-4xl">{category.title}</h2>
                   <p className="mt-5 max-w-lg leading-relaxed text-ink/65">{category.description}</p>
+                  <Link
+                    href={category.href}
+                    data-track-event={category.event}
+                    data-track-label="services_hub"
+                    className="mt-7 inline-flex items-center text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4 transition hover:text-brass-dark"
+                  >
+                    {category.cta} <ArrowRight className="ml-2" size={16} />
+                  </Link>
                 </div>
                 <ul className="grid content-start gap-0 sm:grid-cols-2">
                   {category.examples.map((item) => (
@@ -90,6 +100,12 @@ export default function Servicos() {
                 </ul>
               </article>
             ))}
+          </div>
+          <div className="mt-10 flex flex-col justify-between gap-5 border-b border-ink/20 pb-8 sm:flex-row sm:items-center">
+            <p className="max-w-2xl text-lg text-ink/70">Para lançamentos, ativações e relacionamento, explore também nossa abordagem para experiências de marca.</p>
+            <Link href="/experiencias-de-marca" data-track-event="corporate_cta_click" data-track-label="services_brand" className="inline-flex shrink-0 items-center text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4 transition hover:text-brass-dark">
+              Conhecer experiências de marca <ArrowRight className="ml-2" size={16} />
+            </Link>
           </div>
         </div>
       </section>
@@ -105,7 +121,7 @@ export default function Servicos() {
           </div>
           <div className="grid grid-cols-2 border-l border-t border-white/15 sm:grid-cols-3">
             {scope.map((item, index) => (
-              <div key={item} className="min-h-28 border-b border-r border-white/15 p-5">
+              <div key={item} className="min-h-28 break-words border-b border-r border-white/15 p-4 sm:p-5">
                 <span className="block text-[10px] tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
                 <span className="mt-5 block text-sm text-sand">{item}</span>
               </div>
@@ -117,7 +133,7 @@ export default function Servicos() {
       <section className="bg-canvas py-16 text-ink">
         <div className="page-shell flex flex-col justify-between gap-6 border-t border-ink/20 pt-8 sm:flex-row sm:items-center">
           <p className="max-w-2xl font-serif text-2xl">Cada projeto começa entendendo o que precisa ser vivido — e o que precisa funcionar.</p>
-          <Link href="/contato" data-track-event="click_consultoria" data-track-label="services" className="button-dark shrink-0">
+          <Link href="/contato" data-track-event="contact_start" data-track-label="services" className="button-dark shrink-0">
             Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>

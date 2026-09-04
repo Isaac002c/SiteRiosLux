@@ -1,17 +1,12 @@
-import type { Metadata } from 'next'
 import BlogArticle from '@/components/BlogArticle'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: "Concierge e Produção de Eventos | Rios Lux",
-  description: "Entenda a diferença entre concierge e produção de eventos e como as duas frentes podem trabalhar integradas.",
-  alternates: { canonical: "/blog/concierge-vs-agencia-eventos" },
-  openGraph: {
-    title: "Concierge e Produção de Eventos | Rios Lux",
-    description: "Entenda a diferença entre concierge e produção de eventos e como as duas frentes podem trabalhar integradas.",
-    url: "/blog/concierge-vs-agencia-eventos",
-    type: 'article',
-  },
-}
+export const metadata = createPageMetadata({
+  title: 'Concierge e Produção de Eventos | Rios Lux',
+  description: 'Entenda a diferença entre concierge e produção de eventos e como as duas frentes podem trabalhar integradas.',
+  path: '/blog/concierge-vs-agencia-eventos',
+  type: 'article',
+})
 
 export default function ArticlePage() {
   return (

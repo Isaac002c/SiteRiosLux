@@ -63,7 +63,7 @@ export default function EditorialLanding({
           </div>
           <ul className="grid grid-cols-2 border-l border-t border-white/15 sm:grid-cols-3">
             {scope.map((item, index) => (
-              <li key={item} className="min-h-28 border-b border-r border-white/15 p-5">
+              <li key={item} className="min-h-28 break-words border-b border-r border-white/15 p-4 sm:p-5">
                 <span className="block text-[10px] tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
                 <span className="mt-5 block text-sm text-sand">{item}</span>
               </li>
@@ -75,7 +75,7 @@ export default function EditorialLanding({
       <section className="section-space bg-brass text-ink">
         <div className="page-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">{closing}</h2>
-          <Link href="/contato" data-track-event="click_consultoria" data-track-label={eyebrow.toLowerCase()} className="button-dark">
+          <Link href="/contato" data-track-event="contact_start" data-track-label={eyebrow.toLowerCase()} className="button-dark">
             Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>

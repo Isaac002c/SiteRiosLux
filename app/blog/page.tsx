@@ -1,19 +1,12 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Editorial | Rios Lux',
   description: 'Perspectivas sobre eventos, hospitalidade, planejamento e experiências no Rio de Janeiro.',
-  alternates: { canonical: '/blog' },
-  openGraph: {
-    type: 'website',
-    title: 'Editorial | Rios Lux',
-    description: 'Perspectivas sobre eventos, hospitalidade, planejamento e experiências.',
-    url: '/blog',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/blog',
+})
 
 const articles = [
   {
@@ -75,7 +68,7 @@ export default function Blog() {
                 <span className="eyebrow pt-1">{article.category}</span>
                 <div>
                   <h2 className="font-serif text-2xl leading-tight transition group-hover:text-brass sm:text-3xl">{article.title}</h2>
-                  <p className="mt-3 max-w-2xl leading-relaxed text-ink/60">{article.description}</p>
+                  <p className="mt-3 max-w-2xl leading-relaxed text-ink/70">{article.description}</p>
                 </div>
                 <ArrowUpRight size={20} className="mt-1 transition group-hover:-translate-y-1 group-hover:translate-x-1" />
               </Link>

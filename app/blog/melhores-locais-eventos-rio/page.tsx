@@ -1,17 +1,12 @@
-import type { Metadata } from 'next'
 import BlogArticle from '@/components/BlogArticle'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: "Como Escolher um Espaço para Eventos no Rio | Rios Lux",
-  description: "Critérios para avaliar localização, infraestrutura, acessos e operação de espaços para eventos no Rio de Janeiro.",
-  alternates: { canonical: "/blog/melhores-locais-eventos-rio" },
-  openGraph: {
-    title: "Como Escolher um Espaço para Eventos no Rio | Rios Lux",
-    description: "Critérios para avaliar localização, infraestrutura, acessos e operação de espaços para eventos no Rio de Janeiro.",
-    url: "/blog/melhores-locais-eventos-rio",
-    type: 'article',
-  },
-}
+export const metadata = createPageMetadata({
+  title: 'Como Escolher Espaço para Eventos no Rio | Rios Lux',
+  description: 'Critérios para avaliar localização, infraestrutura, acessos e operação de espaços para eventos no Rio de Janeiro.',
+  path: '/blog/melhores-locais-eventos-rio',
+  type: 'article',
+})
 
 export default function ArticlePage() {
   return (

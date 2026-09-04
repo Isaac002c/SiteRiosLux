@@ -1,18 +1,11 @@
-import type { Metadata } from 'next'
 import EditorialLanding from '@/components/EditorialLanding'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Produção de Eventos no Leblon | Rios Lux',
   description: 'Consultoria, planejamento e produção de eventos no Leblon e na Zona Sul do Rio de Janeiro.',
-  alternates: { canonical: '/producao-eventos-leblon' },
-  openGraph: {
-    type: 'website',
-    title: 'Produção de Eventos no Leblon | Rios Lux',
-    description: 'Consultoria, planejamento e produção de eventos no Leblon e na Zona Sul do Rio de Janeiro.',
-    url: '/producao-eventos-leblon',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/producao-eventos-leblon',
+})
 
 export default function Page() {
   return (

@@ -55,7 +55,7 @@ export default function Experiencias() {
               <p className="max-w-xl text-lg leading-relaxed text-ink/68">
                 Referências de atmosferas e formatos que podem orientar uma conversa inicial com a Rios Lux.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-ink/50">
+              <p className="mt-4 text-sm leading-relaxed text-ink/70">
                 Todas as imagens abaixo são referências visuais de banco de imagens e não representam trabalhos realizados pela Rios Lux.
               </p>
             </div>
@@ -68,7 +68,7 @@ export default function Experiencias() {
           {concepts.map((concept, index) => (
             <article
               key={concept.title}
-              data-track-event="view_experience"
+              data-track-event="experience_view"
               data-track-label={concept.category.toLowerCase()}
               className={index % 3 === 0 ? 'lg:col-span-2' : ''}
             >
@@ -99,7 +99,7 @@ export default function Experiencias() {
             <p className="eyebrow mb-5">Seu ponto de partida</p>
             <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">Uma referência não é uma fórmula. Sua experiência começa do zero.</h2>
           </div>
-          <Link href="/contato" data-track-event="click_consultoria" data-track-label="experiences" className="button-primary">
+          <Link href="/contato" data-track-event="contact_start" data-track-label="experiences" className="button-primary">
             Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>

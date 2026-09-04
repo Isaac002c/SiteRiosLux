@@ -1,18 +1,11 @@
-import type { Metadata } from 'next'
 import EditorialLanding from '@/components/EditorialLanding'
+import { createPageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Eventos em Mansões no Rio de Janeiro | Rios Lux',
   description: 'Planejamento e produção de eventos em residências e mansões no Rio de Janeiro, conforme disponibilidade e regras de cada espaço.',
-  alternates: { canonical: '/eventos-mansoes-rio' },
-  openGraph: {
-    type: 'website',
-    title: 'Eventos em Mansões no Rio de Janeiro | Rios Lux',
-    description: 'Planejamento e produção de eventos em residências e mansões no Rio de Janeiro, conforme disponibilidade e regras de cada espaço.',
-    url: '/eventos-mansoes-rio',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
-  },
-}
+  path: '/eventos-mansoes-rio',
+})
 
 export default function Page() {
   return (

@@ -45,6 +45,14 @@
     @apply text-[11px] font-semibold uppercase tracking-[0.3em] text-brass;
   }
 
+  .bg-canvas .eyebrow {
+    @apply text-brass-dark;
+  }
+
+  .bg-canvas .text-brass {
+    @apply text-brass-dark;
+  }
+
   .button-primary {
     @apply inline-flex min-h-12 items-center justify-center bg-brass px-7 py-3.5 text-sm font-semibold text-ink transition duration-300 hover:bg-sand;
   }
@@ -58,7 +66,7 @@
   }
 
   .form-field {
-    @apply min-h-12 w-full rounded-none border border-white/20 bg-white/[0.045] px-4 py-3 text-base text-white placeholder:text-sand/35 transition focus:border-brass;
+    @apply min-h-12 w-full rounded-none border border-white/20 bg-white/[0.045] px-4 py-3 text-base text-white placeholder:text-sand/65 transition focus:border-brass;
   }
 
   select.form-field {
@@ -77,6 +85,21 @@
   .gradient-text {
     color: #d6b983;
   }
+
+  .hero-reveal {
+    animation: hero-reveal 800ms ease-out both;
+  }
+}
+
+@keyframes hero-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -87,5 +110,12 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 359px) {
+  h1 {
+    font-size: 2.625rem !important;
+    overflow-wrap: break-word;
   }
 }

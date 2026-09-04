@@ -3,21 +3,22 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import AnalyticsEvents from '@/components/AnalyticsEvents'
+import AnalyticsProvider from '@/components/AnalyticsProvider'
+import StructuredData from '@/components/StructuredData'
 import { siteConfig } from '@/config/site'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
   display: 'swap',
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: 'Rios Lux | Eventos e Experiências de Alto Padrão no Rio de Janeiro',
-  description: 'Arquitetura de experiências no Rio de Janeiro: eventos corporativos, celebrações privadas, consultoria, concierge e execução completa.',
+  title: 'Rios Lux | Eventos de Alto Padrão no Rio de Janeiro',
+  description: 'Eventos corporativos, celebrações privadas e experiências de alto padrão no Rio de Janeiro, com planejamento, consultoria e produção integrada.',
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -39,8 +40,8 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: '/',
     siteName: siteConfig.name,
-    title: 'Rios Lux | Arquitetura de Experiências',
-    description: 'Eventos corporativos, celebrações privadas e experiências com consultoria, concierge e execução completa no Rio de Janeiro.',
+    title: 'Rios Lux | Eventos de Alto Padrão no Rio de Janeiro',
+    description: 'Eventos corporativos, celebrações privadas e experiências no Rio de Janeiro, com planejamento, consultoria e produção integrada.',
     images: [
       {
         url: 'https://www.agenciarioslux.com.br/og.png',
@@ -53,8 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rios Lux | Arquitetura de Experiências',
-    description: 'Experiências que não se repetem, com consultoria e execução completa no Rio de Janeiro.',
+    title: 'Rios Lux | Eventos de Alto Padrão no Rio de Janeiro',
+    description: 'Eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
     images: ['https://www.agenciarioslux.com.br/og.png'],
   },
   appleWebApp: {
@@ -86,32 +87,39 @@ export default function RootLayout({
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': 'https://www.agenciarioslux.com.br/#organization',
+        '@id': `${siteConfig.url}/#organization`,
         name: siteConfig.name,
-        alternateName: 'Rios Lux',
-        description: 'Arquitetura de experiências, eventos e concierge no Rio de Janeiro.',
+        description: 'Planejamento e produção de eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
         url: `${siteConfig.url}/`,
         logo: {
           '@type': 'ImageObject',
-          url: 'https://www.agenciarioslux.com.br/logo.png',
+          url: `${siteConfig.url}/logo.png`,
           width: 512,
           height: 509,
         },
+        image: `${siteConfig.url}/og.png`,
         email: siteConfig.email,
         telephone: siteConfig.phoneHref,
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'customer service',
+          email: siteConfig.email,
+          telephone: siteConfig.phoneHref,
+          availableLanguage: 'Portuguese',
+        },
         areaServed: {
           '@type': 'City',
           name: 'Rio de Janeiro',
         },
+        sameAs: [siteConfig.social.instagram],
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://www.agenciarioslux.com.br/#website',
-        url: 'https://www.agenciarioslux.com.br/',
+        '@id': `${siteConfig.url}/#website`,
+        url: `${siteConfig.url}/`,
         name: siteConfig.name,
-        alternateName: 'Rios Lux',
         inLanguage: 'pt-BR',
-        publisher: { '@id': 'https://www.agenciarioslux.com.br/#organization' },
+        publisher: { '@id': `${siteConfig.url}/#organization` },
       },
     ],
   }
@@ -119,13 +127,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
+        <StructuredData data={schemaData} />
       </head>
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
-        <AnalyticsEvents />
+        <AnalyticsProvider />
         <Navbar />
         <main className="pt-20 min-h-screen">
           {children}
