@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: 'Rios Lux | Eventos e Experiências de Alto Padrão no Rio de Janeiro',
-  description: 'Arquitetura de experiências no Rio de Janeiro: eventos corporativos, celebrações privadas, curadoria, concierge e execução completa.',
+  description: 'Arquitetura de experiências no Rio de Janeiro: eventos corporativos, celebrações privadas, consultoria, concierge e execução completa.',
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     url: '/',
     siteName: siteConfig.name,
     title: 'Rios Lux | Arquitetura de Experiências',
-    description: 'Eventos corporativos, celebrações privadas e experiências com curadoria, concierge e execução completa no Rio de Janeiro.',
+    description: 'Eventos corporativos, celebrações privadas e experiências com consultoria, concierge e execução completa no Rio de Janeiro.',
     images: [
       {
         url: 'https://www.agenciarioslux.com.br/og.png',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Rios Lux | Arquitetura de Experiências',
-    description: 'Experiências que não se repetem, com curadoria e execução completa no Rio de Janeiro.',
+    description: 'Experiências que não se repetem, com consultoria e execução completa no Rio de Janeiro.',
     images: ['https://www.agenciarioslux.com.br/og.png'],
   },
   appleWebApp: {

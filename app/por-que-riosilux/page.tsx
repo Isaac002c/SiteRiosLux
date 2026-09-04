@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Como Trabalhamos | Rios Lux',
-  description: 'Conheça o processo de briefing, conceito, curadoria, planejamento e produção da Rios Lux.',
+  description: 'Conheça o processo de briefing, conceito, consultoria, planejamento e produção da Rios Lux.',
   alternates: { canonical: '/por-que-riosilux' },
   openGraph: {
     type: 'website',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const steps = [
   ['01', 'Briefing', 'Entendemos intenção, contexto, pessoas, prioridades e limites do projeto.'],
   ['02', 'Conceito', 'Traduzimos o briefing em uma direção capaz de orientar todas as escolhas.'],
-  ['03', 'Curadoria', 'Selecionamos espaços, parceiros e soluções coerentes com essa direção.'],
+  ['03', 'Consultoria', 'Selecionamos espaços, parceiros e soluções coerentes com essa direção.'],
   ['04', 'Planejamento', 'Organizamos escopo, responsabilidades, cronograma, logística e pontos de atenção.'],
   ['05', 'Produção', 'Coordenamos fornecedores, montagem, recepção e operação do evento.'],
   ['06', 'Experiência', 'Conduzimos o fluxo para que cada parte aconteça no momento certo.'],
@@ -57,8 +57,8 @@ export default function ComoTrabalhamos() {
       <section className="section-space bg-ink">
         <div className="page-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">A tranquilidade está no processo — antes de estar no resultado.</h2>
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label="process_page" className="button-primary">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label="process_page" className="button-primary">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </section>

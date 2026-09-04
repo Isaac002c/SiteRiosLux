@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Contato | Rios Lux',
-  description: 'Conte o que você imagina e solicite uma curadoria para seu evento ou experiência no Rio de Janeiro.',
+  description: 'Conte o que você imagina e solicite uma consultoria para seu evento ou experiência no Rio de Janeiro.',
   alternates: { canonical: '/contato' },
   openGraph: {
     type: 'website',

@@ -42,7 +42,7 @@ export default function Contato() {
   const handleFormStart = () => {
     if (formStarted.current) return
     formStarted.current = true
-    trackEvent('form_start', { form: 'curadoria' })
+    trackEvent('form_start', { form: 'consultoria' })
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -62,7 +62,7 @@ export default function Contato() {
       `Mensagem: ${formData.message}`,
     ].filter(Boolean).join('\n')
 
-    trackEvent('form_submit', { form: 'curadoria', experience_type: formData.experience })
+    trackEvent('form_submit', { form: 'consultoria', experience_type: formData.experience })
     setSubmitted(true)
 
     const whatsappUrl = createWhatsAppUrl(details)
@@ -89,7 +89,7 @@ export default function Contato() {
         <div className="page-shell grid gap-14 lg:grid-cols-[1.3fr_0.7fr] lg:gap-24">
           <div>
             <div className="mb-9">
-              <p className="eyebrow mb-4">Solicitar curadoria</p>
+              <p className="eyebrow mb-4">Solicitar consultoria</p>
               <h2 className="font-serif text-3xl sm:text-4xl">Compartilhe o ponto de partida.</h2>
               <p className="mt-4 max-w-2xl leading-relaxed text-sand/60">
                 Ao enviar, suas informações serão organizadas em uma mensagem e abertas no WhatsApp da Rios Lux.
@@ -203,8 +203,8 @@ export default function Contato() {
               </div>
 
               <div className="sm:col-span-2">
-                <button type="submit" className="button-primary w-full sm:w-auto" data-track-event="click_curadoria" data-track-label="contact_form">
-                  Solicitar Curadoria
+                <button type="submit" className="button-primary w-full sm:w-auto" data-track-event="click_consultoria" data-track-label="contact_form">
+                  Solicitar Consultoria
                 </button>
                 {submitted && (
                   <p role="status" className="mt-4 text-sm text-sand/70">

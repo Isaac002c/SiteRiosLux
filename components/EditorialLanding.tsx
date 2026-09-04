@@ -75,12 +75,11 @@ export default function EditorialLanding({
       <section className="section-space bg-brass text-ink">
         <div className="page-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">{closing}</h2>
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label={eyebrow.toLowerCase()} className="button-dark">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label={eyebrow.toLowerCase()} className="button-dark">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </section>
     </div>
   )
 }
-

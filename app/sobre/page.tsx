@@ -40,7 +40,7 @@ export default function Sobre() {
           <div className="space-y-7 font-serif text-2xl leading-relaxed text-sand sm:text-3xl lg:text-4xl">
             <p>Uma boa experiência não começa pela decoração. Começa pela intenção.</p>
             <p className="text-sand/60">
-              É a partir dela que organizamos conceito, planejamento, curadoria, parceiros e operação — com decisões coerentes do início ao fim.
+              É a partir dela que organizamos conceito, planejamento, consultoria, parceiros e operação — com decisões coerentes do início ao fim.
             </p>
           </div>
         </div>
@@ -74,8 +74,8 @@ export default function Sobre() {
               Por isso, nosso processo começa com uma conversa.
             </h2>
           </div>
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label="about" className="button-primary">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label="about" className="button-primary">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </section>

@@ -19,7 +19,7 @@ export default function Footer() {
             <Link href="/" className="font-serif text-2xl tracking-[0.18em]">RIOS LUX</Link>
             <p className="mt-3 text-[10px] uppercase tracking-[0.25em] text-brass">{siteConfig.descriptor}</p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-sand/65">
-              Curadoria, planejamento e execução de eventos e experiências no Rio de Janeiro.
+              Consultoria, planejamento e execução de eventos e experiências no Rio de Janeiro.
             </p>
           </div>
 

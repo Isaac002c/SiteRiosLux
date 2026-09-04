@@ -50,12 +50,11 @@ export default function BlogArticle({ category, title, intro, sections }: BlogAr
 
         <div className="mt-14 flex flex-col justify-between gap-6 bg-ink p-7 text-white sm:flex-row sm:items-center sm:p-10">
           <p className="max-w-xl font-serif text-2xl">Quer transformar o contexto do seu projeto em uma direção clara?</p>
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label="blog_article" className="button-primary shrink-0">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label="blog_article" className="button-primary shrink-0">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </div>
     </article>
   )
 }
-

@@ -23,7 +23,7 @@ export default function Page() {
       sectionTitle="O endereço influencia a experiência inteira."
       sections={[
     { title: 'Contexto', description: 'Avaliamos objetivo, público, horários, acessos e necessidades do projeto.' },
-    { title: 'Curadoria', description: 'Selecionamos soluções compatíveis com o formato, a região e as prioridades do briefing.' },
+    { title: 'Consultoria', description: 'Selecionamos soluções compatíveis com o formato, a região e as prioridades do briefing.' },
     { title: 'Logística', description: 'Organizamos fornecedores, convidados, montagem e operação considerando os fluxos locais.' },
       ]}
       scope={['Conceito', 'Espaços', 'Acessos', 'Gastronomia', 'Audiovisual', 'Recepção', 'Transporte', 'Produção', 'Operação']}

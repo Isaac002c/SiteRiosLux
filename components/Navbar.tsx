@@ -46,11 +46,11 @@ export default function Navbar() {
           ))}
           <Link
             href="/contato"
-            data-track-event="click_curadoria"
+            data-track-event="click_consultoria"
             data-track-label="header"
             className="button-primary !px-6 !py-3"
           >
-            Solicitar curadoria
+            Solicitar consultoria
           </Link>
         </div>
 
@@ -81,12 +81,12 @@ export default function Navbar() {
             ))}
             <Link
               href="/contato"
-              data-track-event="click_curadoria"
+              data-track-event="click_consultoria"
               data-track-label="mobile_header"
               className="button-primary mt-6 justify-center"
               onClick={() => setOpen(false)}
             >
-              Solicitar curadoria
+              Solicitar consultoria
             </Link>
           </div>
         </div>

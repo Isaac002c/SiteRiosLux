@@ -3,12 +3,12 @@ import EditorialLanding from '@/components/EditorialLanding'
 
 export const metadata: Metadata = {
   title: 'Eventos Corporativos no Rio de Janeiro | Rios Lux',
-  description: 'Curadoria, planejamento e produção de eventos corporativos, encontros executivos, lançamentos e experiências de marca no Rio de Janeiro.',
+  description: 'Consultoria, planejamento e produção de eventos corporativos, encontros executivos, lançamentos e experiências de marca no Rio de Janeiro.',
   alternates: { canonical: '/eventos-corporativos-premium-rj' },
   openGraph: {
     type: 'website',
     title: 'Eventos Corporativos no Rio de Janeiro | Rios Lux',
-    description: 'Curadoria, planejamento e produção de eventos corporativos, encontros executivos, lançamentos e experiências de marca no Rio de Janeiro.',
+    description: 'Consultoria, planejamento e produção de eventos corporativos, encontros executivos, lançamentos e experiências de marca no Rio de Janeiro.',
     url: '/eventos-corporativos-premium-rj',
     images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
   },

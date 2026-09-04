@@ -3,12 +3,12 @@ import EditorialLanding from '@/components/EditorialLanding'
 
 export const metadata: Metadata = {
   title: 'Concierge para Eventos no Rio de Janeiro | Rios Lux',
-  description: 'Concierge integrado a eventos e experiências no Rio de Janeiro, com curadoria, reservas, logística e suporte conforme cada projeto.',
+  description: 'Concierge integrado a eventos e experiências no Rio de Janeiro, com consultoria, reservas, logística e suporte conforme cada projeto.',
   alternates: { canonical: '/concierge-eventos-rio' },
   openGraph: {
     type: 'website',
     title: 'Concierge para Eventos no Rio de Janeiro | Rios Lux',
-    description: 'Concierge integrado a eventos e experiências no Rio de Janeiro, com curadoria, reservas, logística e suporte conforme cada projeto.',
+    description: 'Concierge integrado a eventos e experiências no Rio de Janeiro, com consultoria, reservas, logística e suporte conforme cada projeto.',
     url: '/concierge-eventos-rio',
     images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
   },

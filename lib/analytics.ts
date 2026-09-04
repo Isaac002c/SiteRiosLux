@@ -1,6 +1,6 @@
 export type AnalyticsEvent =
   | 'click_whatsapp'
-  | 'click_curadoria'
+  | 'click_consultoria'
   | 'form_start'
   | 'form_submit'
   | 'view_experience'

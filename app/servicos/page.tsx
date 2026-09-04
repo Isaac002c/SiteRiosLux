@@ -5,7 +5,7 @@ import CTASection from '@/components/CTASection'
 
 export const metadata: Metadata = {
   title: 'Eventos Corporativos e Experiências Exclusivas | Rios Lux',
-  description: 'Curadoria, planejamento e produção de eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
+  description: 'Consultoria, planejamento e produção de eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
   alternates: { canonical: '/servicos' },
   openGraph: {
     type: 'website',
@@ -35,15 +35,15 @@ const categories = [
     number: '03',
     label: 'Lifestyle',
     title: 'Hospitalidade e experiências pensadas para cada ritmo.',
-    description: 'Curadoria de experiências e concierge para momentos no Rio de Janeiro.',
-    examples: ['Curadoria local', 'Hospitalidade', 'Reservas e logística', 'Concierge'],
+    description: 'Consultoria de experiências e concierge para momentos no Rio de Janeiro.',
+    examples: ['Consultoria local', 'Hospitalidade', 'Reservas e logística', 'Concierge'],
   },
 ]
 
 const scope = [
   'Conceito',
   'Planejamento',
-  'Curadoria de parceiros',
+  'Consultoria de parceiros',
   'Espaços',
   'Gastronomia',
   'Decoração',
@@ -117,8 +117,8 @@ export default function Servicos() {
       <section className="bg-canvas py-16 text-ink">
         <div className="page-shell flex flex-col justify-between gap-6 border-t border-ink/20 pt-8 sm:flex-row sm:items-center">
           <p className="max-w-2xl font-serif text-2xl">Cada projeto começa entendendo o que precisa ser vivido — e o que precisa funcionar.</p>
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label="services" className="button-dark shrink-0">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label="services" className="button-dark shrink-0">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </section>

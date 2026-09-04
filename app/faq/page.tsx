@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Perguntas Frequentes | Rios Lux',
-  description: 'Respostas sobre o processo de curadoria, planejamento e produção de experiências da Rios Lux no Rio de Janeiro.',
+  description: 'Respostas sobre o processo de consultoria, planejamento e produção de experiências da Rios Lux no Rio de Janeiro.',
   alternates: { canonical: '/faq' },
   openGraph: {
     type: 'website',
@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     q: 'Como envio as informações do meu projeto?',
-    a: 'Use o formulário de curadoria na página de contato. Ele organiza os dados essenciais e abre uma mensagem pronta para envio no WhatsApp oficial.',
+    a: 'Use o formulário de consultoria na página de contato. Ele organiza os dados essenciais e abre uma mensagem pronta para envio no WhatsApp oficial.',
   },
 ]
 
@@ -87,7 +87,7 @@ export default function FAQ() {
           </div>
           <div className="mt-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             <p className="font-serif text-2xl">Ainda quer conversar sobre algum ponto?</p>
-            <Link href="/contato" data-track-event="click_curadoria" data-track-label="faq" className="button-dark">Falar com a Rios Lux</Link>
+            <Link href="/contato" data-track-event="click_consultoria" data-track-label="faq" className="button-dark">Falar com a Rios Lux</Link>
           </div>
         </div>
       </section>

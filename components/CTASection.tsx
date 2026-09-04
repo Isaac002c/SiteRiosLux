@@ -16,8 +16,8 @@ export default function CTASection() {
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label="final_cta" className="button-dark">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label="final_cta" className="button-dark">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
           <a
             href={createWhatsAppUrl()}

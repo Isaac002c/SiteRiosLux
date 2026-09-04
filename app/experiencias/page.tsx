@@ -18,7 +18,7 @@ const concepts = [
   {
     category: 'Lifestyle',
     title: 'Hospitalidade no Rio',
-    description: 'Uma jornada construída com curadoria local, logística e momentos pensados em sequência.',
+    description: 'Uma jornada construída com consultoria local, logística e momentos pensados em sequência.',
     image: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=1600&q=82',
   },
   {
@@ -99,8 +99,8 @@ export default function Experiencias() {
             <p className="eyebrow mb-5">Seu ponto de partida</p>
             <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">Uma referência não é uma fórmula. Sua experiência começa do zero.</h2>
           </div>
-          <Link href="/contato" data-track-event="click_curadoria" data-track-label="experiences" className="button-primary">
-            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          <Link href="/contato" data-track-event="click_consultoria" data-track-label="experiences" className="button-primary">
+            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </section>

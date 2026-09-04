@@ -22,12 +22,12 @@ const services = [
   {
     number: '03',
     label: 'Lifestyle',
-    title: 'Curadoria para viver o Rio de outra maneira.',
+    title: 'Consultoria para viver o Rio de outra maneira.',
     description: 'Experiências, hospitalidade e concierge conectados ao ritmo de cada cliente.',
   },
 ]
 
-const process = ['Briefing', 'Conceito', 'Curadoria', 'Planejamento', 'Produção', 'Experiência']
+const process = ['Briefing', 'Conceito', 'Consultoria', 'Planejamento', 'Produção', 'Experiência']
 
 const concepts = [
   {
@@ -68,17 +68,17 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="page-shell relative z-10 pb-14 pt-28 sm:pb-20 lg:pb-24"
         >
-          <p className="eyebrow mb-6 text-sand/80">Rios Lux · Rio de Janeiro</p>
+          <p className="eyebrow mb-6 text-sand/80">Rios Lux</p>
           <h1 className="max-w-5xl text-balance font-serif text-[clamp(3.35rem,9vw,8.5rem)] uppercase leading-[0.83] tracking-[-0.055em] text-white">
             Experiências<br />que não se repetem.
           </h1>
           <div className="mt-8 grid max-w-5xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end">
             <p className="max-w-2xl text-base leading-relaxed text-sand/85 sm:text-lg">
-              Eventos corporativos, celebrações privadas e experiências com curadoria, concierge e execução completa.
+              Eventos corporativos, celebrações privadas e experiências com consultoria, concierge e execução completa.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <Link href="/contato" data-track-event="click_curadoria" data-track-label="hero" className="button-primary">
-                Solicitar uma curadoria <ArrowRight className="ml-2" size={16} />
+              <Link href="/contato" data-track-event="click_consultoria" data-track-label="hero" className="button-primary">
+                Solicitar uma consultoria <ArrowRight className="ml-2" size={16} />
               </Link>
               <Link href="/experiencias" className="button-secondary">
                 Conhecer experiências
@@ -98,7 +98,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col justify-end border-l border-ink/20 pl-6 sm:pl-10">
             <p className="max-w-2xl text-lg leading-relaxed text-ink/72 sm:text-xl">
-              A Rios Lux transforma uma intenção em uma operação coordenada. Conceito, planejamento, curadoria de parceiros, produção e experiência caminham sob uma mesma direção.
+              A Rios Lux transforma uma intenção em uma operação coordenada. Conceito, planejamento, consultoria de parceiros, produção e experiência caminham sob uma mesma direção.
             </p>
             <p className="mt-7 max-w-xl text-sm leading-relaxed text-ink/58">
               Antecipamos riscos e conduzimos cada etapa para que você possa estar presente no que realmente importa.
