@@ -1,139 +1,96 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { MotionDiv, MotionSection } from '@/components/Motion'
 
 export const metadata: Metadata = {
-  title: 'FAQ - Perguntas Frequentes | Eventos Premium RJ | RiosLux',
-  description: 'Perguntas frequentes sobre eventos premium, concierge e serviços de luxo no Rio de Janeiro. Tudo que você precisa saber sobre a RiosLux.',
+  title: 'Perguntas Frequentes | Rios Lux',
+  description: 'Respostas sobre o processo de curadoria, planejamento e produção de experiências da Rios Lux no Rio de Janeiro.',
   alternates: { canonical: '/faq' },
   openGraph: {
-    title: 'FAQ - Dúvidas Sobre Eventos Premium | RiosLux',
-    description: 'Tire suas dúvidas sobre eventos de luxo e serviços de concierge.',
-    url: 'https://www.agenciarioslux.com.br/faq',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
-  }
+    type: 'website',
+    title: 'Perguntas Frequentes | Rios Lux',
+    description: 'Entenda como começa e funciona um projeto com a Rios Lux.',
+    url: '/faq',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
+  },
 }
 
 const faqs = [
   {
-    q: 'Qual é o valor mínimo para contratar um evento premium?',
-    a: 'Não temos valor mínimo fixo. Cada evento é customizado conforme sua visão e orçamento. Desde eventos íntimos até produções de grande porte. Agende uma consultoria gratuita para discutir sua proposta.'
+    q: 'Que tipos de projetos a Rios Lux desenvolve?',
+    a: 'A Rios Lux atua em eventos corporativos, celebrações privadas e experiências de lifestyle e concierge. O formato e o escopo são definidos a partir de cada briefing.',
   },
   {
-    q: 'Com quantos dias de antecedência devo contratar?',
-    a: 'Recomendamos 60 a 90 dias de antecedência para melhores opções de locais, fornecedores e flexibilidade. Porém, atendemos demandas urgentes conforme disponibilidade.'
+    q: 'O que a Rios Lux pode coordenar?',
+    a: 'Conforme a necessidade do projeto, a coordenação pode incluir conceito, planejamento, parceiros, espaços, gastronomia, decoração, audiovisual, logística, recepção, concierge, produção e operação.',
   },
   {
-    q: 'Quais são os bairros que vocês atendem?',
-    a: 'Atendemos todo o Rio de Janeiro, com especialização em: Barra da Tijuca, Ipanema, Leblon, Copacabana, Zona Sul, Joá, Joatinga e São Conrado.'
+    q: 'Como começa um projeto?',
+    a: 'Com uma conversa de briefing. É nesse momento que entendemos intenção, contexto, data, local, número de convidados, prioridades e o que já está definido.',
   },
   {
-    q: 'Vocês coordenam caterers e fornecedores?',
-    a: 'Sim! Temos rede de parceiros premium: caterers, fotógrafos, produtoras, decoradores, DJs e todos os fornecedores necessários.'
+    q: 'Com quanto tempo de antecedência devo entrar em contato?',
+    a: 'Quanto maior o prazo, mais opções costumam estar disponíveis. A viabilidade e o cronograma são avaliados caso a caso, de acordo com a complexidade e a data desejada.',
   },
   {
-    q: 'Como funciona o serviço de concierge 24h?',
-    a: 'Disponível antes, durante e após seu evento. Resolvemos qualquer solicitação: reservas, logística, soluções criativas. Atendimento discreto e profissional.'
+    q: 'Existe um orçamento mínimo?',
+    a: 'O site não publica um valor mínimo. O investimento depende do formato, do escopo, dos parceiros envolvidos e das prioridades definidas no briefing.',
   },
   {
-    q: 'Qual é o diferencial da RiosLux?',
-    a: 'Acesso exclusivo a locais premium, organização impecável, concierge white-glove e mais de 100+ eventos realizados com sucesso. Referência em eventos de luxo no Rio.'
+    q: 'A Rios Lux trabalha com fornecedores escolhidos pelo cliente?',
+    a: 'Essa possibilidade pode ser avaliada no briefing. O mais importante é alinhar responsabilidades, padrão de entrega, prazos e integração com a operação.',
   },
   {
-    q: 'Posso agendar uma consultoria?',
-    a: 'Sim! A consultoria inicial é gratuita. Você fala sobre sua visão e nós apresentamos soluções personalizadas. Agende pelo WhatsApp ou formulário.'
+    q: 'O atendimento é somente no Rio de Janeiro?',
+    a: 'A comunicação atual da Rios Lux está concentrada no Rio de Janeiro. Outros locais podem ser avaliados diretamente com a equipe.',
   },
   {
-    q: 'Vocês trabalham com eventos corporativos?',
-    a: 'Especialidade nossa! Conferências, lançamentos, galas corporativas, jantares executivos e retiros com produção de cinema e ROI garantido.'
-  }
+    q: 'Como envio as informações do meu projeto?',
+    a: 'Use o formulário de curadoria na página de contato. Ele organiza os dados essenciais e abre uma mensagem pronta para envio no WhatsApp oficial.',
+  },
 ]
 
 export default function FAQ() {
   const schemaFAQ = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(item => ({
-      "@type": "Question",
-      "name": item.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.a
-      }
-    }))
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
   }
 
   return (
-    <div className="min-h-screen py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }}
-      />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionDiv
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-32"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Perguntas Frequentes
+    <div>
+      <section className="section-space bg-canvas text-ink">
+        <div className="page-shell pt-10 sm:pt-16">
+          <p className="eyebrow mb-6">Perguntas frequentes</p>
+          <h1 className="max-w-5xl text-balance font-serif text-5xl leading-[0.98] sm:text-6xl lg:text-8xl">
+            Antes de começar, algumas respostas.
           </h1>
-          <p className="text-xl md:text-2xl text-beige/80 max-w-2xl mx-auto">
-            Tire todas as suas dúvidas sobre eventos premium e serviços de concierge
-          </p>
-        </MotionDiv>
-
-        <div className="space-y-6 mb-32">
-          {faqs.map((faq, index) => (
-            <MotionDiv
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all"
-            >
-              <h3 className="text-2xl font-serif font-bold gradient-text mb-4">
-                {index + 1}. {faq.q}
-              </h3>
-              <p className="text-beige/80 text-lg leading-relaxed">
-                {faq.a}
-              </p>
-            </MotionDiv>
-          ))}
         </div>
+      </section>
 
-        {/* Não achou sua resposta? */}
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center py-16 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-8">
-            Não Encontrou Sua Resposta?
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            Fale diretamente com nossos especialistas. Estamos aqui para ajudar com qualquer dúvida.
-          </p>
-          <div className="flex gap-6 justify-center flex-wrap">
-            <Link
-              href="/contato"
-              className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
-            >
-              Enviar Mensagem
-            </Link>
-            <a
-              href="https://wa.me/5521972522076"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-green-500 text-white px-12 py-6 rounded-full font-medium text-lg hover:bg-green-600 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 hover:-translate-y-2"
-            >
-              WhatsApp 24h
-            </a>
+      <section className="bg-canvas pb-24 text-ink lg:pb-32">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaFAQ) }} />
+        <div className="page-shell max-w-5xl">
+          <div className="divide-y divide-ink/20 border-y border-ink/20">
+            {faqs.map((faq, index) => (
+              <article key={faq.q} className="grid gap-5 py-8 sm:grid-cols-[0.15fr_0.85fr] sm:gap-8 lg:py-10">
+                <span className="font-serif text-3xl text-brass">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h2 className="font-serif text-2xl sm:text-3xl">{faq.q}</h2>
+                  <p className="mt-4 max-w-3xl leading-relaxed text-ink/62">{faq.a}</p>
+                </div>
+              </article>
+            ))}
           </div>
-        </MotionSection>
-      </div>
+          <div className="mt-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+            <p className="font-serif text-2xl">Ainda quer conversar sobre algum ponto?</p>
+            <Link href="/contato" data-track-event="click_curadoria" data-track-label="faq" className="button-dark">Falar com a Rios Lux</Link>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

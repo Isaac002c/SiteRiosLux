@@ -1,42 +1,36 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { createWhatsAppUrl } from '@/config/site'
 
 export default function CTASection() {
-  const handleWhatsApp = () => {
-    const message = encodeURIComponent('Olá! Gostaria de agendar uma consultoria para meu evento.')
-    window.open('https://wa.me/5521972522076?' + message, '_blank')
-  }
-
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="py-32 bg-gradient-to-t from-primary-dark to-primary text-center"
-    >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="bg-gradient-to-r from-gold/20 to-beige/20 backdrop-blur-xl rounded-3xl p-16 border border-gold/30"
-        >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-8 gradient-text">
-            Pronto para Sua Experiência Única?
+    <section className="section-space bg-brass text-ink">
+      <div className="page-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div>
+          <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.3em] text-ink/60">Comece por uma conversa</p>
+          <h2 className="max-w-4xl text-balance font-serif text-4xl leading-[1.02] sm:text-5xl lg:text-7xl">
+            Sua experiência começa aqui.
           </h2>
-          <p className="text-xl md:text-2xl text-beige/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Fale com nossos especialistas e descubra como podemos tornar seu evento inesquecível
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/70">
+            Conte-nos o que você imagina. A Rios Lux cuida dos próximos passos.
           </p>
-          <motion.button
-            onClick={handleWhatsApp}
-            className="bg-gold text-primary px-16 py-8 rounded-full font-semibold text-2xl hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-3 inline-flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+        </div>
+        <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+          <Link href="/contato" data-track-event="click_curadoria" data-track-label="final_cta" className="button-dark">
+            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          </Link>
+          <a
+            href={createWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track-event="click_whatsapp"
+            data-track-label="final_cta"
+            className="inline-flex min-h-12 items-center justify-center border border-ink/35 px-7 py-3.5 text-sm font-semibold text-ink transition hover:border-ink hover:bg-ink hover:text-white"
           >
-            Fale pelo WhatsApp
-          </motion.button>
-        </motion.div>
+            Falar com o concierge
+          </a>
+        </div>
       </div>
-    </motion.section>
+    </section>
   )
 }
-

@@ -1,115 +1,69 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import { Phone, Mail, MapPin, Instagram, Linkedin } from 'lucide-react'
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { createWhatsAppUrl, siteConfig } from '@/config/site'
+
+const navigation = [
+  { href: '/servicos', label: 'Serviços' },
+  { href: '/experiencias', label: 'Experiências' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
+  { href: '/faq', label: 'Perguntas frequentes' },
+]
 
 export default function Footer() {
   return (
-    <footer className="bg-primary/90 backdrop-blur-md border-t border-gold/20 py-16 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer Grid */}
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
-          <div className="md:col-span-1">
-            <Image
-              src="/logo.png"
-              alt="RiosLux - Eventos Premium e Concierge"
-              width={512}
-              height={509}
-              sizes="48px"
-              className="h-12 w-auto rounded-full shadow-lg mb-4"
-            />
-            <h3 className="text-lg font-serif font-bold gradient-text mb-3">RiosLux</h3>
-            <p className="text-beige/80 text-sm leading-relaxed mb-4">
-              Especialista em eventos premium, concierge 24h e experiências exclusivas no Rio de Janeiro.
+    <footer className="border-t border-white/10 bg-ink text-white">
+      <div className="page-shell py-16 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.75fr_1fr]">
+          <div>
+            <Link href="/" className="font-serif text-2xl tracking-[0.18em]">RIOS LUX</Link>
+            <p className="mt-3 text-[10px] uppercase tracking-[0.25em] text-brass">{siteConfig.descriptor}</p>
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-sand/65">
+              Curadoria, planejamento e execução de eventos e experiências no Rio de Janeiro.
             </p>
-            <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-gold/20 transition-all">
-                <Instagram className="h-5 w-5 text-gold" />
+          </div>
+
+          <div>
+            <p className="eyebrow mb-5">Navegação</p>
+            <ul className="space-y-3">
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-sand/70 transition hover:text-white">{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-5">Contato</p>
+            <address className="space-y-4 not-italic">
+              <a href={`tel:${siteConfig.phoneHref}`} className="flex items-center gap-3 text-sm text-sand/75 transition hover:text-white">
+                <Phone size={16} className="text-brass" /> {siteConfig.phoneDisplay}
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-gold/20 transition-all">
-                <Linkedin className="h-5 w-5 text-gold" />
+              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-3 break-all text-sm text-sand/75 transition hover:text-white">
+                <Mail size={16} className="shrink-0 text-brass" /> {siteConfig.email}
               </a>
-            </div>
-          </div>
-
-          {/* Serviços */}
-          <div>
-            <h4 className="text-gold font-serif font-bold mb-6 uppercase tracking-wider text-sm">Serviços</h4>
-            <ul className="space-y-3">
-              <li><Link href="/servicos" className="text-beige/80 hover:text-gold transition-colors text-sm">Todos os Serviços</Link></li>
-              <li><Link href="/despedida-solteiro-luxo-rj" className="text-beige/80 hover:text-gold transition-colors text-sm">Despedida Solteiro</Link></li>
-              <li><Link href="/eventos-corporativos-premium-rj" className="text-beige/80 hover:text-gold transition-colors text-sm">Corporativos</Link></li>
-              <li><Link href="/concierge-eventos-rio" className="text-beige/80 hover:text-gold transition-colors text-sm">Concierge 24h</Link></li>
-              <li><Link href="/experiencias-exclusivas-rio" className="text-beige/80 hover:text-gold transition-colors text-sm">Experiências</Link></li>
-            </ul>
-          </div>
-
-          {/* Localidades */}
-          <div>
-            <h4 className="text-gold font-serif font-bold mb-6 uppercase tracking-wider text-sm">Localizações</h4>
-            <ul className="space-y-3">
-              <li><Link href="/eventos-barra-tijuca" className="text-beige/80 hover:text-gold transition-colors text-sm">Barra da Tijuca</Link></li>
-              <li><Link href="/casamentos-luxo-ipanema" className="text-beige/80 hover:text-gold transition-colors text-sm">Ipanema</Link></li>
-              <li><Link href="/producao-eventos-leblon" className="text-beige/80 hover:text-gold transition-colors text-sm">Leblon</Link></li>
-              <li><Link href="/eventos-mansoes-rio" className="text-beige/80 hover:text-gold transition-colors text-sm">Mansões</Link></li>
-              <li><a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="text-beige/80 hover:text-gold transition-colors text-sm">Rio de Janeiro</a></li>
-            </ul>
-          </div>
-
-          {/* Contato */}
-          <div>
-            <h4 className="text-gold font-serif font-bold mb-6 uppercase tracking-wider text-sm">Contato</h4>
-            <ul className="space-y-3">
-              <li>
-                <a href="tel:+5521972522076" className="flex items-center gap-2 text-beige/80 hover:text-gold transition-colors text-sm">
-                  <Phone className="h-4 w-4" />
-                  +55 21 97252-2076
-                </a>
-              </li>
-              <li>
-                <a href="mailto:agenciarioslux@gmail.com" className="flex items-center gap-2 text-beige/80 hover:text-gold transition-colors text-sm">
-                  <Mail className="h-4 w-4" />
-                  agenciarioslux@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/5521972522076" target="_blank" rel="noopener noreferrer" className="text-beige/80 hover:text-gold transition-colors text-sm">
-                  WhatsApp 24h
-                </a>
-              </li>
-              <li><Link href="/faq" className="text-beige/80 hover:text-gold transition-colors text-sm">FAQ</Link></li>
-            </ul>
+              <a
+                href={createWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track-event="click_whatsapp"
+                data-track-label="footer"
+                className="flex items-center gap-3 text-sm text-sand/75 transition hover:text-white"
+              >
+                <MessageCircle size={16} className="text-brass" /> Falar pelo WhatsApp
+              </a>
+              <p className="flex items-center gap-3 text-sm text-sand/75">
+                <MapPin size={16} className="text-brass" /> Rio de Janeiro, RJ
+              </p>
+            </address>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gold/20 my-12"></div>
-
-        {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-beige/60 text-xs">
-            © 2024-2025 RiosLux - Eventos Premium e Concierge no Rio de Janeiro. Todos os direitos reservados.
-          </p>
-
-          <div className="flex gap-6 text-xs">
-            <Link href="/faq" className="text-beige/60 hover:text-gold transition-colors">
-              Perguntas Frequentes
-            </Link>
-            <span className="text-beige/40">•</span>
-            <a href="/sitemap.xml" className="text-beige/60 hover:text-gold transition-colors">
-              Sitemap
-            </a>
-            <span className="text-beige/40">•</span>
-            <a href="/robots.txt" className="text-beige/60 hover:text-gold transition-colors">
-              Robots
-            </a>
-          </div>
-
-          <p className="text-beige/40 text-xs">
-            Desenvolvido com dedicação para excelência premium.
-          </p>
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-sand/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Rios Lux. Todos os direitos reservados.</p>
+          <p>Digital Experience by TELUN</p>
         </div>
-
       </div>
     </footer>
   )

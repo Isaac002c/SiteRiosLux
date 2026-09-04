@@ -3,6 +3,8 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import AnalyticsEvents from '@/components/AnalyticsEvents'
+import { siteConfig } from '@/config/site'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const playfair = Playfair_Display({
@@ -13,13 +15,13 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.agenciarioslux.com.br'),
-  title: 'Eventos Premium no Rio de Janeiro | RiosLux',
-  description: 'Planejamento de eventos premium e concierge no Rio de Janeiro para empresas, casamentos e celebrações exclusivas. Fale com a RiosLux.',
-  applicationName: 'RiosLux',
-  authors: [{ name: 'RiosLux' }],
-  creator: 'RiosLux',
-  publisher: 'RiosLux',
+  metadataBase: new URL(siteConfig.url),
+  title: 'Rios Lux | Eventos e Experiências de Alto Padrão no Rio de Janeiro',
+  description: 'Arquitetura de experiências no Rio de Janeiro: eventos corporativos, celebrações privadas, curadoria, concierge e execução completa.',
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   category: 'eventos',
   robots: {
     index: true,
@@ -36,27 +38,29 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     url: '/',
-    siteName: 'RiosLux',
-    title: 'Eventos Premium no Rio de Janeiro | RiosLux',
-    description: 'Planejamento de eventos premium e concierge no Rio de Janeiro para empresas, casamentos e celebrações exclusivas.',
+    siteName: siteConfig.name,
+    title: 'Rios Lux | Arquitetura de Experiências',
+    description: 'Eventos corporativos, celebrações privadas e experiências com curadoria, concierge e execução completa no Rio de Janeiro.',
     images: [
       {
         url: 'https://www.agenciarioslux.com.br/og.png',
         width: 1200,
         height: 630,
-        alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro',
+        alt: 'Rios Lux — Arquitetura de Experiências',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'Rios Lux | Arquitetura de Experiências',
+    description: 'Experiências que não se repetem, com curadoria e execução completa no Rio de Janeiro.',
     images: ['https://www.agenciarioslux.com.br/og.png'],
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'RiosLux - Eventos Premium',
+    title: 'Rios Lux',
   },
   icons: {
     icon: [{ url: '/favicon.png', type: 'image/png', sizes: '192x192' }],
@@ -83,18 +87,18 @@ export default function RootLayout({
       {
         '@type': 'Organization',
         '@id': 'https://www.agenciarioslux.com.br/#organization',
-        name: 'RiosLux',
+        name: siteConfig.name,
         alternateName: 'Rios Lux',
-        description: 'Planejamento de eventos premium e concierge no Rio de Janeiro.',
-        url: 'https://www.agenciarioslux.com.br/',
+        description: 'Arquitetura de experiências, eventos e concierge no Rio de Janeiro.',
+        url: `${siteConfig.url}/`,
         logo: {
           '@type': 'ImageObject',
           url: 'https://www.agenciarioslux.com.br/logo.png',
           width: 512,
           height: 509,
         },
-        email: 'agenciarioslux@gmail.com',
-        telephone: '+5521972522076',
+        email: siteConfig.email,
+        telephone: siteConfig.phoneHref,
         areaServed: {
           '@type': 'City',
           name: 'Rio de Janeiro',
@@ -104,7 +108,7 @@ export default function RootLayout({
         '@type': 'WebSite',
         '@id': 'https://www.agenciarioslux.com.br/#website',
         url: 'https://www.agenciarioslux.com.br/',
-        name: 'RiosLux',
+        name: siteConfig.name,
         alternateName: 'Rios Lux',
         inLanguage: 'pt-BR',
         publisher: { '@id': 'https://www.agenciarioslux.com.br/#organization' },
@@ -121,6 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        <AnalyticsEvents />
         <Navbar />
         <main className="pt-20 min-h-screen">
           {children}

@@ -1,114 +1,33 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { MotionDiv, MotionSection } from '@/components/Motion'
+import EditorialLanding from '@/components/EditorialLanding'
 
 export const metadata: Metadata = {
-  title: 'Experiências Exclusivas Rio de Janeiro | Iates Luxo | RiosLux Premium',
-  description: 'Experiências exclusivas no Rio: iates luxo, rooftops, mansões. Concierge premium, soluções únicas. Transforme sua visão em realidade. RiosLux.',
+  title: 'Experiências no Rio de Janeiro | Rios Lux',
+  description: 'Curadoria de experiências, hospitalidade e concierge no Rio de Janeiro.',
   alternates: { canonical: '/experiencias-exclusivas-rio' },
   openGraph: {
-    title: 'Experiências Exclusivas Rio de Janeiro | RiosLux',
-    description: 'Iates de luxo, mansões, rooftops e experiências sofisticadas na Baía de Guanabara.',
-    url: 'https://www.agenciarioslux.com.br/experiencias-exclusivas-rio',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
-  }
+    type: 'website',
+    title: 'Experiências no Rio de Janeiro | Rios Lux',
+    description: 'Curadoria de experiências, hospitalidade e concierge no Rio de Janeiro.',
+    url: '/experiencias-exclusivas-rio',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
+  },
 }
 
-export default function ExperienciasExclusivas() {
+export default function Page() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionDiv
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-32"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Experiências Exclusivas no Rio de Janeiro
-          </h1>
-          <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
-            Iates de luxo, mansões, rooftops e locais únicos: experiências que transcendem o ordinário
-          </p>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Reservar Experiência Premium
-          </Link>
-        </MotionDiv>
-
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-32"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
-            Nossas Experiências
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                exp: 'Iates de Luxo na Baía',
-                desc: 'Navegue pela Baía de Guanabara em iates premium. Sunset, champagne, privacidade absoluta.'
-              },
-              {
-                exp: 'Rooftops Panorâmicos',
-                desc: 'Vistas 360º da Zona Sul. Experiências sophisticated em alturas surreais.'
-              },
-              {
-                exp: 'Mansões Históricas',
-                desc: 'Arquitetura única em Joá, Joatinga e São Conrado. Espaços verdadeiramente exclusivos.'
-              },
-              {
-                exp: 'Piscinas Infinitas',
-                desc: 'Coberturas e piscinas privadas com vista para o mar e montanhas.'
-              },
-              {
-                exp: 'Espaços Culturais Premium',
-                desc: 'Galerias, teatros e centros culturais para eventos sofisticados.'
-              },
-              {
-                exp: 'Experiências Gastronômicas',
-                desc: 'Chef particular, adega premium, menu degustação customizado.'
-              }
-            ].map((exp, i) => (
-              <MotionDiv
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="glass p-8 rounded-2xl border border-gold/20"
-              >
-                <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{exp.exp}</h3>
-                <p className="text-beige/80">{exp.desc}</p>
-              </MotionDiv>
-            ))}
-          </div>
-        </MotionSection>
-
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center py-16 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-8">
-            Crie Sua Experiência Personalizada
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            Cada experiência é única. Conte-nos sua visão e nós a transformaremos em realidade premium.
-          </p>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Consultar Especialista
-          </Link>
-        </MotionSection>
-      </div>
-    </div>
+    <EditorialLanding
+      eyebrow="Lifestyle · Rio de Janeiro"
+      title="O Rio como matéria-prima para experiências pessoais."
+      intro="A Rios Lux combina curadoria local, hospitalidade e logística para construir jornadas coerentes com cada perfil e ocasião."
+      sectionTitle="Não é uma lista de lugares. É uma sequência com intenção."
+      sections={[
+    { title: 'Contexto', description: 'Entendemos quem participa, o motivo, o tempo disponível e as preferências.' },
+    { title: 'Curadoria', description: 'Organizamos possibilidades e parceiros de acordo com o briefing e a disponibilidade.' },
+    { title: 'Jornada', description: 'Conectamos reservas, deslocamentos, horários e momentos em uma experiência contínua.' },
+      ]}
+      scope={['Briefing', 'Curadoria', 'Agenda', 'Reservas', 'Gastronomia', 'Cultura', 'Deslocamentos', 'Hospitalidade', 'Concierge']}
+      closing="Sua maneira de viver o Rio pode começar a ser desenhada aqui."
+    />
   )
 }

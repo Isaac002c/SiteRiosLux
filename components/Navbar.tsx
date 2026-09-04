@@ -1,161 +1,96 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import { Menu, X } from 'lucide-react'
+
+const navigation = [
+  { href: '/servicos', label: 'Serviços' },
+  { href: '/experiencias', label: 'Experiências' },
+  { href: '/sobre', label: 'Sobre' },
+  { href: '/contato', label: 'Contato' },
+]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setScrolled(window.scrollY > 24)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const toggleMenu = () => setOpen(!open)
-
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-primary/95 backdrop-blur-md shadow-xl' : 'bg-primary/90 backdrop-blur-md'
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/logo.png"
-              alt="Rios Lux"
-              width={512}
-              height={509}
-              sizes="(min-width: 768px) 64px, 48px"
-              priority
-              className="h-12 w-auto md:h-16 rounded-full shadow-lg ring-2 ring-gold/30 hover:ring-gold/50 transition-all duration-300"
-            />
-          </Link>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition duration-500 ${
+        scrolled || open
+          ? 'border-white/10 bg-ink/95 backdrop-blur-xl'
+          : 'border-transparent bg-ink/65 backdrop-blur-sm'
+      }`}
+    >
+      <nav className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Navegação principal">
+        <Link href="/" className="group flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+          <span className="font-serif text-xl tracking-[0.18em] text-white sm:text-2xl">RIOS LUX</span>
+          <span className="hidden border-l border-brass/50 pl-3 text-[9px] uppercase leading-tight tracking-[0.22em] text-sand/65 sm:block">
+            Arquitetura<br />de experiências
+          </span>
+        </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="hover:text-gold transition-colors py-2">
-              Home
+        <div className="hidden items-center gap-8 lg:flex">
+          {navigation.map((item) => (
+            <Link key={item.href} href={item.href} className="text-sm tracking-wide text-sand/80 transition-colors hover:text-white">
+              {item.label}
             </Link>
-            <div className="group relative">
-              <button className="hover:text-gold transition-colors py-2">
-                Serviços
-              </button>
-              <div className="absolute left-0 mt-0 w-48 bg-primary/95 backdrop-blur-md rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gold/20">
-                <Link href="/servicos" className="block px-4 py-2 text-sm hover:text-gold">Todos os Serviços</Link>
-                <Link href="/despedida-solteiro-luxo-rj" className="block px-4 py-2 text-sm hover:text-gold">Despedida Solteiro</Link>
-                <Link href="/eventos-corporativos-premium-rj" className="block px-4 py-2 text-sm hover:text-gold">Corporativos</Link>
-                <Link href="/concierge-eventos-rio" className="block px-4 py-2 text-sm hover:text-gold">Concierge</Link>
-              </div>
-            </div>
-            <div className="group relative">
-              <button className="hover:text-gold transition-colors py-2">
-                Localizações
-              </button>
-              <div className="absolute left-0 mt-0 w-48 bg-primary/95 backdrop-blur-md rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-gold/20">
-                <Link href="/eventos-barra-tijuca" className="block px-4 py-2 text-sm hover:text-gold">Barra da Tijuca</Link>
-                <Link href="/casamentos-luxo-ipanema" className="block px-4 py-2 text-sm hover:text-gold">Ipanema</Link>
-                <Link href="/producao-eventos-leblon" className="block px-4 py-2 text-sm hover:text-gold">Leblon</Link>
-                <Link href="/eventos-mansoes-rio" className="block px-4 py-2 text-sm hover:text-gold">Mansões</Link>
-              </div>
-            </div>
-            <Link href="/experiencias" className="hover:text-gold transition-colors py-2">
-              Galeria
-            </Link>
-            <Link href="/faq" className="hover:text-gold transition-colors py-2">
-              FAQ
-            </Link>
-            <Link href="/sobre" className="hover:text-gold transition-colors py-2">
-              Sobre
-            </Link>
-            <Link href="/contato" className="hover:text-gold transition-colors py-2">
-              Contato
-            </Link>
-          </div>
-
-          {/* CTA Button */}
+          ))}
           <Link
             href="/contato"
-            className="hidden md:inline-flex bg-gold text-primary px-8 py-3 rounded-full font-medium hover:bg-beige transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
+            data-track-event="click_curadoria"
+            data-track-label="header"
+            className="button-primary !px-6 !py-3"
           >
-            Agendar Consultoria
+            Solicitar curadoria
           </Link>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={toggleMenu}
-            className="md:hidden p-2 rounded-lg backdrop-blur-sm"
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
 
-        {/* Mobile Menu */}
-        {open && (
-          <div className="md:hidden bg-primary/95 backdrop-blur-md pb-4">
-            <div className="px-4 pt-2 pb-3 space-y-1">
-              <Link href="/" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                Home
-              </Link>
-              <div className="py-2">
-                <p className="text-xs uppercase text-gold/80 font-semibold px-4 mb-2">Serviços</p>
-                <Link href="/servicos" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Todos
-                </Link>
-                <Link href="/despedida-solteiro-luxo-rj" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Despedida Solteiro
-                </Link>
-                <Link href="/eventos-corporativos-premium-rj" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Corporativos
-                </Link>
-                <Link href="/concierge-eventos-rio" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Concierge
-                </Link>
-              </div>
-              <div className="py-2">
-                <p className="text-xs uppercase text-gold/80 font-semibold px-4 mb-2">Locais</p>
-                <Link href="/eventos-barra-tijuca" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Barra da Tijuca
-                </Link>
-                <Link href="/casamentos-luxo-ipanema" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Ipanema
-                </Link>
-                <Link href="/producao-eventos-leblon" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Leblon
-                </Link>
-                <Link href="/eventos-mansoes-rio" className="block hover:text-gold py-1 px-8 text-sm" onClick={toggleMenu}>
-                  Mansões
-                </Link>
-              </div>
-              <Link href="/experiencias" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                Galeria
-              </Link>
-              <Link href="/faq" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                FAQ
-              </Link>
-              <Link href="/sobre" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                Sobre
-              </Link>
-              <Link href="/contato" className="block hover:text-gold py-2 font-medium" onClick={toggleMenu}>
-                Contato
-              </Link>
+        <button
+          type="button"
+          className="inline-flex h-11 w-11 items-center justify-center border border-white/15 text-white lg:hidden"
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          aria-controls="mobile-navigation"
+          aria-expanded={open}
+          onClick={() => setOpen((current) => !current)}
+        >
+          {open ? <X size={21} /> : <Menu size={21} />}
+        </button>
+      </nav>
+
+      {open && (
+        <div id="mobile-navigation" className="border-t border-white/10 bg-ink px-5 pb-7 pt-3 lg:hidden">
+          <div className="mx-auto flex max-w-[90rem] flex-col">
+            {navigation.map((item) => (
               <Link
-                href="/contato"
-                className="block bg-gold text-primary px-8 py-3 rounded-full font-semibold mx-4 mt-4 hover:bg-beige transition-all"
-                onClick={toggleMenu}
+                key={item.href}
+                href={item.href}
+                className="border-b border-white/10 py-4 font-serif text-2xl text-sand"
+                onClick={() => setOpen(false)}
               >
-                Agendar Consultoria
+                {item.label}
               </Link>
-            </div>
+            ))}
+            <Link
+              href="/contato"
+              data-track-event="click_curadoria"
+              data-track-label="mobile_header"
+              className="button-primary mt-6 justify-center"
+              onClick={() => setOpen(false)}
+            >
+              Solicitar curadoria
+            </Link>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+      )}
+    </header>
   )
 }

@@ -2,28 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+}
+
 @layer base {
+  * {
+    @apply border-ink/15;
+  }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
-    @apply bg-primary text-white font-sans;
+    @apply overflow-x-hidden bg-ink font-sans text-white antialiased;
+  }
+
+  ::selection {
+    @apply bg-brass text-ink;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
   }
 }
 
 @layer components {
-  .gradient-hero {
-    background: linear-gradient(135deg, #1B3132 0%, #56745A 100%);
+  .page-shell {
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12;
   }
+
+  .section-space {
+    @apply py-20 sm:py-24 lg:py-32;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.3em] text-brass;
+  }
+
+  .button-primary {
+    @apply inline-flex min-h-12 items-center justify-center bg-brass px-7 py-3.5 text-sm font-semibold text-ink transition duration-300 hover:bg-sand;
+  }
+
+  .button-secondary {
+    @apply inline-flex min-h-12 items-center justify-center border border-white/35 px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white hover:text-ink;
+  }
+
+  .button-dark {
+    @apply inline-flex min-h-12 items-center justify-center bg-ink px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-forest;
+  }
+
+  .form-field {
+    @apply min-h-12 w-full rounded-none border border-white/20 bg-white/[0.045] px-4 py-3 text-base text-white placeholder:text-sand/35 transition focus:border-brass;
+  }
+
+  select.form-field {
+    @apply bg-ink;
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, #102622 0%, #25433b 100%);
+  }
+
   .glass {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255 255 255 / 0.055);
+    border: 1px solid rgb(255 255 255 / 0.12);
+  }
+
+  .gradient-text {
+    color: #d6b983;
   }
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #DFAD81, #A57D40);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

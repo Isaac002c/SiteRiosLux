@@ -12,7 +12,6 @@ const routes = [
   '/blog/tecnologia-eventos-premium',
   '/blog/tendencias-eventos-premium-2025',
   '/casamentos-luxo-ipanema',
-  '/casos-sucesso',
   '/concierge-eventos-rio',
   '/contato',
   '/despedida-solteiro-luxo-rj',

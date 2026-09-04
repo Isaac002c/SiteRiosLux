@@ -1,167 +1,129 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { MotionDiv, MotionSection } from '@/components/Motion'
+import { ArrowRight } from 'lucide-react'
+import CTASection from '@/components/CTASection'
 
 export const metadata: Metadata = {
-  title: 'Serviços de Eventos Luxo | Produção Premium RJ | RiosLux',
-  description: 'Produção de eventos premium, concierge, gestão completa. Corporativos, casamentos, experiências exclusivas. Qualidade inquestionável. Consulte a RiosLux.',
+  title: 'Eventos Corporativos e Experiências Exclusivas | Rios Lux',
+  description: 'Curadoria, planejamento e produção de eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
   alternates: { canonical: '/servicos' },
   openGraph: {
-    title: 'Serviços de Eventos Luxo | RiosLux',
-    description: 'Eventos corporativos, casamentos, despedidas de solteiro premium e experiências exclusivas no Rio de Janeiro.',
-    url: 'https://www.agenciarioslux.com.br/servicos',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
-  }
+    type: 'website',
+    title: 'Eventos Corporativos e Experiências Exclusivas | Rios Lux',
+    description: 'Conheça as frentes de atuação e o escopo de coordenação da Rios Lux no Rio de Janeiro.',
+    url: '/servicos',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
+  },
 }
 
-const services = [
+const categories = [
   {
-    title: 'Eventos Corporativos Premium',
-    desc: 'Conferências, lançamentos e eventos para empresas de alto padrão com produção impecável.',
-    icon: '💼',
-    features: ['Networking premium', 'Locais exclusivos', 'Produção impecável']
+    number: '01',
+    label: 'Corporate',
+    title: 'Eventos que fortalecem marcas, negócios e relações.',
+    description: 'Encontros executivos, experiências para clientes, lançamentos, eventos corporativos e ativações de marca.',
+    examples: ['Encontros executivos', 'Lançamentos', 'Experiências de marca', 'Recepção de clientes'],
   },
   {
-    title: 'Casamentos e Eventos Privados',
-    desc: 'Casamentos, aniversários e celebrações familiares sofisticadas personalizadas.',
-    icon: '💍',
-    features: ['Planejamento completo', 'Fornecedores selecionados', 'Detalhes personalizados']
+    number: '02',
+    label: 'Private',
+    title: 'Celebrações que traduzem histórias pessoais.',
+    description: 'Casamentos, aniversários, jantares e ocasiões especiais com planejamento sob medida.',
+    examples: ['Casamentos', 'Aniversários', 'Jantares', 'Celebrações especiais'],
   },
   {
-    title: 'Experiências Exclusivas',
-    desc: 'Mansões, iates, rooftops e locais únicos no Rio de Janeiro com acesso privilegiado.',
-    icon: '🛥️',
-    features: ['Acesso privilegiado', 'Concierge 24h', 'Experiência white-glove']
-  }
+    number: '03',
+    label: 'Lifestyle',
+    title: 'Hospitalidade e experiências pensadas para cada ritmo.',
+    description: 'Curadoria de experiências e concierge para momentos no Rio de Janeiro.',
+    examples: ['Curadoria local', 'Hospitalidade', 'Reservas e logística', 'Concierge'],
+  },
+]
+
+const scope = [
+  'Conceito',
+  'Planejamento',
+  'Curadoria de parceiros',
+  'Espaços',
+  'Gastronomia',
+  'Decoração',
+  'Audiovisual',
+  'Logística',
+  'Recepção',
+  'Concierge',
+  'Produção',
+  'Operação',
 ]
 
 export default function Servicos() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center mb-24"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Nossos Serviços de Eventos Premium
-          </h1>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto">
-            Soluções completas para eventos que impressionam e transformam ocasiões em experiências memoráveis
-          </p>
-        </MotionDiv>
+    <div>
+      <section className="section-space bg-forest">
+        <div className="page-shell pt-10 sm:pt-16">
+          <p className="eyebrow mb-6">Serviços</p>
+          <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+            <h1 className="max-w-5xl text-balance font-serif text-5xl leading-[0.98] sm:text-6xl lg:text-8xl">
+              Uma direção completa, do primeiro pensamento à última entrega.
+            </h1>
+            <p className="max-w-xl border-l border-white/20 pl-6 text-lg leading-relaxed text-sand/70">
+              A Rios Lux coordena as decisões, as pessoas e a operação necessárias para transformar intenção em experiência.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-32">
-          {services.map((service, index) => (
-            <MotionDiv
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="glass p-10 rounded-3xl border border-gold/20 backdrop-blur-md h-full hover:border-gold/50 hover:bg-white/5 transition-all duration-500 group-hover:scale-105 hover:-translate-y-4 shadow-xl hover:shadow-2xl">
-                <div className="text-6xl mb-8">{service.icon}</div>
-                <h3 className="text-3xl font-serif font-semibold mb-6 gradient-text group-hover:translate-y-2 transition-transform duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-beige/80 mb-8 leading-relaxed text-lg">
-                  {service.desc}
-                </p>
-                <ul className="space-y-2 mb-8">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-beige/90">
-                      <span className="text-gold text-sm">✓</span>
-                      {feature}
-                    </li>
+      <section className="section-space bg-canvas text-ink">
+        <div className="page-shell">
+          <div className="divide-y divide-ink/20 border-y border-ink/20">
+            {categories.map((category) => (
+              <article key={category.label} className="grid gap-8 py-12 lg:grid-cols-[0.2fr_0.8fr_1fr] lg:gap-14 lg:py-16">
+                <p className="font-serif text-4xl text-brass">{category.number}</p>
+                <div>
+                  <p className="eyebrow mb-5">{category.label}</p>
+                  <h2 className="max-w-lg font-serif text-3xl leading-tight sm:text-4xl">{category.title}</h2>
+                  <p className="mt-5 max-w-lg leading-relaxed text-ink/65">{category.description}</p>
+                </div>
+                <ul className="grid content-start gap-0 sm:grid-cols-2">
+                  {category.examples.map((item) => (
+                    <li key={item} className="border-b border-ink/15 py-4 text-sm text-ink/75">{item}</li>
                   ))}
                 </ul>
-                <Link href="/contato" className="inline-flex items-center gap-2 text-gold hover:text-beige transition-colors font-medium">
-                  Saiba mais <span>→</span>
-                </Link>
-              </div>
-            </MotionDiv>
-          ))}
-        </div>
-
-        {/* Diferenciais */}
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text">
-            Diferenciais que Fazem a Diferença
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            O que torna a RiosLux a referência em eventos de luxo no Rio de Janeiro
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-20">
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all"
-            >
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
-                Exclusividade Absoluta
-              </h3>
-              <p className="text-beige/80">
-                Acesso a locais e serviços únicos no Rio de Janeiro
-              </p>
-            </MotionDiv>
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all"
-            >
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
-                Organização Impecável
-              </h3>
-              <p className="text-beige/80">
-                Zero imprevistos, 100% satisfação garantida
-              </p>
-            </MotionDiv>
-            <MotionDiv
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold transition-all"
-            >
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
-                Concierge Completo
-              </h3>
-              <p className="text-beige/80">
-                Do conceito à execução perfeita, disponível 24h
-              </p>
-            </MotionDiv>
+              </article>
+            ))}
           </div>
-        </MotionSection>
+        </div>
+      </section>
 
-        {/* CTA */}
-        <MotionDiv
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-24"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 gradient-text">
-            Pronto para Criar Uma Experiência Premium?
-          </h2>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Agendar Consultoria Gratuita
+      <section className="section-space bg-ink">
+        <div className="page-shell grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-20">
+          <div>
+            <p className="eyebrow mb-5">Coordenação integral</p>
+            <h2 className="font-serif text-4xl leading-tight sm:text-5xl">Tudo conversa. Tudo tem uma direção.</h2>
+            <p className="mt-6 max-w-md leading-relaxed text-sand/65">
+              O escopo é definido de acordo com cada projeto. A Rios Lux conecta as frentes necessárias e mantém a visão do todo.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 border-l border-t border-white/15 sm:grid-cols-3">
+            {scope.map((item, index) => (
+              <div key={item} className="min-h-28 border-b border-r border-white/15 p-5">
+                <span className="block text-[10px] tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
+                <span className="mt-5 block text-sm text-sand">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-canvas py-16 text-ink">
+        <div className="page-shell flex flex-col justify-between gap-6 border-t border-ink/20 pt-8 sm:flex-row sm:items-center">
+          <p className="max-w-2xl font-serif text-2xl">Cada projeto começa entendendo o que precisa ser vivido — e o que precisa funcionar.</p>
+          <Link href="/contato" data-track-event="click_curadoria" data-track-label="services" className="button-dark shrink-0">
+            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
           </Link>
-        </MotionDiv>
-      </div>
+        </div>
+      </section>
+
+      <CTASection />
     </div>
   )
 }

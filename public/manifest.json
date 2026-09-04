@@ -1,13 +1,13 @@
 {
-  "name": "RiosLux - Eventos Premium e Concierge Exclusivo",
-  "short_name": "RiosLux",
-  "description": "Agência especializada em eventos de alto padrão e concierge exclusivo no Rio de Janeiro",
+  "name": "Rios Lux - Arquitetura de Experiências",
+  "short_name": "Rios Lux",
+  "description": "Eventos, curadoria e concierge no Rio de Janeiro",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#1B3132",
-  "theme_color": "#1B3132",
+  "background_color": "#0B1E1B",
+  "theme_color": "#0B1E1B",
   "icons": [
     {
       "src": "/favicon.png",

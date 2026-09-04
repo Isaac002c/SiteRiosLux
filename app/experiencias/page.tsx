@@ -1,166 +1,109 @@
-'use client'
-
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
-const galleryItems = [
+const concepts = [
   {
-    id: 1,
-    title: 'Gala Corporativa no Rooftop',
-    desc: 'Evento para 300 executivos em rooftop com vista panorâmica para o mar e Baía de Guanabara',
-    img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=600&fit=crop'
+    category: 'Corporate',
+    title: 'Encontro executivo com atmosfera reservada',
+    description: 'Um formato para conversas estratégicas, hospitalidade e atenção ao ritmo dos convidados.',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=82',
   },
   {
-    id: 2,
-    title: 'Casamento em Iate Luxo',
-    desc: 'Celebração exclusiva para 80 convidados navegando na Baía de Guanabara com sunset premium',
-    img: 'https://images.unsplash.com/photo-1571896349840-e2e4c8d08f4e?w=800&h=600&fit=crop'
+    category: 'Private',
+    title: 'Celebração à mesa',
+    description: 'Gastronomia, ambientação e serviço coordenados em torno de uma ocasião pessoal.',
+    image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=82',
   },
   {
-    id: 3,
-    title: 'Aniversário em Mansão Histórica',
-    desc: 'Festa sofisticada em mansão histórica no Joá para 120 pessoas com acesso exclusivo',
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop'
+    category: 'Lifestyle',
+    title: 'Hospitalidade no Rio',
+    description: 'Uma jornada construída com curadoria local, logística e momentos pensados em sequência.',
+    image: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?auto=format&fit=crop&w=1600&q=82',
   },
   {
-    id: 4,
-    title: 'Lançamento de Produto Premium',
-    desc: 'Evento de lançamento para marca premium em espaço cultural com cobertura de mídia',
-    img: 'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=800&h=600&fit=crop'
+    category: 'Corporate',
+    title: 'Lançamento com narrativa de marca',
+    description: 'Conteúdo, espaço, audiovisual e recepção alinhados a uma mensagem central.',
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1600&q=82',
   },
   {
-    id: 5,
-    title: 'Jantar Executivo Privativo',
-    desc: 'Reunião estratégica para board de empresa em restaurante privativo de luxo',
-    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&h=600&fit=crop'
+    category: 'Private',
+    title: 'Cerimônia contemporânea',
+    description: 'Uma composição sensível entre cenário, fluxo, serviço e celebração.',
+    image: 'https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&w=1600&q=82',
   },
   {
-    id: 6,
-    title: 'Festa Black Tie Premium',
-    desc: 'Evento formal com dress code black tie para 200 convidados com experiência white-glove',
-    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop'
-  }
+    category: 'Lifestyle',
+    title: 'Jantar de boas-vindas',
+    description: 'Um primeiro encontro capaz de definir o tom de toda a experiência.',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=82',
+  },
 ]
 
 export default function Experiencias() {
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768)
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center mb-24"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Galeria de Experiências Premium
-          </h1>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto">
-            Momentos inesquecíveis que criamos para nossos clientes em eventos exclusivos no Rio de Janeiro
-          </p>
-        </motion.div>
-
-        {isMobile ? (
-          <div className="flex overflow-x-auto space-x-4 pb-4 snap-x snap-mandatory scrollbar-hide">
-            {galleryItems.map((item) => (
-              <motion.div
-                key={item.id}
-                className="flex-shrink-0 w-80 h-96 relative group cursor-pointer snap-center"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-500" />
-                  <div className="absolute bottom-8 left-8 right-8">
-                    <h3 className="text-2xl font-serif font-bold mb-4">
-                      {item.title}
-                    </h3>
-                    <p className="opacity-90 mb-6">{item.desc}</p>
-                    <Link
-                      href="/contato"
-                      className="inline-flex items-center gap-2 bg-gold/90 text-primary px-6 py-3 rounded-full font-medium hover:bg-gold transition-all backdrop-blur-sm"
-                    >
-                      Agendar <span>→</span>
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+    <div>
+      <section className="section-space bg-canvas text-ink">
+        <div className="page-shell pt-10 sm:pt-16">
+          <p className="eyebrow mb-6">Conceitos de experiência</p>
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+            <h1 className="max-w-5xl text-balance font-serif text-5xl leading-[0.98] sm:text-6xl lg:text-8xl">
+              Possibilidades para imaginar o que ainda não existe.
+            </h1>
+            <div>
+              <p className="max-w-xl text-lg leading-relaxed text-ink/68">
+                Referências de atmosferas e formatos que podem orientar uma conversa inicial com a Rios Lux.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-ink/50">
+                Todas as imagens abaixo são referências visuais de banco de imagens e não representam trabalhos realizados pela Rios Lux.
+              </p>
+            </div>
           </div>
-        ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {galleryItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative group cursor-pointer"
-              >
-                <div className="relative w-full h-80 rounded-3xl overflow-hidden shadow-2xl group-hover:shadow-3xl transition-all duration-500">
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-all duration-500" />
-                  <div className="absolute inset-0 flex flex-col justify-end p-8">
-                    <h3 className="text-2xl font-serif font-bold mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-beige/90 mb-6">
-                      {item.desc}
-                    </p>
-                    <Link
-                      href="/contato"
-                      className="inline-flex items-center gap-2 bg-gold text-primary px-6 py-3 rounded-full font-medium hover:bg-beige transition-all w-fit backdrop-blur-sm"
-                    >
-                      Agendar Experiência <span>→</span>
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-24 py-16 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-8">
-            Sua Experiência Premium Aguarda
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            Transforme sua visão em uma experiência inesquecível. Consulte nossos especialistas hoje.
-          </p>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Agendar Consultoria Gratuita
+      <section className="bg-canvas pb-24 text-ink lg:pb-32">
+        <div className="page-shell grid gap-x-6 gap-y-12 lg:grid-cols-2">
+          {concepts.map((concept, index) => (
+            <article
+              key={concept.title}
+              data-track-event="view_experience"
+              data-track-label={concept.category.toLowerCase()}
+              className={index % 3 === 0 ? 'lg:col-span-2' : ''}
+            >
+              <div className={`relative overflow-hidden bg-ink/5 ${index % 3 === 0 ? 'aspect-[16/7]' : 'aspect-[4/3]'}`}>
+                <Image
+                  src={concept.image}
+                  alt={`Imagem de referência: ${concept.title.toLowerCase()}`}
+                  fill
+                  sizes={index % 3 === 0 ? '100vw' : '(min-width: 1024px) 50vw, 100vw'}
+                  className="object-cover transition duration-700 hover:scale-[1.02]"
+                />
+              </div>
+              <div className="grid gap-4 border-b border-ink/20 py-6 sm:grid-cols-[0.3fr_1fr]">
+                <p className="eyebrow">{concept.category}</p>
+                <div>
+                  <h2 className="font-serif text-2xl sm:text-3xl">{concept.title}</h2>
+                  <p className="mt-3 max-w-xl leading-relaxed text-ink/62">{concept.description}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-space bg-forest">
+        <div className="page-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p className="eyebrow mb-5">Seu ponto de partida</p>
+            <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">Uma referência não é uma fórmula. Sua experiência começa do zero.</h2>
+          </div>
+          <Link href="/contato" data-track-event="click_curadoria" data-track-label="experiences" className="button-primary">
+            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
           </Link>
-        </motion.section>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }

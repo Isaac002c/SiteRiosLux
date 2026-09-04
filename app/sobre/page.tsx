@@ -1,129 +1,84 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-import PublicoCarousel from '@/components/PublicoCarousel'
+import { ArrowRight } from 'lucide-react'
+
+const principles = [
+  {
+    number: '01',
+    title: 'Escuta antes de proposta',
+    description: 'Cada trabalho começa pelo contexto, pelas pessoas e pelo que a ocasião precisa comunicar.',
+  },
+  {
+    number: '02',
+    title: 'Visão do todo',
+    description: 'Conceito, parceiros, prazos, orçamento, logística e experiência são tratados como partes da mesma arquitetura.',
+  },
+  {
+    number: '03',
+    title: 'Presença na operação',
+    description: 'Planejar é antecipar. Produzir é conduzir escolhas e respostas sem perder a intenção inicial.',
+  },
+]
 
 export default function Sobre() {
   return (
-    <div className="min-h-screen py-24">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-      >
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1"
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-              Sobre a RiosLux
-            </h1>
-            <div className="space-y-6 text-xl leading-relaxed">
-              <p>
-                A <strong>RiosLux</strong> é uma agência especializada na criação e execução de <strong>eventos de alto padrão</strong> no Rio de Janeiro.
-              </p>
-              <p>
-                Cuidamos de <strong>cada detalhe</strong> para transformar ocasiões especiais em experiências sofisticadas, exclusivas e sem preocupações para nossos clientes.
-              </p>
-              <p>
-                Do planejamento à execução, entregamos <strong>excelência, organização e um padrão elevado de serviço</strong> para quem valoriza qualidade e não aceita erros.
-              </p>
-              <p className="font-medium text-2xl gradient-text">
-                Mais do que eventos, criamos experiências memoráveis.
-              </p>
-            </div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="mt-12"
-            >
-              <Link
-                href="/contato"
-                className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-              >
-                Fale com Especialista
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 relative h-96 lg:h-[600px] rounded-3xl overflow-hidden bg-gradient-to-br from-gold/20 to-beige/20 border border-gold/30"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/50 via-transparent to-olive/30" />
-            <div className="absolute inset-0 bg-[url('/api/placeholder/800/600')] bg-cover bg-center opacity-20" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-6xl opacity-10">📸</div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Público Alvo */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-32"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text text-center mb-6">
-            Nosso Público
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto text-center mb-16">
-            Atendemos clientes de alto padrão que buscam exclusividade e sofisticação
+    <div>
+      <section className="section-space bg-canvas text-ink">
+        <div className="page-shell pt-10 sm:pt-16">
+          <p className="eyebrow mb-6">Sobre a Rios Lux</p>
+          <h1 className="max-w-6xl text-balance font-serif text-5xl leading-[0.96] sm:text-6xl lg:text-8xl">
+            Mais do que organizar eventos.
+          </h1>
+          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-ink/68 sm:text-2xl">
+            A Rios Lux transforma momentos importantes em experiências cuidadosamente arquitetadas.
           </p>
-          <PublicoCarousel />
-        </motion.section>
+        </div>
+      </section>
 
-        {/* Valores */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12">
-            Nossos Valores
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="glass p-8 rounded-2xl border border-gold/20"
-            >
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">Excelência</h3>
-              <p className="text-beige/80">Qualidade inquestionável em cada detalhe de cada evento</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="glass p-8 rounded-2xl border border-gold/20"
-            >
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">Exclusividade</h3>
-              <p className="text-beige/80">Acesso privilegiado a locais e serviços únicos no Rio</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="glass p-8 rounded-2xl border border-gold/20"
-            >
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">Inovação</h3>
-              <p className="text-beige/80">Ideias criativas que transformam sonhos em realidade</p>
-            </motion.div>
+      <section className="section-space bg-forest">
+        <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
+          <p className="eyebrow">Nossa perspectiva</p>
+          <div className="space-y-7 font-serif text-2xl leading-relaxed text-sand sm:text-3xl lg:text-4xl">
+            <p>Uma boa experiência não começa pela decoração. Começa pela intenção.</p>
+            <p className="text-sand/60">
+              É a partir dela que organizamos conceito, planejamento, curadoria, parceiros e operação — com decisões coerentes do início ao fim.
+            </p>
           </div>
-        </motion.section>
-      </motion.div>
+        </div>
+      </section>
+
+      <section className="section-space bg-canvas text-ink">
+        <div className="page-shell">
+          <div className="mb-14 grid gap-8 lg:grid-cols-2 lg:items-end">
+            <h2 className="max-w-xl font-serif text-4xl leading-tight sm:text-5xl">Cuidado percebido em cada etapa.</h2>
+            <p className="max-w-xl leading-relaxed text-ink/62">
+              O trabalho da Rios Lux é tornar o complexo legível: organizar prioridades, conectar especialistas e sustentar a qualidade da experiência sem ruído.
+            </p>
+          </div>
+          <div className="grid border-y border-ink/20 lg:grid-cols-3">
+            {principles.map((principle, index) => (
+              <article key={principle.title} className={`py-10 lg:px-9 lg:py-12 ${index > 0 ? 'border-t border-ink/20 lg:border-l lg:border-t-0' : ''}`}>
+                <p className="font-serif text-3xl text-brass">{principle.number}</p>
+                <h3 className="mt-10 font-serif text-2xl">{principle.title}</h3>
+                <p className="mt-4 leading-relaxed text-ink/62">{principle.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space bg-ink">
+        <div className="page-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div>
+            <p className="eyebrow mb-5">Uma experiência é pessoal</p>
+            <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">
+              Por isso, nosso processo começa com uma conversa.
+            </h2>
+          </div>
+          <Link href="/contato" data-track-event="click_curadoria" data-track-label="about" className="button-primary">
+            Solicitar curadoria <ArrowRight className="ml-2" size={16} />
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

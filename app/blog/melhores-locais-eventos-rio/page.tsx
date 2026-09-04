@@ -1,127 +1,59 @@
-import Link from 'next/link'
 import type { Metadata } from 'next'
-import { MotionDiv, MotionSection } from '@/components/Motion'
+import BlogArticle from '@/components/BlogArticle'
 
 export const metadata: Metadata = {
-  title: 'Melhores Locais para Eventos Premium Rio | Guia Exclusivo RiosLux',
-  description: 'Guia completo dos melhores locais para eventos premium no Rio: iates, mansões, rooftops, restaurantes. Descubra os espaços mais exclusivos e sofisticados.',
-  alternates: { canonical: '/blog/melhores-locais-eventos-rio' },
+  title: "Como Escolher um Espaço para Eventos no Rio | Rios Lux",
+  description: "Critérios para avaliar localização, infraestrutura, acessos e operação de espaços para eventos no Rio de Janeiro.",
+  alternates: { canonical: "/blog/melhores-locais-eventos-rio" },
   openGraph: {
-    title: 'Melhores Locais para Eventos Premium Rio | RiosLux',
-    description: 'Iates, mansões, rooftops: conheça os espaços mais exclusivos do Rio de Janeiro.',
-    url: 'https://www.agenciarioslux.com.br/blog/melhores-locais-eventos-rio',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
-  }
+    title: "Como Escolher um Espaço para Eventos no Rio | Rios Lux",
+    description: "Critérios para avaliar localização, infraestrutura, acessos e operação de espaços para eventos no Rio de Janeiro.",
+    url: "/blog/melhores-locais-eventos-rio",
+    type: 'article',
+  },
 }
 
-const locais = [
-  {
-    name: 'Iates Privados na Baía',
-    desc: 'Navegue pela Baía de Guanabara com vista do Cristo Redentor. Experiência flutuante de luxo.',
-    zona: 'Centro',
-    capacidade: '50-200 pessoas'
-  },
-  {
-    name: 'Mansões em Joá',
-    desc: 'Arquitetura moderna com piscina infinita e vista para o Atlântico. Privacidade absoluta.',
-    zona: 'Joá',
-    capacidade: '100-200 pessoas'
-  },
-  {
-    name: 'Rooftops em Ipanema',
-    desc: 'Vistas panorâmicas de Ipanema ao entardecer. Ambiente sofisticado e cosmopolita.',
-    zona: 'Ipanema',
-    capacidade: '60-150 pessoas'
-  },
-  {
-    name: 'Restaurantes Premium Leblon',
-    desc: 'Ambientes gastronômicos de alta culinária. Experiência all-inclusive sofisticada.',
-    zona: 'Leblon',
-    capacidade: '40-120 pessoas'
-  },
-  {
-    name: 'Clubes Exclusivos',
-    desc: 'Espaços históricos e discretos. Tradição e elegância em seu melhor.',
-    zona: 'Zona Sul',
-    capacidade: '80-300 pessoas'
-  },
-  {
-    name: 'Casarões em Joatinga',
-    desc: 'Propriedades históricas com charm boêmio. Atmósfera única e memorável.',
-    zona: 'Joatinga',
-    capacidade: '100-150 pessoas'
-  }
-]
-
-export default function MelhoresLocais() {
+export default function ArticlePage() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionDiv
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-32"
-        >
-          <div className="inline-block px-4 py-2 rounded-full bg-gold/20 border border-gold/50 mb-8">
-            <span className="text-gold text-sm font-semibold uppercase tracking-wider">Guia Completo</span>
-          </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Melhores Locais para Eventos Premium Rio
-          </h1>
-          <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto">
-            Iates, mansões, rooftops e espaços exclusivos: conheça os cenários mais sofisticados para seu evento inesquecível.
-          </p>
-        </MotionDiv>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-          {locais.map((local, index) => (
-            <MotionDiv
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all h-full flex flex-col"
-            >
-              <div className="mb-4">
-                <span className="text-xs font-semibold text-gold uppercase tracking-widest">{local.zona}</span>
-              </div>
-
-              <h3 className="text-2xl font-serif font-bold gradient-text mb-3">
-                {local.name}
-              </h3>
-
-              <p className="text-beige/80 text-lg mb-6 flex-grow leading-relaxed">
-                {local.desc}
-              </p>
-
-              <div className="pt-6 border-t border-gold/10">
-                <p className="text-sm text-gold font-semibold">Capacidade: {local.capacidade}</p>
-              </div>
-            </MotionDiv>
-          ))}
-        </div>
-
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center py-16 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-8">
-            Deixe Nós Cuidarmos da Escolha Perfeita
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            Nossos especialistas conhecem cada local exclusivo do Rio. Vamos encontrar o espaço ideal para sua visão premium.
-          </p>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Agendar Visita aos Locais
-          </Link>
-        </MotionSection>
-      </div>
-    </div>
+    <BlogArticle
+      category="Rio de Janeiro"
+      title="Como escolher um espaço para eventos no Rio de Janeiro"
+      intro="Vista, arquitetura e endereço importam. Mas a escolha só funciona quando experiência e viabilidade são avaliadas juntas."
+      sections={[
+  {
+    "title": "Comece pelo formato",
+    "paragraphs": [
+      "O número de convidados, o tipo de encontro, a duração e o fluxo esperado ajudam a determinar que tipo de espaço pode funcionar."
+    ],
+    "bullets": [
+      "Cerimônia, conteúdo ou convivência?",
+      "Público sentado, em circulação ou misto?",
+      "Quais áreas precisam funcionar ao mesmo tempo?"
+    ]
+  },
+  {
+    "title": "Leia os acessos",
+    "paragraphs": [
+      "No Rio de Janeiro, horários, deslocamentos, embarque, estacionamento, carga e descarga podem alterar o desenho da operação."
+    ],
+    "bullets": [
+      "Chegada de convidados.",
+      "Entrada de fornecedores.",
+      "Rotas para equipamentos e abastecimento."
+    ]
+  },
+  {
+    "title": "Valide a infraestrutura",
+    "paragraphs": [
+      "Energia, climatização, banheiros, cozinha, acústica, acessibilidade e regras do local devem ser verificados antes da decisão final."
+    ],
+    "bullets": [
+      "Visita técnica antes do fechamento.",
+      "Registro de limitações e contrapartidas.",
+      "Plano compatível com o espaço — não apenas com a fotografia."
+    ]
+  }
+]}
+    />
   )
 }

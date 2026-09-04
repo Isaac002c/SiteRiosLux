@@ -1,207 +1,33 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { MotionDiv, MotionSection } from '@/components/Motion'
+import EditorialLanding from '@/components/EditorialLanding'
 
 export const metadata: Metadata = {
-  title: 'Produção Completa de Eventos Corporativos | RiosLux',
-  description: 'Produção completa de conferências, lançamentos, galas e jantares executivos no Rio de Janeiro, com planejamento e resultados mensuráveis.',
+  title: 'Produção Completa de Eventos Corporativos | Rios Lux',
+  description: 'Planejamento, fornecedores, logística, recepção e operação para eventos corporativos no Rio de Janeiro.',
   alternates: { canonical: '/eventos-corporativos-completo' },
   openGraph: {
-    title: 'Produção Completa de Eventos Corporativos | RiosLux',
-    description: 'Produção de eventos corporativos de luxo com ROI mensurável.',
-    url: 'https://www.agenciarioslux.com.br/eventos-corporativos-completo',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
-  }
+    type: 'website',
+    title: 'Produção Completa de Eventos Corporativos | Rios Lux',
+    description: 'Planejamento, fornecedores, logística, recepção e operação para eventos corporativos no Rio de Janeiro.',
+    url: '/eventos-corporativos-completo',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
+  },
 }
 
-const tiposEventosCorporativos = [
-  {
-    tipo: 'Conferência Executiva',
-    descricao: 'Reunião estratégica com tecnologia de cinema para apresentações impactantes.',
-    capacidade: '50-500 pessoas',
-    duracao: '1-3 dias'
-  },
-  {
-    tipo: 'Lançamento de Produto',
-    descricao: 'Evento wow com hologramas, demonstrações live e networking VIP.',
-    capacidade: '100-300 pessoas',
-    duracao: '3-4 horas'
-  },
-  {
-    tipo: 'Gala Corporativa',
-    descricao: 'Jantar formal sofisticado com entretenimento premium e reconhecimento de executivos.',
-    capacidade: '100-400 pessoas',
-    duracao: '4-5 horas'
-  },
-  {
-    tipo: 'Retiro Executivo',
-    descricao: 'Experiência imersiva em mansão premium: negócios + lazer + luxo.',
-    capacidade: '20-150 pessoas',
-    duracao: '1-3 dias'
-  },
-  {
-    tipo: 'Jantar Executivo Privativo',
-    descricao: 'Restaurante privativo para board meetings com confidencialidade total.',
-    capacidade: '8-50 pessoas',
-    duracao: '2-3 horas'
-  },
-  {
-    tipo: 'Road Show Nacional',
-    descricao: 'Múltiplos eventos em cidades diferentes com padronização premium.',
-    capacidade: 'Variável',
-    duracao: 'Customizado'
-  }
-]
-
-const beneficios = [
-  'Aumenta presença de marca',
-  'Gera leads qualificados',
-  'Fortalece relacionamento com clientes',
-  'Motiva equipes',
-  'Comunica inovações',
-  'Diferencia competitively'
-]
-
-export default function EventosCorporativosCompleto() {
+export default function Page() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionDiv
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-32"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Eventos Corporativos Premium
-          </h1>
-          <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
-            Produção de classe mundial com ROI comprovado para empresas que exigem excelência
-          </p>
-          <Link
-            href="/contato"
-            className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
-          >
-            Solicitar Proposta Executiva
-          </Link>
-        </MotionDiv>
-
-        {/* Tipos de Eventos */}
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-32"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text text-center mb-16">
-            Tipos de Eventos Corporativos
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tiposEventosCorporativos.map((evento, i) => (
-              <MotionDiv
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="glass p-8 rounded-2xl border border-gold/20 hover:border-gold/50 transition-all"
-              >
-                <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{evento.tipo}</h3>
-                <p className="text-beige/80 mb-6">{evento.descricao}</p>
-                <div className="space-y-2 text-sm">
-                  <p className="text-beige/60"><span className="font-semibold text-gold">Capacidade:</span> {evento.capacidade}</p>
-                  <p className="text-beige/60"><span className="font-semibold text-gold">Duração:</span> {evento.duracao}</p>
-                </div>
-              </MotionDiv>
-            ))}
-          </div>
-        </MotionSection>
-
-        {/* Benefícios */}
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center py-16 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20 mb-32"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12">
-            Benefícios Comprovados
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {beneficios.map((ben, i) => (
-              <MotionDiv
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="text-left"
-              >
-                <p className="text-lg text-beige/80 flex items-center gap-3">
-                  <span className="text-2xl text-gold">✓</span>
-                  {ben}
-                </p>
-              </MotionDiv>
-            ))}
-          </div>
-        </MotionSection>
-
-        {/* Processo */}
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-32"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text text-center mb-16">
-            Nosso Processo Corporativo
-          </h2>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              { fase: 'Briefing', desc: 'Entendemos objetivos, público e KPIs do evento' },
-              { fase: 'Proposta Estratégica', desc: 'Apresentamos conceito, timeline e investimento' },
-              { fase: 'Planejamento Detalhado', desc: 'Cada elemento planejado para máximo impacto' },
-              { fase: 'Execução Perfeita', desc: 'Coordenação total, zero margens de erro' },
-              { fase: 'Análise de Resultado', desc: 'Medimos ROI e impacto gerado' }
-            ].map((item, i) => (
-              <MotionDiv
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass p-8 rounded-2xl border border-gold/20"
-              >
-                <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{item.fase}</h3>
-                <p className="text-beige/80 text-lg">{item.desc}</p>
-              </MotionDiv>
-            ))}
-          </div>
-        </MotionSection>
-
-        {/* CTA */}
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center py-20 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-8">
-            Seu Próximo Evento Corporativo Começa Aqui
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            Transformamos visões corporativas em experiências inesquecíveis com ROI mensurável.
-          </p>
-          <Link
-            href="/contato"
-            className="inline-block bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2"
-          >
-            Solicitar Proposta Executiva
-          </Link>
-        </MotionSection>
-      </div>
-    </div>
+    <EditorialLanding
+      eyebrow="Produção corporativa"
+      title="Todas as frentes sob uma mesma direção."
+      intro="A produção completa integra decisões criativas e operacionais para que cada parceiro trabalhe com clareza e o encontro preserve sua intenção."
+      sectionTitle="Coordenação para reduzir ruído e sustentar a experiência."
+      sections={[
+    { title: 'Planejamento', description: 'Organizamos escopo, agenda, responsabilidades, prazos e dependências do projeto.' },
+    { title: 'Integração', description: 'Conectamos fornecedores, espaço, conteúdo, hospitalidade e logística em um fluxo único.' },
+    { title: 'Condução', description: 'Acompanhamos montagem, recepção, operação e desmontagem conforme o escopo combinado.' },
+      ]}
+      scope={['Cronograma', 'Fornecedores', 'Espaço', 'Catering', 'Audiovisual', 'Credenciamento', 'Transporte', 'Produção', 'Operação']}
+      closing="Quando tudo está conectado, a experiência pode acontecer com naturalidade."
+    />
   )
 }

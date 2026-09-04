@@ -1,122 +1,33 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { MotionDiv, MotionSection } from '@/components/Motion'
+import EditorialLanding from '@/components/EditorialLanding'
 
 export const metadata: Metadata = {
-  title: 'Eventos em Mansões | Locação Luxo RJ | RiosLux Premium',
-  description: 'Eventos em mansões históricas e luxuosas do Rio de Janeiro. Locações exclusivas em Joá, Joatinga, São Conrado. Experiências sofisticadas. RiosLux.',
+  title: 'Eventos em Mansões no Rio de Janeiro | Rios Lux',
+  description: 'Planejamento e produção de eventos em residências e mansões no Rio de Janeiro, conforme disponibilidade e regras de cada espaço.',
   alternates: { canonical: '/eventos-mansoes-rio' },
   openGraph: {
-    title: 'Eventos em Mansões Históricas | RiosLux Rio de Janeiro',
-    description: 'Locações premium para eventos exclusivos em mansões do Rio.',
-    url: 'https://www.agenciarioslux.com.br/eventos-mansoes-rio',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
-  }
+    type: 'website',
+    title: 'Eventos em Mansões no Rio de Janeiro | Rios Lux',
+    description: 'Planejamento e produção de eventos em residências e mansões no Rio de Janeiro, conforme disponibilidade e regras de cada espaço.',
+    url: '/eventos-mansoes-rio',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
+  },
 }
 
-export default function EventosMansoes() {
+export default function Page() {
   return (
-    <div className="min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <MotionDiv
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-32"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-8 leading-tight">
-            Eventos em Mansões Históricas do Rio
-          </h1>
-          <p className="text-xl md:text-2xl text-beige/80 max-w-3xl mx-auto mb-12">
-            Locações exclusivas em mansões de arquitetura única: Joá, Joatinga e São Conrado
-          </p>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Consultar Disponibilidade de Locação
-          </Link>
-        </MotionDiv>
-
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-32"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-12 text-center">
-            Locações Premium Disponíveis
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                local: 'Mansão no Joá',
-                desc: 'Propriedade histórica com 1500m², arquitetura contemporânea, vista para a Baía',
-                capacidade: '200 pessoas',
-                amenidades: ['Piscina infinity', 'Heliponto', 'Adega de vinhos', 'Home cinema']
-              },
-              {
-                local: 'Casarão em Joatinga',
-                desc: 'Construção de 1920 com reforma sofisticada, ambiente boêmio e elegante',
-                capacidade: '150 pessoas',
-                amenidades: ['Jardim histórico', 'Adega', 'Espaço lounge', 'Varanda panorâmica']
-              },
-              {
-                local: 'Vila em São Conrado',
-                desc: 'Complexo de 2000m² com múltiplos espaços, perfeito para eventos corporativos',
-                capacidade: '300 pessoas',
-                amenidades: ['Múltiplos salões', 'Cozinha industrial', 'Estacionamento', 'Segurança discreta']
-              },
-              {
-                local: 'Penthouse Leblon',
-                desc: 'Cobertura com vista 360º da Zona Sul, espaço moderno e luxuoso',
-                capacidade: '120 pessoas',
-                amenidade: ['Varanda panorâmica', 'Cozinha gourmet', 'Aquecimento piscina', 'Som de cinema']
-              }
-            ].map((prop, i) => (
-              <MotionDiv
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass p-8 rounded-2xl border border-gold/20"
-              >
-                <h3 className="text-2xl font-serif font-bold gradient-text mb-3">{prop.local}</h3>
-                <p className="text-beige/80 mb-4">{prop.desc}</p>
-                <p className="text-gold font-semibold mb-4">Capacidade: {prop.capacidade}</p>
-                <div className="space-y-2">
-                  {prop.amenidades?.map((item, idx) => (
-                    <p key={idx} className="text-beige/80 flex items-center gap-2">
-                      <span className="text-gold">★</span> {item}
-                    </p>
-                  ))}
-                </div>
-              </MotionDiv>
-            ))}
-          </div>
-        </MotionSection>
-
-        <MotionSection
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center py-16 rounded-3xl bg-gradient-to-r from-gold/10 to-beige/10 border border-gold/20"
-        >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold gradient-text mb-8">
-            Experiência em Locações Exclusivas
-          </h2>
-          <p className="text-xl text-beige/80 max-w-2xl mx-auto mb-12">
-            Acesso privilegiado a propriedades únicas que poucas agências conseguem alcançar.
-          </p>
-          <Link
-            href="/contato"
-            className="bg-gold text-primary px-12 py-6 rounded-full font-medium text-lg hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-2 inline-block"
-          >
-            Marcar Visita à Mansão
-          </Link>
-        </MotionSection>
-      </div>
-    </div>
+    <EditorialLanding
+      eyebrow="Espaços · Rio de Janeiro"
+      title="Um espaço singular pede uma operação desenhada para ele."
+      intro="Eventos em residências e mansões exigem leitura técnica do local, respeito às regras, logística detalhada e integração entre todos os parceiros."
+      sectionTitle="A experiência começa pela viabilidade."
+      sections={[
+    { title: 'Leitura do espaço', description: 'Avaliamos acessos, infraestrutura, vizinhança, fluxos e limitações relevantes.' },
+    { title: 'Projeto', description: 'Adequamos conceito, layout, fornecedores e cronograma às condições do local.' },
+    { title: 'Operação', description: 'Coordenamos montagem, abastecimento, recepção, evento e desmontagem conforme o escopo.' },
+      ]}
+      scope={['Visita técnica', 'Layout', 'Infraestrutura', 'Acessos', 'Fornecedores', 'Recepção', 'Logística', 'Produção', 'Desmontagem']}
+      closing="Antes de transformar o espaço, é preciso compreendê-lo."
+    />
   )
 }

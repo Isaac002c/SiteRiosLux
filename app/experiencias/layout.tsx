@@ -1,18 +1,18 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Experiências Premium no Rio de Janeiro | RiosLux',
-  description: 'Conheça experiências e eventos premium em iates, mansões, rooftops e locais exclusivos do Rio de Janeiro.',
+  title: 'Experiências Rios Lux | Rio de Janeiro',
+  description: 'Conceitos e referências para eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
   alternates: { canonical: '/experiencias' },
   openGraph: {
-    title: 'Experiências Premium no Rio de Janeiro | RiosLux',
-    description: 'Conheça experiências sofisticadas em locais exclusivos do Rio de Janeiro.',
+    type: 'website',
+    title: 'Experiências Rios Lux | Rio de Janeiro',
+    description: 'Conceitos e referências de atmosferas para começar a desenhar sua experiência.',
     url: '/experiencias',
-    images: [{ url: 'https://www.agenciarioslux.com.br/og.png', width: 1200, height: 630, alt: 'RiosLux — eventos premium e concierge no Rio de Janeiro' }],
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rios Lux — Arquitetura de Experiências' }],
   },
 }
 
 export default function ExperienciasLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return children
 }
-

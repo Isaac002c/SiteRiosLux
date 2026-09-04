@@ -1,150 +1,296 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { CalendarDays, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { createWhatsAppUrl, siteConfig } from '@/config/site'
+import { trackEvent } from '@/lib/analytics'
+
+type FormData = {
+  name: string
+  whatsapp: string
+  email: string
+  company: string
+  experience: string
+  date: string
+  guests: string
+  location: string
+  message: string
+}
+
+const initialForm: FormData = {
+  name: '',
+  whatsapp: '',
+  email: '',
+  company: '',
+  experience: '',
+  date: '',
+  guests: '',
+  location: '',
+  message: '',
+}
 
 export default function Contato() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  })
+  const [formData, setFormData] = useState(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const formStarted = useRef(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitted(true)
-      setFormData({ name: '', email: '', phone: '', message: '' })
-    }, 1000)
+  const updateField = (field: keyof FormData, value: string) => {
+    setSubmitted(false)
+    setFormData((current) => ({ ...current, [field]: value }))
   }
 
-  const handleWhatsApp = () => {
-    const message = `Olá! Gostaria de agendar uma consultoria para meu evento.`
-    window.open(`https://wa.me/5521972522076?text=${encodeURIComponent(message)}`, '_blank')
+  const handleFormStart = () => {
+    if (formStarted.current) return
+    formStarted.current = true
+    trackEvent('form_start', { form: 'curadoria' })
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const details = [
+      siteConfig.whatsappMessage,
+      '',
+      `Nome: ${formData.name}`,
+      `WhatsApp: ${formData.whatsapp}`,
+      `E-mail: ${formData.email}`,
+      formData.company ? `Empresa: ${formData.company}` : '',
+      `Tipo de experiência: ${formData.experience}`,
+      formData.date ? `Data: ${formData.date}` : '',
+      formData.guests ? `Convidados: ${formData.guests}` : '',
+      formData.location ? `Local/cidade: ${formData.location}` : '',
+      `Mensagem: ${formData.message}`,
+    ].filter(Boolean).join('\n')
+
+    trackEvent('form_submit', { form: 'curadoria', experience_type: formData.experience })
+    setSubmitted(true)
+
+    const whatsappUrl = createWhatsAppUrl(details)
+    const whatsappWindow = window.open(whatsappUrl, '_blank')
+    if (whatsappWindow) whatsappWindow.opener = null
+    else window.location.assign(whatsappUrl)
   }
 
   return (
-    <div className="min-h-screen py-24 bg-gradient-to-b from-primary to-primary-dark">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-24"
-        >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold gradient-text mb-6 leading-tight">
-            Vamos Criar Sua Experiência Premium
+    <div>
+      <section className="section-space bg-canvas text-ink">
+        <div className="page-shell pt-10 sm:pt-16">
+          <p className="eyebrow mb-6">Contato</p>
+          <h1 className="max-w-6xl text-balance font-serif text-5xl leading-[0.96] sm:text-6xl lg:text-8xl">
+            Sua experiência começa aqui.
           </h1>
-          <p className="text-xl md:text-2xl text-beige/80 max-w-2xl mx-auto">
-            Fale com nossos especialistas em eventos de luxo e transforme sua visão em realidade
+          <p className="mt-8 max-w-3xl text-xl leading-relaxed text-ink/68 sm:text-2xl">
+            Conte-nos o que você imagina. A Rios Lux cuida dos próximos passos.
           </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-6"
-          >
-            <h2 className="text-3xl font-serif font-bold gradient-text">
-              Solicitação de Orçamento Personalizado
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-beige/80 mb-2 font-medium">Nome Completo</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full p-5 rounded-2xl bg-white/10 border border-gold/30 backdrop-blur-md text-white placeholder-beige/60 focus:border-gold focus:outline-none transition-all"
-                  placeholder="Seu nome"
-                />
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-beige/80 mb-2 font-medium">Email</label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="w-full p-5 rounded-2xl bg-white/10 border border-gold/30 backdrop-blur-md text-white placeholder-beige/60 focus:border-gold focus:outline-none transition-all"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-beige/80 mb-2 font-medium">Telefone</label>
-                  <input
-                    type="tel"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    className="w-full p-5 rounded-2xl bg-white/10 border border-gold/30 backdrop-blur-md text-white placeholder-beige/60 focus:border-gold focus:outline-none transition-all"
-                    placeholder="(21) 99999-9999"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-beige/80 mb-2 font-medium">Sobre seu Evento</label>
-                <textarea
-                  rows={5}
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  className="w-full p-5 rounded-2xl bg-white/10 border border-gold/30 backdrop-blur-md text-white placeholder-beige/60 focus:border-gold focus:outline-none transition-all resize-vertical"
-                  placeholder="Tipo de evento, data, local, número de convidados e sua visão..."
-                />
-              </div>
-              <motion.button
-                type="submit"
-                className="w-full bg-gold text-primary p-6 rounded-3xl font-semibold text-xl hover:bg-beige transition-all duration-300 shadow-2xl hover:shadow-gold/50 hover:-translate-y-1 disabled:opacity-50"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                disabled={submitted}
-              >
-                {submitted ? 'Enviado! Entraremos em contato.' : 'Solicitar Orçamento'}
-              </motion.button>
-            </form>
-          </motion.div>
-
-          {/* CTA Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-8 lg:ml-auto"
-          >
-            <div className="glass p-10 rounded-3xl border border-gold/20 text-center hover:border-gold/50 transition-all cursor-pointer group" onClick={handleWhatsApp}>
-              <div className="w-24 h-24 bg-green-500/20 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-green-400/30 transition-all">
-                <span className="text-3xl">📱</span>
-              </div>
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
-                WhatsApp Direto
-              </h3>
-              <p className="text-beige/80 mb-6">Fale imediatamente com nosso time especializado</p>
-              <p className="font-mono text-lg mb-4">+55 21 97252-2076</p>
-              <div className="bg-white/10 px-6 py-3 rounded-full inline-block">
-                Iniciar Chat
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gold/20 to-beige/20 p-10 rounded-3xl border border-gold/30 text-center">
-              <h3 className="text-2xl font-serif font-bold mb-4 gradient-text">
-                Atendimento Premium
-              </h3>
-              <div className="space-y-3 text-beige/80">
-                <p>✓ Disponível 24/7</p>
-                <p>✓ Resposta em até 2h</p>
-                <p>✓ Consultoria gratuita inicial</p>
-              </div>
-            </div>
-          </motion.div>
         </div>
-      </div>
+      </section>
+
+      <section className="section-space bg-ink">
+        <div className="page-shell grid gap-14 lg:grid-cols-[1.3fr_0.7fr] lg:gap-24">
+          <div>
+            <div className="mb-9">
+              <p className="eyebrow mb-4">Solicitar curadoria</p>
+              <h2 className="font-serif text-3xl sm:text-4xl">Compartilhe o ponto de partida.</h2>
+              <p className="mt-4 max-w-2xl leading-relaxed text-sand/60">
+                Ao enviar, suas informações serão organizadas em uma mensagem e abertas no WhatsApp da Rios Lux.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} onFocus={handleFormStart} className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
+              <Field label="Nome" required>
+                <input
+                  required
+                  autoComplete="name"
+                  value={formData.name}
+                  onChange={(event) => updateField('name', event.target.value)}
+                  className="form-field"
+                  placeholder="Como podemos chamar você?"
+                />
+              </Field>
+
+              <Field label="WhatsApp" required>
+                <input
+                  required
+                  type="tel"
+                  autoComplete="tel"
+                  value={formData.whatsapp}
+                  onChange={(event) => updateField('whatsapp', event.target.value)}
+                  className="form-field"
+                  placeholder="DDD + número"
+                />
+              </Field>
+
+              <Field label="E-mail" required>
+                <input
+                  required
+                  type="email"
+                  autoComplete="email"
+                  value={formData.email}
+                  onChange={(event) => updateField('email', event.target.value)}
+                  className="form-field"
+                  placeholder="seu@email.com"
+                />
+              </Field>
+
+              <Field label="Empresa" hint="opcional">
+                <input
+                  autoComplete="organization"
+                  value={formData.company}
+                  onChange={(event) => updateField('company', event.target.value)}
+                  className="form-field"
+                  placeholder="Nome da empresa"
+                />
+              </Field>
+
+              <Field label="Tipo de experiência" required>
+                <select
+                  required
+                  value={formData.experience}
+                  onChange={(event) => updateField('experience', event.target.value)}
+                  className="form-field"
+                >
+                  <option value="">Selecione</option>
+                  <option value="Evento corporativo">Evento corporativo</option>
+                  <option value="Celebração privada">Celebração privada</option>
+                  <option value="Experiência / lifestyle">Experiência / lifestyle</option>
+                  <option value="Concierge">Concierge</option>
+                  <option value="Outro formato">Outro formato</option>
+                </select>
+              </Field>
+
+              <Field label="Data" hint="se definida">
+                <input
+                  type="date"
+                  value={formData.date}
+                  onChange={(event) => updateField('date', event.target.value)}
+                  className="form-field"
+                />
+              </Field>
+
+              <Field label="Número aproximado de convidados" hint="opcional">
+                <input
+                  type="number"
+                  min="1"
+                  inputMode="numeric"
+                  value={formData.guests}
+                  onChange={(event) => updateField('guests', event.target.value)}
+                  className="form-field"
+                  placeholder="Ex.: 80"
+                />
+              </Field>
+
+              <Field label="Local ou cidade" hint="opcional">
+                <input
+                  autoComplete="address-level2"
+                  value={formData.location}
+                  onChange={(event) => updateField('location', event.target.value)}
+                  className="form-field"
+                  placeholder="Ex.: Rio de Janeiro"
+                />
+              </Field>
+
+              <div className="sm:col-span-2">
+                <Field label="O que você imagina?" required>
+                  <textarea
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={(event) => updateField('message', event.target.value)}
+                    className="form-field resize-y"
+                    placeholder="Conte o contexto, a intenção e o que já está definido."
+                  />
+                </Field>
+              </div>
+
+              <div className="sm:col-span-2">
+                <button type="submit" className="button-primary w-full sm:w-auto" data-track-event="click_curadoria" data-track-label="contact_form">
+                  Solicitar Curadoria
+                </button>
+                {submitted && (
+                  <p role="status" className="mt-4 text-sm text-sand/70">
+                    Sua mensagem foi preparada e aberta no WhatsApp.
+                  </p>
+                )}
+              </div>
+            </form>
+          </div>
+
+          <aside className="border-t border-white/15 pt-9 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+            <p className="eyebrow mb-7">Fale com a Rios Lux</p>
+            <div className="space-y-7">
+              <ContactItem icon={<Phone size={18} />} label="Telefone" href={`tel:${siteConfig.phoneHref}`}>
+                {siteConfig.phoneDisplay}
+              </ContactItem>
+              <ContactItem icon={<Mail size={18} />} label="E-mail" href={`mailto:${siteConfig.email}`}>
+                {siteConfig.email}
+              </ContactItem>
+              <ContactItem icon={<MapPin size={18} />} label="Atuação">
+                Rio de Janeiro, RJ
+              </ContactItem>
+              <ContactItem icon={<CalendarDays size={18} />} label="Atendimento">
+                Conversas e projetos sob agendamento
+              </ContactItem>
+            </div>
+
+            <a
+              href={createWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track-event="click_whatsapp"
+              data-track-label="contact_direct"
+              className="mt-10 inline-flex items-center text-sm font-semibold text-brass transition hover:text-sand"
+            >
+              <MessageCircle className="mr-2" size={18} /> Preferir conversa direta no WhatsApp
+            </a>
+          </aside>
+        </div>
+      </section>
     </div>
   )
 }
 
+function Field({
+  label,
+  hint,
+  required,
+  children,
+}: {
+  label: string
+  hint?: string
+  required?: boolean
+  children: React.ReactNode
+}) {
+  return (
+    <label className="block">
+      <span className="mb-2 flex items-center justify-between text-sm text-sand/75">
+        <span>{label}{required && <span className="text-brass"> *</span>}</span>
+        {hint && <span className="text-xs text-sand/40">{hint}</span>}
+      </span>
+      {children}
+    </label>
+  )
+}
+
+function ContactItem({
+  icon,
+  label,
+  href,
+  children,
+}: {
+  icon: React.ReactNode
+  label: string
+  href?: string
+  children: React.ReactNode
+}) {
+  const content = (
+    <div className="flex gap-4">
+      <span className="mt-0.5 text-brass">{icon}</span>
+      <div>
+        <p className="text-[10px] uppercase tracking-[0.22em] text-sand/40">{label}</p>
+        <p className="mt-2 break-all text-sand/85">{children}</p>
+      </div>
+    </div>
+  )
+
+  return href ? <a href={href} className="block transition hover:opacity-75">{content}</a> : content
+}

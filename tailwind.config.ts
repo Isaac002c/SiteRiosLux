@@ -10,17 +10,22 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#1B3132',
-          dark: '#1B3132',
+          DEFAULT: '#17352F',
+          dark: '#102622',
         },
-        gold: '#A57D40',
-        beige: '#DFAD81',
-        olive: '#56745A',
+        ink: '#0B1E1B',
+        forest: '#17352F',
+        brass: '#B8945B',
+        canvas: '#F3EFE7',
+        sand: '#E4DAC9',
+        gold: '#B8945B',
+        beige: '#E4DAC9',
+        olive: '#5D756C',
         white: '#FFFFFF',
       },
       fontFamily: {
-        serif: ['Playfair Display', 'serif'],
-        sans: ['Inter', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
+        sans: ['var(--font-inter)', 'Arial', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 1s ease-in-out',
