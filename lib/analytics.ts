@@ -13,6 +13,7 @@ declare global {
   interface Window {
     dataLayer?: Array<Record<string, unknown>>
     gtag?: (command: 'event', eventName: string, parameters?: Record<string, unknown>) => void
+    __riosLuxEventsBound?: boolean
   }
 }
 

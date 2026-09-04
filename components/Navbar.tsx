@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 
@@ -12,17 +9,10 @@ const navigation = [
 ]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
-
   return (
-    <header
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/90 backdrop-blur-xl"
-      onKeyDown={(event) => {
-        if (event.key === 'Escape') setOpen(false)
-      }}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Navegação principal">
-        <Link href="/" className="group flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+        <Link href="/" className="group flex min-w-0 items-center gap-3">
           <span className="font-serif text-xl tracking-[0.18em] text-white sm:text-2xl">RIOS LUX</span>
           <span className="hidden border-l border-brass/50 pl-3 text-[9px] uppercase leading-tight tracking-[0.22em] text-sand/65 sm:block">
             Arquitetura<br />de experiências
@@ -45,43 +35,37 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-11 w-11 items-center justify-center border border-white/15 text-white lg:hidden"
-          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-          aria-controls="mobile-navigation"
-          aria-expanded={open}
-          onClick={() => setOpen((current) => !current)}
-        >
-          {open ? <X size={21} /> : <Menu size={21} />}
-        </button>
-      </nav>
+        <details className="group lg:hidden">
+          <summary className="inline-flex h-11 w-11 cursor-pointer list-none items-center justify-center border border-white/15 text-white [&::-webkit-details-marker]:hidden">
+            <span className="sr-only group-open:hidden">Abrir menu</span>
+            <span className="sr-only hidden group-open:inline">Fechar menu</span>
+            <Menu aria-hidden="true" className="group-open:hidden" size={21} />
+            <X aria-hidden="true" className="hidden group-open:block" size={21} />
+          </summary>
 
-      {open && (
-        <div id="mobile-navigation" className="border-t border-white/10 bg-ink px-5 pb-7 pt-3 lg:hidden">
-          <div className="mx-auto flex max-w-[90rem] flex-col">
-            {navigation.map((item) => (
+          <div id="mobile-navigation" className="fixed inset-x-0 top-20 border-t border-white/10 bg-ink px-5 pb-7 pt-3">
+            <div className="mx-auto flex max-w-[90rem] flex-col">
+              {navigation.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="border-b border-white/10 py-4 font-serif text-2xl text-sand"
+                >
+                  {item.label}
+                </Link>
+              ))}
               <Link
-                key={item.href}
-                href={item.href}
-                className="border-b border-white/10 py-4 font-serif text-2xl text-sand"
-                onClick={() => setOpen(false)}
+                href="/contato"
+                data-track-event="contact_start"
+                data-track-label="mobile_header"
+                className="button-primary mt-6 justify-center"
               >
-                {item.label}
+                Solicitar consultoria
               </Link>
-            ))}
-            <Link
-              href="/contato"
-              data-track-event="contact_start"
-              data-track-label="mobile_header"
-              className="button-primary mt-6 justify-center"
-              onClick={() => setOpen(false)}
-            >
-              Solicitar consultoria
-            </Link>
+            </div>
           </div>
-        </div>
-      )}
+        </details>
+      </nav>
     </header>
   )
 }
