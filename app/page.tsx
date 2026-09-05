@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowDownRight, ArrowRight } from 'lucide-react'
 import CTASection from '@/components/CTASection'
+import PossibilitiesCarousel from '@/components/PossibilitiesCarousel'
 import SocialProof from '@/components/SocialProof'
 
 const services = [
@@ -151,24 +152,7 @@ export default function Home() {
             <h2 className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Possibilidades Rios Lux</h2>
             <p className="mt-5 text-ink/65">Imagens de referência para apresentar atmosferas e formatos possíveis — não representam cases realizados.</p>
           </div>
-          <div className="grid gap-5 lg:grid-cols-12">
-            {concepts.map((concept, index) => (
-              <Link
-                href="/experiencias"
-                key={concept.title}
-                data-track-event="experience_view"
-                data-track-label={concept.category.toLowerCase()}
-                className={`group relative min-h-[28rem] overflow-hidden ${index === 0 ? 'lg:col-span-6' : 'lg:col-span-3'}`}
-              >
-                <Image src={concept.image} alt={`Referência visual para ${concept.title.toLowerCase()}`} fill sizes={index === 0 ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 25vw, 100vw'} className="object-cover transition duration-700 group-hover:scale-[1.03]" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-7">
-                  <p className="mb-2 text-[10px] uppercase tracking-[0.25em] text-brass">{concept.category} · referência visual</p>
-                  <h3 className="font-serif text-2xl text-white">{concept.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <PossibilitiesCarousel possibilities={concepts} />
         </div>
       </section>
 
