@@ -131,11 +131,8 @@ export default function Servicos() {
       </section>
 
       <section className="bg-canvas py-16 text-ink">
-        <div className="page-shell flex flex-col justify-between gap-6 border-t border-ink/20 pt-8 sm:flex-row sm:items-center">
+        <div className="page-shell border-t border-ink/20 pt-8">
           <p className="max-w-2xl font-serif text-2xl">Cada projeto começa entendendo o que precisa ser vivido — e o que precisa funcionar.</p>
-          <Link href="/contato" data-track-event="contact_start" data-track-label="services" className="button-dark shrink-0">
-            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
-          </Link>
         </div>
       </section>
 
