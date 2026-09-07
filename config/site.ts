@@ -7,6 +7,7 @@ export const siteConfig = {
   phoneHref: '+5521972522076',
   whatsappNumber: '5521972522076',
   whatsappMessage: 'Olá! Conheci a Rios Lux pelo site e gostaria de conversar sobre uma experiência.',
+  leadFollowUpMessage: 'Olá! Acabei de enviar uma solicitação pelo site da Rios Lux e gostaria de continuar a conversa por aqui.',
   social: {
     instagram: 'https://www.instagram.com/agenciarioslux/',
     linkedin: null,

@@ -23,7 +23,7 @@ export default function CTASection() {
             href={createWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            data-track-event="whatsapp_click"
+            data-track-event="click_whatsapp"
             data-track-label="final_cta"
             className="inline-flex min-h-12 items-center justify-center border border-ink/35 px-7 py-3.5 text-sm font-semibold text-ink transition hover:border-ink hover:bg-ink hover:text-white"
           >

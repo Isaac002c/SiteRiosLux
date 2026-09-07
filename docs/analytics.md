@@ -9,7 +9,16 @@ Configure uma das variaveis na Vercel e publique novamente:
 
 Quando as duas variaveis existem, apenas o GTM e carregado para evitar pageviews e eventos duplicados.
 
-Eventos disponiveis no `dataLayer`/GA4:
+Eventos principais disponiveis no `dataLayer`/GA4:
+
+- `form_start`
+- `lead_created` (conversão principal; ocorre somente após a confirmação do backend)
+- `form_submit`
+- `click_whatsapp`
+- `click_phone`
+- `click_request_proposal`
+
+Eventos institucionais e legados preservados:
 
 - `whatsapp_click`
 - `contact_start`
@@ -21,4 +30,6 @@ Eventos disponiveis no `dataLayer`/GA4:
 - `concierge_cta_click`
 - `experience_view`
 
-Cada evento pode incluir `label`, usado para identificar a origem do CTA. Antes de ativar campanhas, valide os eventos no modo Preview do GTM ou DebugView do GA4.
+Cada evento pode incluir `label`, usado para identificar a origem do CTA. Os eventos de formulário também recebem `form`, `event_type` e os parâmetros de atribuição disponíveis: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term` e `gclid`.
+
+O `dataLayer` é inicializado mesmo sem ID configurado, permitindo validar a implementação antes de conectar GTM, GA4 e Google Ads. Antes de ativar campanhas, valide os eventos no modo Preview do GTM ou DebugView do GA4.

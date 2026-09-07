@@ -1,4 +1,10 @@
 export type AnalyticsEvent =
+  | 'form_start'
+  | 'lead_created'
+  | 'form_submit'
+  | 'click_whatsapp'
+  | 'click_phone'
+  | 'click_request_proposal'
   | 'whatsapp_click'
   | 'contact_start'
   | 'contact_submit'
@@ -25,5 +31,6 @@ export function trackEvent(event: AnalyticsEvent, parameters: Record<string, unk
     return
   }
 
-  window.dataLayer?.push({ event, ...parameters })
+  window.dataLayer = window.dataLayer ?? []
+  window.dataLayer.push({ event, ...parameters })
 }

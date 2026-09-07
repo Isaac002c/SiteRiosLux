@@ -8,6 +8,7 @@ export const indexableRoutes = [
   { path: '/experiencias', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/sobre', priority: 0.6, changeFrequency: 'yearly' },
   { path: '/contato', priority: 0.8, changeFrequency: 'yearly' },
+  { path: '/politica-de-privacidade', priority: 0.25, changeFrequency: 'yearly' },
   { path: '/faq', priority: 0.6, changeFrequency: 'monthly' },
   { path: '/por-que-riosilux', priority: 0.6, changeFrequency: 'yearly' },
   { path: '/casamentos-luxo-ipanema', priority: 0.55, changeFrequency: 'monthly' },

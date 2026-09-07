@@ -1,31 +1,42 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { createWhatsAppUrl, siteConfig } from '@/config/site'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { LoaderCircle } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { captureAttribution, type Attribution } from '@/lib/attribution'
 import { trackEvent } from '@/lib/analytics'
+import { eventTypes, type LeadField } from '@/lib/lead-validation'
 
 type FormData = {
   name: string
+  company: string
   whatsapp: string
   email: string
-  company: string
-  experience: string
+  eventType: string
   date: string
   guests: string
   location: string
   message: string
+  privacyAccepted: boolean
+  website: string
 }
+
+type FormMode = 'general' | 'corporate'
+type FieldErrors = Partial<Record<LeadField, string>>
 
 const initialForm: FormData = {
   name: '',
+  company: '',
   whatsapp: '',
   email: '',
-  company: '',
-  experience: '',
+  eventType: '',
   date: '',
   guests: '',
   location: '',
   message: '',
+  privacyAccepted: false,
+  website: '',
 }
 
 function formatBrazilianPhone(value: string) {
@@ -36,61 +47,138 @@ function formatBrazilianPhone(value: string) {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
 }
 
-export default function ContactForm() {
-  const [formData, setFormData] = useState(initialForm)
-  const [submitted, setSubmitted] = useState(false)
-  const formStarted = useRef(false)
+function createSubmissionId() {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') return crypto.randomUUID()
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`
+}
 
-  const updateField = (field: keyof FormData, value: string) => {
-    setSubmitted(false)
+export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
+  const router = useRouter()
+  const [formData, setFormData] = useState(initialForm)
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
+  const [failureMessage, setFailureMessage] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const attribution = useRef<Attribution>({})
+  const formStarted = useRef(false)
+  const formStartedAt = useRef(0)
+  const submissionId = useRef('')
+  const isCorporate = mode === 'corporate'
+
+  useEffect(() => {
+    attribution.current = captureAttribution()
+  }, [])
+
+  const updateField = <Field extends keyof FormData>(field: Field, value: FormData[Field]) => {
+    setFailureMessage('')
+    setFieldErrors((current) => ({ ...current, [field]: undefined }))
     setFormData((current) => ({ ...current, [field]: value }))
   }
 
   const handleFormStart = () => {
     if (formStarted.current) return
     formStarted.current = true
-    trackEvent('contact_start', { form: 'consultoria' })
+    formStartedAt.current = Date.now()
+    trackEvent('form_start', {
+      form: isCorporate ? 'corporate_proposal' : 'contact',
+      ...attribution.current,
+    })
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (isSubmitting) return
 
-    const details = [
-      siteConfig.whatsappMessage,
-      '',
-      `Nome: ${formData.name}`,
-      `WhatsApp: ${formData.whatsapp}`,
-      `E-mail: ${formData.email}`,
-      formData.company ? `Empresa: ${formData.company}` : '',
-      `Tipo de experiência: ${formData.experience}`,
-      formData.date ? `Data: ${formData.date}` : '',
-      formData.guests ? `Convidados: ${formData.guests}` : '',
-      formData.location ? `Local/cidade: ${formData.location}` : '',
-      `Mensagem: ${formData.message}`,
-    ].filter(Boolean).join('\n')
+    const form = event.currentTarget
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      return
+    }
 
-    trackEvent('contact_submit', { form: 'consultoria', experience_type: formData.experience })
-    setSubmitted(true)
+    setFailureMessage('')
+    setFieldErrors({})
+    setIsSubmitting(true)
+    formStartedAt.current ||= Date.now()
+    submissionId.current ||= createSubmissionId()
 
-    const whatsappUrl = createWhatsAppUrl(details)
-    const whatsappWindow = window.open(whatsappUrl, '_blank')
-    if (whatsappWindow) whatsappWindow.opener = null
-    else window.location.assign(whatsappUrl)
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          submissionId: submissionId.current,
+          name: formData.name,
+          company: formData.company,
+          whatsapp: formData.whatsapp,
+          email: formData.email,
+          eventType: formData.eventType,
+          date: formData.date || undefined,
+          guests: formData.guests ? Number(formData.guests) : undefined,
+          location: formData.location || undefined,
+          message: formData.message,
+          privacyAccepted: formData.privacyAccepted,
+          website: formData.website,
+          source: isCorporate ? 'corporate-landing' : 'contact-page',
+          pageUrl: window.location.href,
+          attribution: attribution.current,
+          formStartedAt: formStartedAt.current,
+        }),
+      })
+      const result = await response.json() as {
+        ok?: boolean
+        message?: string
+        fieldErrors?: FieldErrors
+      }
+
+      if (!response.ok || !result.ok) {
+        setFieldErrors(result.fieldErrors || {})
+        setFailureMessage(result.message || 'Não foi possível enviar agora. Tente novamente.')
+        return
+      }
+
+      const trackingContext = {
+        form: isCorporate ? 'corporate_proposal' : 'contact',
+        event_type: formData.eventType,
+        ...attribution.current,
+      }
+      trackEvent('lead_created', trackingContext)
+      trackEvent('form_submit', trackingContext)
+
+      try {
+        window.sessionStorage.setItem('rios_lux_lead_context', JSON.stringify({
+          name: formData.name,
+          company: formData.company,
+          eventType: formData.eventType,
+          attribution: attribution.current,
+          submittedAt: new Date().toISOString(),
+        }))
+      } catch {
+        // The confirmation page does not depend on browser storage.
+      }
+
+      router.push('/obrigado')
+    } catch {
+      setFailureMessage('Não foi possível conectar ao servidor. Seus dados continuam preenchidos; tente novamente.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
     <div>
       <div className="mb-9">
-        <p className="eyebrow mb-4">Solicitar consultoria</p>
-        <h2 className="font-serif text-3xl sm:text-4xl">Compartilhe o ponto de partida.</h2>
+        <p className="eyebrow mb-4">{isCorporate ? 'Solicitar proposta' : 'Falar com a Rios Lux'}</p>
+        <h2 className="font-serif text-3xl sm:text-4xl">
+          {isCorporate ? 'Conte-nos o que sua empresa está planejando.' : 'Compartilhe o ponto de partida.'}
+        </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-sand/70">
-          Ao enviar, suas informações serão organizadas em uma mensagem e abertas no WhatsApp da Rios Lux.
+          Ao enviar, nossa equipe receberá as informações para analisar sua solicitação e entrar em contato.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} onFocus={handleFormStart} className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
-        <Field label="Nome" required>
+      <form onSubmit={handleSubmit} onFocus={handleFormStart} className="relative grid gap-x-5 gap-y-6 sm:grid-cols-2">
+        <Field id="lead-name" label="Nome" required error={fieldErrors.name}>
           <input
+            id="lead-name"
             name="name"
             required
             autoComplete="name"
@@ -99,11 +187,30 @@ export default function ContactForm() {
             onChange={(event) => updateField('name', event.target.value)}
             className="form-field"
             placeholder="Como podemos chamar você?"
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? 'lead-name-error' : undefined}
           />
         </Field>
 
-        <Field label="WhatsApp" required>
+        <Field id="lead-company" label="Empresa" required error={fieldErrors.company}>
           <input
+            id="lead-company"
+            name="company"
+            required
+            autoComplete="organization"
+            maxLength={140}
+            value={formData.company}
+            onChange={(event) => updateField('company', event.target.value)}
+            className="form-field"
+            placeholder="Nome da empresa"
+            aria-invalid={Boolean(fieldErrors.company)}
+            aria-describedby={fieldErrors.company ? 'lead-company-error' : undefined}
+          />
+        </Field>
+
+        <Field id="lead-whatsapp" label="WhatsApp" required error={fieldErrors.whatsapp}>
+          <input
+            id="lead-whatsapp"
             name="whatsapp"
             required
             type="tel"
@@ -115,11 +222,14 @@ export default function ContactForm() {
             placeholder="DDD + número"
             pattern={String.raw`\(\d{2}\) \d{4,5}-\d{4}`}
             title="Informe um telefone com DDD."
+            aria-invalid={Boolean(fieldErrors.whatsapp)}
+            aria-describedby={fieldErrors.whatsapp ? 'lead-whatsapp-error' : undefined}
           />
         </Field>
 
-        <Field label="E-mail" required>
+        <Field id="lead-email" label="E-mail" required error={fieldErrors.email}>
           <input
+            id="lead-email"
             name="email"
             required
             type="email"
@@ -128,64 +238,61 @@ export default function ContactForm() {
             value={formData.email}
             onChange={(event) => updateField('email', event.target.value)}
             className="form-field"
-            placeholder="seu@email.com"
+            placeholder="seu@empresa.com.br"
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? 'lead-email-error' : undefined}
           />
         </Field>
 
-        <Field label="Empresa" hint="opcional">
-          <input
-            name="company"
-            autoComplete="organization"
-            maxLength={140}
-            value={formData.company}
-            onChange={(event) => updateField('company', event.target.value)}
-            className="form-field"
-            placeholder="Nome da empresa"
-          />
-        </Field>
-
-        <Field label="Tipo de experiência" required>
+        <Field id="lead-event-type" label="Tipo de evento" required error={fieldErrors.eventType}>
           <select
-            name="experience"
+            id="lead-event-type"
+            name="eventType"
             required
-            value={formData.experience}
-            onChange={(event) => updateField('experience', event.target.value)}
+            value={formData.eventType}
+            onChange={(event) => updateField('eventType', event.target.value)}
             className="form-field"
+            aria-invalid={Boolean(fieldErrors.eventType)}
+            aria-describedby={fieldErrors.eventType ? 'lead-event-type-error' : undefined}
           >
             <option value="">Selecione</option>
-            <option value="Evento corporativo">Evento corporativo</option>
-            <option value="Celebração privada">Celebração privada</option>
-            <option value="Experiência / lifestyle">Experiência / lifestyle</option>
-            <option value="Concierge">Concierge</option>
-            <option value="Outro formato">Outro formato</option>
+            {eventTypes.map((eventType) => <option key={eventType} value={eventType}>{eventType}</option>)}
           </select>
         </Field>
 
-        <Field label="Data" hint="se definida">
+        <Field id="lead-date" label="Data prevista" hint="se definida" error={fieldErrors.date}>
           <input
+            id="lead-date"
             name="date"
             type="date"
             value={formData.date}
             onChange={(event) => updateField('date', event.target.value)}
             className="form-field"
+            aria-invalid={Boolean(fieldErrors.date)}
+            aria-describedby={fieldErrors.date ? 'lead-date-error' : undefined}
           />
         </Field>
 
-        <Field label="Número aproximado de convidados" hint="opcional">
+        <Field id="lead-guests" label="Número aproximado de convidados" hint="opcional" error={fieldErrors.guests}>
           <input
+            id="lead-guests"
             name="guests"
             type="number"
             min="1"
+            max="100000"
             inputMode="numeric"
             value={formData.guests}
             onChange={(event) => updateField('guests', event.target.value)}
             className="form-field"
             placeholder="Ex.: 80"
+            aria-invalid={Boolean(fieldErrors.guests)}
+            aria-describedby={fieldErrors.guests ? 'lead-guests-error' : undefined}
           />
         </Field>
 
-        <Field label="Local ou cidade" hint="opcional">
+        <Field id="lead-location" label="Local / cidade" hint="opcional" error={fieldErrors.location}>
           <input
+            id="lead-location"
             name="location"
             autoComplete="address-level2"
             maxLength={140}
@@ -193,12 +300,15 @@ export default function ContactForm() {
             onChange={(event) => updateField('location', event.target.value)}
             className="form-field"
             placeholder="Ex.: Rio de Janeiro"
+            aria-invalid={Boolean(fieldErrors.location)}
+            aria-describedby={fieldErrors.location ? 'lead-location-error' : undefined}
           />
         </Field>
 
         <div className="sm:col-span-2">
-          <Field label="O que você imagina?" required>
+          <Field id="lead-message" label="Conte-nos sobre o evento" required error={fieldErrors.message}>
             <textarea
+              id="lead-message"
               name="message"
               required
               minLength={10}
@@ -207,20 +317,61 @@ export default function ContactForm() {
               value={formData.message}
               onChange={(event) => updateField('message', event.target.value)}
               className="form-field resize-y"
-              placeholder="Conte o contexto, a intenção e o que já está definido."
+              placeholder="Compartilhe o objetivo, o público e o que já está definido."
+              aria-invalid={Boolean(fieldErrors.message)}
+              aria-describedby={fieldErrors.message ? 'lead-message-error' : undefined}
             />
           </Field>
         </div>
 
+        <div className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+          <label htmlFor="lead-website">Não preencha este campo</label>
+          <input
+            id="lead-website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={(event) => updateField('website', event.target.value)}
+          />
+        </div>
+
         <div className="sm:col-span-2">
-          <button type="submit" className="button-primary w-full sm:w-auto">
-            Solicitar Consultoria
+          <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-sand/75">
+            <input
+              type="checkbox"
+              name="privacyAccepted"
+              required
+              checked={formData.privacyAccepted}
+              onChange={(event) => updateField('privacyAccepted', event.target.checked)}
+              className="mt-1 size-4 shrink-0 accent-[#c7a464]"
+              aria-invalid={Boolean(fieldErrors.privacyAccepted)}
+              aria-describedby={fieldErrors.privacyAccepted ? 'privacy-consent-error' : undefined}
+            />
+            <span>
+              Li e concordo com a <Link href="/politica-de-privacidade" className="underline decoration-brass/60 underline-offset-4 hover:text-white">Política de Privacidade</Link> e autorizo o uso dos dados para atendimento desta solicitação.
+            </span>
+          </label>
+          {fieldErrors.privacyAccepted ? (
+            <p id="privacy-consent-error" className="mt-2 text-sm text-[#f3b6a8]">{fieldErrors.privacyAccepted}</p>
+          ) : null}
+        </div>
+
+        <div className="sm:col-span-2">
+          <button type="submit" disabled={isSubmitting} className="button-primary w-full disabled:cursor-wait disabled:opacity-70 sm:w-auto">
+            {isSubmitting ? <LoaderCircle aria-hidden="true" className="mr-2 animate-spin" size={17} /> : null}
+            {isSubmitting ? 'Enviando…' : isCorporate ? 'Solicitar proposta' : 'Enviar solicitação'}
           </button>
-          {submitted && (
-            <p role="status" className="mt-4 text-sm text-sand/70">
-              Sua mensagem foi preparada e aberta no WhatsApp.
-            </p>
-          )}
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-sand/65">
+            Ao enviar, nossa equipe receberá as informações para analisar sua solicitação e entrar em contato.
+          </p>
+          <div aria-live="polite" aria-atomic="true">
+            {failureMessage ? (
+              <p role="alert" className="mt-4 border-l-2 border-[#f3b6a8] pl-4 text-sm leading-relaxed text-[#f3b6a8]">
+                {failureMessage}
+              </p>
+            ) : null}
+          </div>
         </div>
       </form>
     </div>
@@ -228,23 +379,28 @@ export default function ContactForm() {
 }
 
 function Field({
+  id,
   label,
   hint,
   required,
+  error,
   children,
 }: {
+  id: string
   label: string
   hint?: string
   required?: boolean
+  error?: string
   children: React.ReactNode
 }) {
   return (
-    <label className="block">
-      <span className="mb-2 flex items-center justify-between text-sm text-sand/75">
-        <span>{label}{required && <span className="text-brass"> *</span>}</span>
-        {hint && <span className="text-xs text-sand/70">{hint}</span>}
-      </span>
+    <div>
+      <label htmlFor={id} className="mb-2 flex items-center justify-between text-sm text-sand/75">
+        <span>{label}{required ? <span className="text-brass"> *</span> : null}</span>
+        {hint ? <span className="text-xs text-sand/70">{hint}</span> : null}
+      </label>
       {children}
-    </label>
+      {error ? <p id={`${id}-error`} className="mt-2 text-sm text-[#f3b6a8]">{error}</p> : null}
+    </div>
   )
 }

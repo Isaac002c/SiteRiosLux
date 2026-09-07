@@ -25,7 +25,7 @@ export default function Contato() {
           <aside className="border-t border-white/15 pt-9 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
             <p className="eyebrow mb-7">Fale com a Rios Lux</p>
             <div className="space-y-7">
-              <ContactItem icon={<Phone size={18} />} label="Telefone" href={`tel:${siteConfig.phoneHref}`} event="phone_click">
+              <ContactItem icon={<Phone size={18} />} label="Telefone" href={`tel:${siteConfig.phoneHref}`} event="click_phone">
                 {siteConfig.phoneDisplay}
               </ContactItem>
               <ContactItem icon={<Mail size={18} />} label="E-mail" href={`mailto:${siteConfig.email}`} event="email_click">
@@ -40,7 +40,7 @@ export default function Contato() {
               href={createWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              data-track-event="whatsapp_click"
+              data-track-event="click_whatsapp"
               data-track-label="contact_direct"
               className="mt-10 inline-flex items-center text-sm font-semibold text-brass transition hover:text-sand"
             >

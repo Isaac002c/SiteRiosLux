@@ -63,7 +63,7 @@ export default function Footer() {
           <div>
             <p className="eyebrow mb-5">Contato</p>
             <address className="space-y-4 not-italic">
-              <a href={`tel:${siteConfig.phoneHref}`} data-track-event="phone_click" data-track-label="footer" className="flex min-h-11 items-center gap-3 text-sm text-sand/75 transition hover:text-white">
+              <a href={`tel:${siteConfig.phoneHref}`} data-track-event="click_phone" data-track-label="footer" className="flex min-h-11 items-center gap-3 text-sm text-sand/75 transition hover:text-white">
                 <Phone size={16} className="text-brass" /> {siteConfig.phoneDisplay}
               </a>
               <a href={`mailto:${siteConfig.email}`} data-track-event="email_click" data-track-label="footer" className="flex min-h-11 items-center gap-3 break-all text-sm text-sand/75 transition hover:text-white">
@@ -73,7 +73,7 @@ export default function Footer() {
                 href={createWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                data-track-event="whatsapp_click"
+                data-track-event="click_whatsapp"
                 data-track-label="footer"
                 className="flex min-h-11 items-center gap-3 text-sm text-sand/75 transition hover:text-white"
               >
@@ -87,7 +87,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-sand/70 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Rios Lux. Todos os direitos reservados.</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <p>© {new Date().getFullYear()} Rios Lux. Todos os direitos reservados.</p>
+            <Link href="/politica-de-privacidade" className="transition hover:text-white">Política de Privacidade</Link>
+          </div>
           <p>Digital Experience by TELUN</p>
         </div>
       </div>

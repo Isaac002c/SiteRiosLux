@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
+import HeaderCta from '@/components/HeaderCta'
 
 const navigation = [
   { href: '/servicos', label: 'Serviços' },
@@ -25,14 +26,7 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/contato"
-            data-track-event="contact_start"
-            data-track-label="header"
-            className="button-primary !px-6 !py-3"
-          >
-            Solicitar consultoria
-          </Link>
+          <HeaderCta />
         </div>
 
         <details className="group lg:hidden">
@@ -54,14 +48,7 @@ export default function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contato"
-                data-track-event="contact_start"
-                data-track-label="mobile_header"
-                className="button-primary mt-6 justify-center"
-              >
-                Solicitar consultoria
-              </Link>
+              <HeaderCta mobile />
             </div>
           </div>
         </details>
