@@ -19,6 +19,30 @@ const principles = [
   },
 ]
 
+const values = [
+  { title: 'Excelência', description: 'Cuidamos de cada detalhe como parte da experiência.' },
+  { title: 'Confiança', description: 'Assumimos responsabilidade pelo que prometemos e pelo que entregamos.' },
+  { title: 'Curadoria', description: 'Cada escolha deve ter intenção, coerência e propósito.' },
+]
+
+const team = [
+  {
+    name: 'Antônio',
+    role: 'Comercial, Curadoria & Experiência',
+    description: 'Conduz diagnóstico, proposta, negociação, fechamento e direcionamento da experiência.',
+  },
+  {
+    name: 'Isaac',
+    role: 'Growth, Tecnologia & Financeiro',
+    description: 'Conduz estratégia, aquisição, tecnologia, estrutura e gestão financeira.',
+  },
+  {
+    name: 'Manoel',
+    role: 'Operações, Fornecedores & Logística',
+    description: 'Conduz viabilidade operacional, parceiros, negociação, produção e logística.',
+  },
+]
+
 export default function Sobre() {
   return (
     <div>
@@ -29,8 +53,48 @@ export default function Sobre() {
             Mais do que organizar eventos.
           </h1>
           <p className="mt-8 max-w-3xl text-xl leading-relaxed text-ink/68 sm:text-2xl">
-            A Rios Lux transforma momentos importantes em experiências cuidadosamente arquitetadas.
+            A Rios Lux é uma agência de eventos e experiências no Rio de Janeiro. Planejamos cada projeto como uma arquitetura única de intenção, hospitalidade e operação.
           </p>
+        </div>
+      </section>
+
+      <section className="section-space bg-forest" aria-labelledby="about-values-title">
+        <div className="page-shell grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
+          <div>
+            <p className="eyebrow mb-5">O que orienta a Rios Lux</p>
+            <h2 id="about-values-title" className="font-serif text-4xl leading-tight sm:text-5xl">Três valores presentes em cada decisão.</h2>
+          </div>
+          <div className="divide-y divide-white/15 border-y border-white/15">
+            {values.map((value, index) => (
+              <article key={value.title} className="grid gap-5 py-8 sm:grid-cols-[0.16fr_0.84fr] sm:gap-8">
+                <span className="font-serif text-3xl text-brass">{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 className="font-serif text-3xl text-white">{value.title}</h3>
+                  <p className="mt-3 max-w-2xl leading-relaxed text-sand/70">{value.description}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space bg-ink" aria-labelledby="about-team-title">
+        <div className="page-shell">
+          <div className="max-w-4xl">
+            <p className="eyebrow mb-5">Quem está por trás</p>
+            <h2 id="about-team-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Especialidades diferentes. Uma responsabilidade compartilhada.</h2>
+            <p className="mt-6 max-w-3xl leading-relaxed text-sand/65">A estrutura foi desenhada para manter diagnóstico, estratégia e execução conectados desde o primeiro contato.</p>
+          </div>
+          <div className="mt-12 grid border-l border-t border-white/15 lg:grid-cols-3">
+            {team.map((member, index) => (
+              <article key={member.name} className="min-h-72 border-b border-r border-white/15 p-7 sm:p-9">
+                <span className="text-xs font-semibold tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
+                <h3 className="mt-10 font-serif text-4xl text-white">{member.name}</h3>
+                <p className="mt-4 text-xs font-semibold uppercase leading-relaxed tracking-[0.17em] text-brass">{member.role}</p>
+                <p className="mt-6 leading-relaxed text-sand/68">{member.description}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -75,7 +139,7 @@ export default function Sobre() {
             </h2>
           </div>
           <Link href="/contato" data-track-event="contact_start" data-track-label="about" className="button-primary">
-            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
+            Falar com a Rios Lux <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>
       </section>

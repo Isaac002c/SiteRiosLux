@@ -3,7 +3,6 @@ import { ArrowRight } from 'lucide-react'
 import CTASection from '@/components/CTASection'
 import StructuredData from '@/components/StructuredData'
 import { siteConfig } from '@/config/site'
-import type { AnalyticsEvent } from '@/lib/analytics'
 
 type ContentItem = {
   title: string
@@ -35,7 +34,6 @@ type CommercialLandingProps = {
   differentials: string[]
   faqs: FAQItem[]
   relatedLinks: RelatedLink[]
-  ctaEvent: AnalyticsEvent
 }
 
 export default function CommercialLanding({
@@ -53,7 +51,6 @@ export default function CommercialLanding({
   differentials,
   faqs,
   relatedLinks,
-  ctaEvent,
 }: CommercialLandingProps) {
   const pageUrl = `${siteConfig.url}${path}`
   const structuredData = {
@@ -112,11 +109,11 @@ export default function CommercialLanding({
             <p className="max-w-3xl text-lg leading-relaxed text-sand/75 sm:text-xl">{intro}</p>
             <Link
               href="/contato"
-              data-track-event={ctaEvent}
+              data-track-event="click_request_proposal"
               data-track-label={`${path}:hero`}
               className="button-primary shrink-0"
             >
-              Solicitar consultoria <ArrowRight className="ml-2" size={16} />
+              Solicitar proposta <ArrowRight className="ml-2" size={16} />
             </Link>
           </div>
         </div>
@@ -128,9 +125,10 @@ export default function CommercialLanding({
             <p className="eyebrow mb-5">Possibilidades</p>
             <h2 id="types-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">{typesTitle}</h2>
           </div>
-          <div className="mt-12 grid border-l border-t border-ink/20 sm:grid-cols-2 lg:grid-cols-3">
+          <p className="mt-8 text-sm text-ink/70 sm:hidden">Deslize para explorar as possibilidades →</p>
+          <div className="mobile-snap-carousel mt-4 grid border-l border-t border-ink/20 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3" role="region" aria-label={`Possibilidades de ${serviceName.toLowerCase()}`}>
             {types.map((item, index) => (
-              <article key={item.title} className="min-h-64 border-b border-r border-ink/20 p-7 sm:p-8">
+              <article key={item.title} className="mobile-snap-item min-h-64 border-b border-r border-ink/20 p-7 sm:p-8">
                 <span className="text-xs font-semibold tracking-[0.2em] text-brass-dark">{String(index + 1).padStart(2, '0')}</span>
                 <h3 className="mt-10 font-serif text-2xl leading-tight sm:text-3xl">{item.title}</h3>
                 <p className="mt-5 leading-relaxed text-ink/70">{item.description}</p>
@@ -147,9 +145,10 @@ export default function CommercialLanding({
             <h2 id="approach-title" className="font-serif text-4xl leading-tight sm:text-5xl">Direção clara em todas as etapas.</h2>
             <p className="mt-6 max-w-md leading-relaxed text-sand/70">{approachIntro}</p>
           </div>
-          <ol className="divide-y divide-white/15 border-y border-white/15">
+          <p className="text-sm text-sand/75 sm:hidden">Deslize para acompanhar as etapas →</p>
+          <ol className="mobile-snap-carousel mt-4 divide-y divide-white/15 border-y border-white/15 sm:mt-0" aria-label={`Etapas de ${serviceName.toLowerCase()}`}>
             {approach.map((item, index) => (
-              <li key={item.title} className="grid gap-5 py-8 sm:grid-cols-[0.15fr_0.85fr] sm:gap-8">
+              <li key={item.title} className="mobile-snap-item grid gap-5 p-7 sm:grid-cols-[0.15fr_0.85fr] sm:gap-8 sm:px-0 sm:py-8">
                 <span className="font-serif text-3xl text-brass">{String(index + 1).padStart(2, '0')}</span>
                 <div>
                   <h3 className="font-serif text-2xl text-white sm:text-3xl">{item.title}</h3>
@@ -218,7 +217,10 @@ export default function CommercialLanding({
         </div>
       </section>
 
-      <CTASection />
+      <CTASection
+        primaryLabel="Solicitar proposta"
+        primaryEvent="click_request_proposal"
+      />
     </div>
   )
 }

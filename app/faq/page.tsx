@@ -36,11 +36,19 @@ const faqs = [
   },
   {
     q: 'Como solicitar uma proposta?',
-    a: 'Use o formulário de consultoria ou o WhatsApp oficial. As informações iniciais ajudam a compreender objetivo, público, data, local, dimensão e prioridades antes dos próximos passos.',
+    a: 'Use o formulário de proposta ou o WhatsApp oficial. As informações iniciais ajudam a compreender objetivo, público, data, local, dimensão e prioridades antes dos próximos passos.',
   },
   {
     q: 'A Rios Lux atende eventos fora do Rio de Janeiro?',
     a: 'A comunicação atual está concentrada no Rio de Janeiro. Projetos em outros locais podem ser avaliados diretamente com a equipe, sem promessa prévia de disponibilidade.',
+  },
+  {
+    q: 'O que pode fazer parte do escopo da Rios Lux?',
+    a: 'Conforme o projeto, o escopo pode reunir conceito, planejamento, espaços, fornecedores, gastronomia, cenografia, audiovisual, logística, recepção, concierge, produção e operação no evento.',
+  },
+  {
+    q: 'O que acontece depois do envio do formulário?',
+    a: 'A solicitação é registrada para análise da equipe. Em seguida, a Rios Lux entra em contato para compreender o contexto, alinhar as informações iniciais e definir os próximos passos possíveis.',
   },
 ]
 

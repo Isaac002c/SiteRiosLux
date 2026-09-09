@@ -1,9 +1,14 @@
+import { createHash } from 'node:crypto'
 import { validateLeadPayload } from '@/lib/lead-validation'
 import { saveLead } from '@/lib/lead-storage'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export const maxDuration = 15
+
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000
+const RATE_LIMIT_MAX_REQUESTS = 12
+const rateLimitStore = new Map<string, { count: number; resetAt: number }>()
 
 const responseHeaders = {
   'Cache-Control': 'no-store, max-age=0',
@@ -25,8 +30,47 @@ function isSameOrigin(request: Request) {
   }
 }
 
+function getClientAddress(request: Request) {
+  const forwarded = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+  return forwarded || request.headers.get('x-real-ip')?.trim() || 'unknown'
+}
+
+function getClientFingerprint(request: Request) {
+  const secret = process.env.RIOS_LUX_HUB_TOKEN || 'rios-lux-rate-limit'
+  return createHash('sha256').update(`${getClientAddress(request)}:${secret}`).digest('hex')
+}
+
+function checkRateLimit(request: Request) {
+  const now = Date.now()
+  const key = getClientFingerprint(request)
+  const current = rateLimitStore.get(key)
+
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+    return { allowed: true, retryAfter: 0 }
+  }
+
+  if (current.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return { allowed: false, retryAfter: Math.max(1, Math.ceil((current.resetAt - now) / 1000)) }
+  }
+
+  current.count += 1
+  return { allowed: true, retryAfter: 0 }
+}
+
 export async function POST(request: Request) {
   if (!isSameOrigin(request)) return json({ ok: false, message: 'Origem da solicitação inválida.' }, 403)
+
+  const rateLimit = checkRateLimit(request)
+  if (!rateLimit.allowed) {
+    return Response.json(
+      { ok: false, message: 'Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.' },
+      {
+        status: 429,
+        headers: { ...responseHeaders, 'Retry-After': String(rateLimit.retryAfter) },
+      },
+    )
+  }
 
   const contentLength = Number(request.headers.get('content-length') || 0)
   if (contentLength > 24000) return json({ ok: false, message: 'Solicitação muito grande.' }, 413)
@@ -48,14 +92,9 @@ export async function POST(request: Request) {
 
   if (validation.data.website) return json({ ok: true }, 201)
 
-  const elapsed = Date.now() - validation.data.formStartedAt
-  if (validation.data.formStartedAt > 0 && elapsed < 750) {
-    return json({ ok: false, message: 'Aguarde um instante e tente novamente.' }, 429)
-  }
-
   try {
-    const lead = await saveLead(validation.data)
-    return json({ ok: true, duplicate: lead.duplicate }, lead.duplicate ? 200 : 201)
+    const lead = await saveLead(validation.data, getClientFingerprint(request))
+    return json({ ok: true, leadId: lead.id, duplicate: lead.duplicate }, lead.duplicate ? 200 : 201)
   } catch (error) {
     const unavailable = error instanceof Error && error.message === 'CRM_INTEGRATION_NOT_CONFIGURED'
     return json(

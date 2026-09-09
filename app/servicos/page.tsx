@@ -101,11 +101,16 @@ export default function Servicos() {
               </article>
             ))}
           </div>
-          <div className="mt-10 flex flex-col justify-between gap-5 border-b border-ink/20 pb-8 sm:flex-row sm:items-center">
-            <p className="max-w-2xl text-lg text-ink/70">Para lançamentos, ativações e relacionamento, explore também nossa abordagem para experiências de marca.</p>
-            <Link href="/experiencias-de-marca" data-track-event="corporate_cta_click" data-track-label="services_brand" className="inline-flex shrink-0 items-center text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4 transition hover:text-brass-dark">
-              Conhecer experiências de marca <ArrowRight className="ml-2" size={16} />
-            </Link>
+          <div className="mt-10 grid gap-5 border-b border-ink/20 pb-8 sm:grid-cols-[1fr_auto] sm:items-center">
+            <p className="max-w-2xl text-lg text-ink/70">Explore também as abordagens específicas para marcas e para eventos em que curadoria, hospitalidade e alto padrão orientam o projeto.</p>
+            <nav aria-label="Outras frentes" className="flex flex-col gap-3 text-sm font-semibold sm:items-end">
+              <Link href="/experiencias-de-marca" data-track-event="corporate_cta_click" data-track-label="services_brand" className="inline-flex items-center text-ink underline decoration-brass-dark/60 underline-offset-4 transition hover:text-brass-dark">
+                Conhecer experiências de marca <ArrowRight className="ml-2" size={16} />
+              </Link>
+              <Link href="/eventos-de-luxo-rio-de-janeiro" className="inline-flex items-center text-ink underline decoration-brass-dark/60 underline-offset-4 transition hover:text-brass-dark">
+                Eventos de luxo no Rio de Janeiro <ArrowRight className="ml-2" size={16} />
+              </Link>
+            </nav>
           </div>
         </div>
       </section>

@@ -74,7 +74,6 @@ export default function ExperienciasDeMarca() {
         { href: '/concierge-rio-de-janeiro', label: 'Concierge e hospitalidade' },
         { href: '/blog/roi-eventos-corporativos', label: 'Como acompanhar resultados de eventos' },
       ]}
-      ctaEvent="corporate_cta_click"
     />
   )
 }

@@ -1,8 +1,19 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { createWhatsAppUrl } from '@/config/site'
+import type { AnalyticsEvent } from '@/lib/analytics'
 
-export default function CTASection() {
+type CTASectionProps = {
+  primaryLabel?: string
+  primaryHref?: string
+  primaryEvent?: AnalyticsEvent
+}
+
+export default function CTASection({
+  primaryLabel = 'Solicitar consultoria',
+  primaryHref = '/contato',
+  primaryEvent = 'contact_start',
+}: CTASectionProps = {}) {
   return (
     <section className="section-space bg-brass text-ink">
       <div className="page-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
@@ -16,8 +27,8 @@ export default function CTASection() {
           </p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          <Link href="/contato" data-track-event="contact_start" data-track-label="final_cta" className="button-dark">
-            Solicitar consultoria <ArrowRight className="ml-2" size={16} />
+          <Link href={primaryHref} data-track-event={primaryEvent} data-track-label="final_cta" className="button-dark">
+            {primaryLabel} <ArrowRight className="ml-2" size={16} />
           </Link>
           <a
             href={createWhatsAppUrl()}

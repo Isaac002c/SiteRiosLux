@@ -52,6 +52,12 @@ function createSubmissionId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2)}-${Math.random().toString(36).slice(2)}`
 }
 
+function analyticsAttribution(attribution: Attribution) {
+  return Object.fromEntries(
+    Object.entries(attribution).filter(([key]) => key !== 'landing_page' && key !== 'referrer'),
+  )
+}
+
 export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
   const router = useRouter()
   const [formData, setFormData] = useState(initialForm)
@@ -80,7 +86,7 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
     formStartedAt.current = Date.now()
     trackEvent('form_start', {
       form: isCorporate ? 'corporate_proposal' : 'contact',
-      ...attribution.current,
+      ...analyticsAttribution(attribution.current),
     })
   }
 
@@ -125,6 +131,8 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
       })
       const result = await response.json() as {
         ok?: boolean
+        leadId?: string
+        duplicate?: boolean
         message?: string
         fieldErrors?: FieldErrors
       }
@@ -138,13 +146,32 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
       const trackingContext = {
         form: isCorporate ? 'corporate_proposal' : 'contact',
         event_type: formData.eventType,
-        ...attribution.current,
+        lead_id: result.leadId,
+        ...analyticsAttribution(attribution.current),
       }
-      trackEvent('lead_created', trackingContext)
-      trackEvent('form_submit', trackingContext)
+
+      const conversionKey = result.leadId ? `rios_lux_conversion_${result.leadId}` : ''
+      let alreadyTracked = false
+      try {
+        alreadyTracked = Boolean(conversionKey && window.sessionStorage.getItem(conversionKey) === '1')
+      } catch {
+        // Analytics still runs when browser storage is unavailable.
+      }
+
+      if (!alreadyTracked) {
+        trackEvent('generate_lead', trackingContext)
+        trackEvent('lead_created', trackingContext)
+        trackEvent('form_submit', trackingContext)
+        try {
+          if (conversionKey) window.sessionStorage.setItem(conversionKey, '1')
+        } catch {
+          // Conversion tracking does not depend on browser storage.
+        }
+      }
 
       try {
         window.sessionStorage.setItem('rios_lux_lead_context', JSON.stringify({
+          leadId: result.leadId,
           name: formData.name,
           company: formData.company,
           eventType: formData.eventType,
@@ -192,17 +219,17 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
           />
         </Field>
 
-        <Field id="lead-company" label="Empresa" required error={fieldErrors.company}>
+        <Field id="lead-company" label="Empresa" required={isCorporate} hint={isCorporate ? undefined : 'opcional'} error={fieldErrors.company}>
           <input
             id="lead-company"
             name="company"
-            required
+            required={isCorporate}
             autoComplete="organization"
             maxLength={140}
             value={formData.company}
             onChange={(event) => updateField('company', event.target.value)}
             className="form-field"
-            placeholder="Nome da empresa"
+            placeholder={isCorporate ? 'Nome da empresa' : 'Nome da empresa (se aplicável)'}
             aria-invalid={Boolean(fieldErrors.company)}
             aria-describedby={fieldErrors.company ? 'lead-company-error' : undefined}
           />

@@ -64,32 +64,35 @@ export default function Experiencias() {
       </section>
 
       <section className="bg-canvas pb-24 text-ink lg:pb-32">
-        <div className="page-shell grid gap-x-6 gap-y-12 lg:grid-cols-2">
-          {concepts.map((concept, index) => (
-            <article
-              key={concept.title}
-              data-track-event="experience_view"
-              data-track-label={concept.category.toLowerCase()}
-              className={index % 3 === 0 ? 'lg:col-span-2' : ''}
-            >
-              <div className={`relative overflow-hidden bg-ink/5 ${index % 3 === 0 ? 'aspect-[16/7]' : 'aspect-[4/3]'}`}>
-                <Image
-                  src={concept.image}
-                  alt={`Imagem de referência: ${concept.title.toLowerCase()}`}
-                  fill
-                  sizes={index % 3 === 0 ? '100vw' : '(min-width: 1024px) 50vw, 100vw'}
-                  className="object-cover transition duration-700 hover:scale-[1.02]"
-                />
-              </div>
-              <div className="grid gap-4 border-b border-ink/20 py-6 sm:grid-cols-[0.3fr_1fr]">
-                <p className="eyebrow">{concept.category}</p>
-                <div>
-                  <h2 className="font-serif text-2xl sm:text-3xl">{concept.title}</h2>
-                  <p className="mt-3 max-w-xl leading-relaxed text-ink/62">{concept.description}</p>
+        <div className="page-shell">
+          <p className="mb-4 text-sm text-ink/70 sm:hidden">Deslize para explorar as referências →</p>
+          <div className="mobile-snap-carousel grid gap-x-6 gap-y-12 lg:grid-cols-2" role="region" aria-label="Referências visuais de experiências">
+            {concepts.map((concept, index) => (
+              <article
+                key={concept.title}
+                data-track-event="experience_view"
+                data-track-label={concept.category.toLowerCase()}
+                className={`mobile-snap-item ${index % 3 === 0 ? 'lg:col-span-2' : ''}`}
+              >
+                <div className={`relative aspect-[4/3] overflow-hidden bg-ink/5 ${index % 3 === 0 ? 'lg:aspect-[16/7]' : ''}`}>
+                  <Image
+                    src={concept.image}
+                    alt={`Imagem de referência: ${concept.title.toLowerCase()}`}
+                    fill
+                    sizes={index % 3 === 0 ? '(max-width: 639px) 84vw, 100vw' : '(max-width: 639px) 84vw, (min-width: 1024px) 50vw, 100vw'}
+                    className="object-cover transition duration-700 hover:scale-[1.02]"
+                  />
                 </div>
-              </div>
-            </article>
-          ))}
+                <div className="grid gap-4 border-b border-ink/20 p-6 sm:grid-cols-[0.3fr_1fr] sm:px-0">
+                  <p className="eyebrow">{concept.category}</p>
+                  <div>
+                    <h2 className="font-serif text-2xl sm:text-3xl">{concept.title}</h2>
+                    <p className="mt-3 max-w-xl leading-relaxed text-ink/62">{concept.description}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

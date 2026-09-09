@@ -74,7 +74,6 @@ export default function ConciergeRioDeJaneiro() {
         { href: '/eventos-privados-rio-de-janeiro', label: 'Eventos privados' },
         { href: '/experiencias', label: 'Conceitos de experiência' },
       ]}
-      ctaEvent="concierge_cta_click"
     />
   )
 }

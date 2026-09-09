@@ -5,10 +5,13 @@ export const attributionKeys = [
   'utm_content',
   'utm_term',
   'gclid',
+  'gbraid',
+  'wbraid',
 ] as const
 
 export type AttributionKey = (typeof attributionKeys)[number]
-export type Attribution = Partial<Record<AttributionKey, string>>
+export type AttributionContextKey = AttributionKey | 'landing_page' | 'referrer'
+export type Attribution = Partial<Record<AttributionContextKey, string>>
 
 const storageKey = 'rios_lux_attribution'
 
@@ -30,11 +33,16 @@ export function captureAttribution(): Attribution {
   const searchParams = new URLSearchParams(window.location.search)
   const current = Object.fromEntries(
     attributionKeys
-      .map((key) => [key, sanitize(searchParams.get(key), key === 'gclid' ? 500 : 200)] as const)
+      .map((key) => [key, sanitize(searchParams.get(key), ['gclid', 'gbraid', 'wbraid'].includes(key) ? 500 : 200)] as const)
       .filter((entry): entry is [AttributionKey, string] => Boolean(entry[1])),
   ) as Attribution
 
-  const attribution = { ...stored, ...current }
+  const attribution: Attribution = {
+    ...stored,
+    landing_page: stored.landing_page || sanitize(window.location.href, 500),
+    referrer: stored.referrer || sanitize(document.referrer, 500),
+    ...current,
+  }
 
   try {
     window.sessionStorage.setItem(storageKey, JSON.stringify(attribution))

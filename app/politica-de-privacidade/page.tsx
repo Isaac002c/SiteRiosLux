@@ -34,7 +34,7 @@ const sections = [
   },
   {
     title: '6. Cookies, métricas e campanhas',
-    content: 'O site pode usar tecnologias de mensuração quando configuradas, inclusive para compreender origem de acessos e conversões. Identificadores de campanha, como UTMs e gclid, podem ser associados à solicitação enviada para análise de desempenho comercial.',
+    content: 'O site pode usar tecnologias de mensuração quando configuradas, inclusive para compreender origem de acessos e conversões. Identificadores de campanha, como UTMs, gclid, gbraid e wbraid, podem ser associados à solicitação enviada para análise de desempenho comercial.',
   },
   {
     title: '7. Seus direitos',
@@ -52,7 +52,7 @@ export default function PoliticaDePrivacidade() {
           <p className="mt-7 max-w-3xl text-lg leading-relaxed text-ink/68">
             Esta política explica como a Rios Lux utiliza os dados pessoais recebidos por seus canais digitais para atendimento de solicitações e relacionamento comercial.
           </p>
-          <p className="mt-5 text-sm text-ink/55">Última atualização: 7 de setembro de 2026.</p>
+          <p className="mt-5 text-sm text-ink/55">Última atualização: 8 de setembro de 2026.</p>
         </header>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-20">

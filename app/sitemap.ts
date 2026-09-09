@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteConfig.url}${route.path}`,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
+    ...('lastModified' in route ? { lastModified: route.lastModified } : {}),
   }))
 }
 

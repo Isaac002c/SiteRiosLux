@@ -7,6 +7,7 @@ const navigation = [
   { href: '/sobre', label: 'Sobre' },
   { href: '/contato', label: 'Contato' },
   { href: '/faq', label: 'Perguntas frequentes' },
+  { href: '/blog', label: 'Insights' },
 ]
 
 const services = [
@@ -14,6 +15,7 @@ const services = [
   { href: '/eventos-privados-rio-de-janeiro', label: 'Eventos privados' },
   { href: '/experiencias-de-marca', label: 'Experiências de marca' },
   { href: '/concierge-rio-de-janeiro', label: 'Concierge' },
+  { href: '/eventos-de-luxo-rio-de-janeiro', label: 'Eventos de luxo' },
 ]
 
 export default function Footer() {
@@ -22,7 +24,7 @@ export default function Footer() {
       <div className="page-shell py-16 sm:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.9fr_0.75fr_1fr]">
           <div>
-            <Link href="/" className="font-serif text-2xl tracking-[0.18em]">RIOS LUX</Link>
+            <Link href="/" className="inline-flex min-h-11 items-center font-serif text-2xl tracking-[0.18em]">RIOS LUX</Link>
             <p className="mt-3 text-[10px] uppercase tracking-[0.25em] text-brass">{siteConfig.descriptor}</p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-sand/65">
               Consultoria, planejamento e execução de eventos e experiências no Rio de Janeiro.
@@ -31,7 +33,7 @@ export default function Footer() {
               href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Rios Lux no Instagram"
+              aria-label="Rios Lux no Instagram: @agenciarioslux"
               className="mt-7 inline-flex min-h-11 items-center gap-3 text-sm text-sand/75 transition hover:text-white"
             >
               <Instagram size={18} className="text-brass" /> @agenciarioslux
@@ -43,7 +45,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {services.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-sand/70 transition hover:text-white">{item.label}</Link>
+                  <Link href={item.href} className="inline-flex min-h-11 items-center text-sm text-sand/70 transition hover:text-white">{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -54,7 +56,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm text-sand/70 transition hover:text-white">{item.label}</Link>
+                  <Link href={item.href} className="inline-flex min-h-11 items-center text-sm text-sand/70 transition hover:text-white">{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -89,7 +91,7 @@ export default function Footer() {
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-7 text-xs text-sand/70 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             <p>© {new Date().getFullYear()} Rios Lux. Todos os direitos reservados.</p>
-            <Link href="/politica-de-privacidade" className="transition hover:text-white">Política de Privacidade</Link>
+            <Link href="/politica-de-privacidade" className="inline-flex min-h-11 items-center transition hover:text-white">Política de Privacidade</Link>
           </div>
           <p>Digital Experience by TELUN</p>
         </div>

@@ -119,3 +119,31 @@
     overflow-wrap: break-word;
   }
 }
+
+@media (max-width: 639px) {
+  .mobile-snap-carousel {
+    display: flex !important;
+    gap: 1rem;
+    margin-inline: -1.25rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-inline: 1.25rem;
+    padding-bottom: 0.75rem;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-snap-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-snap-carousel > .mobile-snap-item {
+    flex: 0 0 min(84vw, 22rem);
+    width: min(84vw, 22rem);
+    border-width: 1px !important;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}

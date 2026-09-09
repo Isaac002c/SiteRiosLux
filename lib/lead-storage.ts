@@ -7,7 +7,7 @@ type HubResponse = {
   duplicate?: boolean
 }
 
-export async function saveLead(payload: LeadPayload) {
+export async function saveLead(payload: LeadPayload, clientFingerprint: string) {
   const endpoint = process.env.RIOS_LUX_HUB_LEAD_ENDPOINT?.trim()
   const token = process.env.RIOS_LUX_HUB_TOKEN?.trim()
 
@@ -19,6 +19,7 @@ export async function saveLead(payload: LeadPayload) {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
       'User-Agent': 'RiosLuxWebsite/1.0',
+      'X-Rios-Lux-Client': clientFingerprint,
     },
     body: JSON.stringify(payload),
     cache: 'no-store',

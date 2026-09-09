@@ -5,6 +5,7 @@ import HeaderCta from '@/components/HeaderCta'
 const navigation = [
   { href: '/servicos', label: 'Serviços' },
   { href: '/experiencias', label: 'Experiências' },
+  { href: '/blog', label: 'Insights' },
   { href: '/sobre', label: 'Sobre' },
   { href: '/contato', label: 'Contato' },
 ]
@@ -13,7 +14,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Navegação principal">
-        <Link href="/" className="group flex min-w-0 items-center gap-3">
+        <Link href="/" className="group flex min-h-11 min-w-0 items-center gap-3">
           <span className="font-serif text-xl tracking-[0.18em] text-white sm:text-2xl">RIOS LUX</span>
           <span className="hidden border-l border-brass/50 pl-3 text-[9px] uppercase leading-tight tracking-[0.22em] text-sand/65 sm:block">
             Arquitetura<br />de experiências

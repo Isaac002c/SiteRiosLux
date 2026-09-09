@@ -175,7 +175,7 @@ export default function PossibilitiesCarousel({ possibilities }: PossibilitiesCa
 
       {possibilities.length > 1 ? (
         <div className="mt-5 flex items-center justify-between gap-6 border-t border-ink/15 pt-5">
-          <p className="text-xs uppercase tracking-[0.2em] text-ink/55" aria-live="polite">
+          <p className="text-xs uppercase tracking-[0.2em] text-ink/70" aria-live="polite">
             {String(activeIndex + 1).padStart(2, '0')} / {String(possibilities.length).padStart(2, '0')}
           </p>
           <div className="flex items-center gap-2" aria-label="Selecionar possibilidade">

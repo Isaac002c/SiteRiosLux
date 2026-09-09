@@ -250,9 +250,10 @@ export default function EventosCorporativosRioDeJaneiro() {
               Experiências para diferentes objetivos.
             </h2>
           </div>
-          <div className="mt-12 grid border-l border-t border-ink/20 md:grid-cols-2">
+          <p className="mt-8 text-sm text-ink/70 sm:hidden">Deslize para explorar os objetivos →</p>
+          <div className="mobile-snap-carousel mt-4 grid border-l border-t border-ink/20 sm:mt-12 md:grid-cols-2" role="region" aria-label="Experiências para objetivos corporativos">
             {experiences.map((experience, index) => (
-              <article key={experience.title} className="grid min-h-56 gap-8 border-b border-r border-ink/20 p-7 sm:grid-cols-[auto_1fr] sm:p-9">
+              <article key={experience.title} className="mobile-snap-item grid min-h-56 gap-8 border-b border-r border-ink/20 p-7 sm:grid-cols-[auto_1fr] sm:p-9">
                 <span className="font-serif text-2xl text-brass-dark">{String(index + 1).padStart(2, '0')}</span>
                 <div>
                   <h3 className="font-serif text-3xl leading-tight">{experience.title}</h3>
@@ -309,9 +310,10 @@ export default function EventosCorporativosRioDeJaneiro() {
             <p className="eyebrow mb-5">Como funciona</p>
             <h2 id="process-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Da ideia à experiência.</h2>
           </div>
-          <ol className="mt-12 grid border-l border-t border-white/15 lg:grid-cols-5">
+          <p className="mt-8 text-sm text-sand/75 sm:hidden">Deslize para acompanhar as etapas →</p>
+          <ol className="mobile-snap-carousel mt-4 grid border-l border-t border-white/15 sm:mt-12 lg:grid-cols-5" aria-label="Etapas da produção de eventos corporativos">
             {process.map((step, index) => (
-              <li key={step.title} className="min-h-64 border-b border-r border-white/15 p-6 sm:p-7">
+              <li key={step.title} className="mobile-snap-item min-h-64 border-b border-r border-white/15 p-6 sm:p-7">
                 <span className="font-serif text-3xl text-brass">{String(index + 1).padStart(2, '0')}</span>
                 <h3 className="mt-10 font-serif text-2xl text-white">{step.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-sand/70">{step.description}</p>
@@ -390,6 +392,16 @@ export default function EventosCorporativosRioDeJaneiro() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-canvas py-14 text-ink">
+        <div className="page-shell grid gap-6 border-t border-ink/20 pt-8 sm:grid-cols-[1fr_auto] sm:items-center">
+          <p className="font-serif text-2xl">Conteúdo para apoiar as primeiras decisões do projeto.</p>
+          <nav aria-label="Conteúdos relacionados a eventos corporativos" className="flex flex-col gap-3 text-sm font-semibold sm:items-end">
+            <Link href="/blog/melhores-locais-eventos-rio" className="underline decoration-brass-dark/60 underline-offset-4">Como escolher um espaço para eventos no Rio</Link>
+            <Link href="/blog/roi-eventos-corporativos" className="underline decoration-brass-dark/60 underline-offset-4">Como acompanhar resultados de eventos corporativos</Link>
+          </nav>
         </div>
       </section>
 

@@ -61,7 +61,7 @@ export default function Cases() {
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.26em] text-ink">Enquanto os projetos são documentados</p>
             <h2 className="max-w-3xl font-serif text-4xl leading-tight sm:text-6xl">Conheça como a Rios Lux conduz cada experiência.</h2>
           </div>
-          <Link href="/por-que-riosilux" className="button-dark shrink-0">
+          <Link href="/sobre" className="button-dark shrink-0">
             Ver nosso processo <ArrowRight className="ml-2" size={16} />
           </Link>
         </div>

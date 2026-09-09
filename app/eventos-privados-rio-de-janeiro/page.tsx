@@ -70,11 +70,10 @@ export default function EventosPrivadosRioDeJaneiro() {
       ]}
       faqs={faqs}
       relatedLinks={[
-        { href: '/casamentos-luxo-ipanema', label: 'Casamentos e celebrações na Zona Sul' },
+        { href: '/eventos-de-luxo-rio-de-janeiro', label: 'Eventos de luxo no Rio de Janeiro' },
         { href: '/concierge-rio-de-janeiro', label: 'Concierge no Rio de Janeiro' },
         { href: '/eventos-corporativos-rio-de-janeiro', label: 'Eventos corporativos' },
       ]}
-      ctaEvent="private_cta_click"
     />
   )
 }

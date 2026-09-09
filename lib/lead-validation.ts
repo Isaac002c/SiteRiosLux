@@ -13,7 +13,7 @@ export type EventType = (typeof eventTypes)[number]
 export type LeadPayload = {
   submissionId: string
   name: string
-  company: string
+  company?: string
   whatsapp: string
   email: string
   eventType: EventType
@@ -75,9 +75,11 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
   const location = optionalString(raw.location, 140)
   const message = stringValue(raw.message, 2000)
   const guestsNumber = raw.guests === '' || raw.guests == null ? undefined : Number(raw.guests)
+  const source = raw.source === 'contact-page' ? 'contact-page' : 'corporate-landing'
 
   if (name.length < 2) errors.name = 'Informe seu nome.'
-  if (company.length < 2) errors.company = 'Informe a empresa.'
+  if (source === 'corporate-landing' && company.length < 2) errors.company = 'Informe a empresa.'
+  if (company.length === 1) errors.company = 'Informe o nome completo da empresa.'
   if (!phonePattern.test(phoneDigits)) errors.whatsapp = 'Informe um WhatsApp com DDD.'
   if (!emailPattern.test(email)) errors.email = 'Informe um e-mail válido.'
   if (!eventTypes.includes(eventType as EventType)) errors.eventType = 'Selecione o tipo de evento.'
@@ -100,6 +102,10 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
     utm_content: attributionValue(rawAttribution.utm_content, 200),
     utm_term: attributionValue(rawAttribution.utm_term, 200),
     gclid: attributionValue(rawAttribution.gclid, 500),
+    gbraid: attributionValue(rawAttribution.gbraid, 500),
+    wbraid: attributionValue(rawAttribution.wbraid, 500),
+    landing_page: attributionValue(rawAttribution.landing_page, 500),
+    referrer: attributionValue(rawAttribution.referrer, 500),
   }
 
   Object.keys(attribution).forEach((key) => {
@@ -113,7 +119,7 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
         ? stringValue(raw.submissionId, 80)
         : crypto.randomUUID(),
       name,
-      company,
+      company: company || undefined,
       whatsapp,
       email,
       eventType: eventType as EventType,
@@ -121,7 +127,7 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
       guests: guestsNumber,
       location,
       message,
-      source: raw.source === 'contact-page' ? 'contact-page' : 'corporate-landing',
+      source,
       pageUrl: stringValue(raw.pageUrl, 500),
       attribution,
       privacyAccepted: true,

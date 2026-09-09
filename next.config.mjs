@@ -65,37 +65,72 @@ const nextConfig = {
       {
         source: '/event-services',
         destination: '/servicos',
-        permanent: true
+        statusCode: 301
       },
       {
         source: '/events-rio',
         destination: '/experiencias',
-        permanent: true
+        statusCode: 301
       },
       {
         source: '/eventos-corporativos-premium-rj',
         destination: '/eventos-corporativos-rio-de-janeiro',
-        permanent: true
+        statusCode: 301
       },
       {
         source: '/eventos-corporativos-completo',
         destination: '/eventos-corporativos-rio-de-janeiro',
-        permanent: true
+        statusCode: 301
       },
       {
         source: '/concierge-eventos-rio',
         destination: '/concierge-rio-de-janeiro',
-        permanent: true
+        statusCode: 301
       },
       {
         source: '/servico-concierge-premium',
         destination: '/concierge-rio-de-janeiro',
-        permanent: true
+        statusCode: 301
       },
       {
         source: '/casos-sucesso',
         destination: '/cases',
-        permanent: true
+        statusCode: 301
+      },
+      {
+        source: '/por-que-riosilux',
+        destination: '/sobre',
+        statusCode: 301
+      },
+      {
+        source: '/casamentos-luxo-ipanema',
+        destination: '/eventos-privados-rio-de-janeiro',
+        statusCode: 301
+      },
+      {
+        source: '/despedida-solteiro-luxo-rj',
+        destination: '/eventos-privados-rio-de-janeiro',
+        statusCode: 301
+      },
+      {
+        source: '/eventos-barra-tijuca',
+        destination: '/servicos',
+        statusCode: 301
+      },
+      {
+        source: '/eventos-mansoes-rio',
+        destination: '/eventos-de-luxo-rio-de-janeiro',
+        statusCode: 301
+      },
+      {
+        source: '/experiencias-exclusivas-rio',
+        destination: '/concierge-rio-de-janeiro',
+        statusCode: 301
+      },
+      {
+        source: '/producao-eventos-leblon',
+        destination: '/servicos',
+        statusCode: 301
       }
     ]
   }

@@ -31,6 +31,7 @@ export default function BlogArticle({ category, title, intro, sections }: BlogAr
           <p className="eyebrow mb-6">{category}</p>
           <h1 className="text-balance font-serif text-5xl leading-[0.98] sm:text-6xl lg:text-7xl">{title}</h1>
           <p className="mt-8 max-w-3xl text-xl leading-relaxed text-ink/68">{intro}</p>
+          <p className="mt-6 text-sm text-ink/58">Conteúdo editorial com revisão institucional da equipe Rios Lux.</p>
         </div>
       </header>
 
