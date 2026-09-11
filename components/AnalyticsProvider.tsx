@@ -4,10 +4,11 @@ import AnalyticsEvents from '@/components/AnalyticsEvents'
 const gaIdPattern = /^G-[A-Z0-9]+$/
 const gtmIdPattern = /^GTM-[A-Z0-9]+$/
 const googleAdsId = 'AW-18060312094'
+const googleAnalyticsId = 'G-9X21JG8W4C'
 
 export default function AnalyticsProvider() {
   const configuredGtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim().toUpperCase()
-  const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim().toUpperCase()
+  const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim().toUpperCase() || googleAnalyticsId
   const gtmId = configuredGtmId && gtmIdPattern.test(configuredGtmId) ? configuredGtmId : null
   const gaId = !gtmId && configuredGaId && gaIdPattern.test(configuredGaId) ? configuredGaId : null
 

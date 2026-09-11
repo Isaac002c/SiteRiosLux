@@ -1,13 +1,13 @@
 # Mensuração da Rios Lux
 
-O Google tag da conta de anúncios `AW-18060312094` está instalado no layout global. Sem GTM, o site carrega uma única instância de `gtag.js` e configura esse ID em todas as páginas.
+O Google tag da conta de anúncios `AW-18060312094` e o Google Analytics 4 `G-9X21JG8W4C` estão instalados no layout global. Sem GTM, o site carrega uma única instância de `gtag.js` e configura os dois IDs em todas as páginas.
 
 A tag base já permite reconhecimento da conta. Para atribuir `generate_lead` a uma ação de conversão específica do Google Ads, ainda é necessário criar ou selecionar essa ação na conta e configurar o respectivo rótulo de conversão no GTM ou fornecer o snippet de evento correspondente.
 
 O projeto também está preparado para Google Tag Manager ou Google Analytics 4. Configure uma das variáveis na Vercel e publique novamente:
 
-- `NEXT_PUBLIC_GTM_ID=GTM-...` (recomendado quando Google Ads e GA4 serao gerenciados juntos)
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-...` (uso direto do GA4)
+- `NEXT_PUBLIC_GTM_ID=GTM-...` (recomendado quando Google Ads e GA4 serão gerenciados juntos)
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-...` (substitui o ID padrão de GA4)
 
 Quando o GTM existe, apenas ele é carregado para evitar tags e eventos duplicados. Nesse caso, a tag `AW-18060312094` deve ser configurada dentro do contêiner GTM. Sem GTM, um ID de GA4 válido reutiliza a mesma carga de `gtag.js` já usada pelo Google Ads.
 
