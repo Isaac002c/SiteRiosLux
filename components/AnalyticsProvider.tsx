@@ -10,7 +10,7 @@ export default function AnalyticsProvider() {
   const configuredGtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim().toUpperCase()
   const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim().toUpperCase() || googleAnalyticsId
   const gtmId = configuredGtmId && gtmIdPattern.test(configuredGtmId) ? configuredGtmId : null
-  const gaId = !gtmId && configuredGaId && gaIdPattern.test(configuredGaId) ? configuredGaId : null
+  const gaId = configuredGaId && gaIdPattern.test(configuredGaId) ? configuredGaId : googleAnalyticsId
 
   return (
     <>
@@ -31,9 +31,9 @@ export default function AnalyticsProvider() {
         </>
       ) : (
         <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`} strategy="afterInteractive" />
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
           <Script id="google-tag" strategy="afterInteractive">
-            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${googleAdsId}');${gaId ? `gtag('config','${gaId}');` : ''}`}
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaId}');gtag('config','${googleAdsId}');`}
           </Script>
         </>
       )}

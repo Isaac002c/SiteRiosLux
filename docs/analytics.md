@@ -1,6 +1,6 @@
 # Mensuração da Rios Lux
 
-O Google tag da conta de anúncios `AW-18060312094` e o Google Analytics 4 `G-9X21JG8W4C` estão instalados no layout global. Sem GTM, o site carrega uma única instância de `gtag.js` e configura os dois IDs em todas as páginas.
+O Google Analytics 4 `G-9X21JG8W4C` é a Google tag base instalada no layout global. O Google Ads `AW-18060312094` é configurado como destino adicional na mesma instância de `gtag.js`, em todas as páginas, inclusive `/obrigado`.
 
 A tag base já permite reconhecimento da conta. Para atribuir `generate_lead` a uma ação de conversão específica do Google Ads, ainda é necessário criar ou selecionar essa ação na conta e configurar o respectivo rótulo de conversão no GTM ou fornecer o snippet de evento correspondente.
 
@@ -9,7 +9,7 @@ O projeto também está preparado para Google Tag Manager ou Google Analytics 4.
 - `NEXT_PUBLIC_GTM_ID=GTM-...` (recomendado quando Google Ads e GA4 serão gerenciados juntos)
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-...` (substitui o ID padrão de GA4)
 
-Quando o GTM existe, apenas ele é carregado para evitar tags e eventos duplicados. Nesse caso, a tag `AW-18060312094` deve ser configurada dentro do contêiner GTM. Sem GTM, um ID de GA4 válido reutiliza a mesma carga de `gtag.js` já usada pelo Google Ads.
+Quando o GTM existe, apenas ele é carregado para evitar tags e eventos duplicados. Nesse caso, as tags `G-9X21JG8W4C` e `AW-18060312094` devem ser configuradas dentro do contêiner GTM. Sem GTM, o GA4 carrega a biblioteca uma vez e o Google Ads usa a mesma Google tag como destino adicional.
 
 Eventos principais disponíveis no `dataLayer`/GA4:
 
