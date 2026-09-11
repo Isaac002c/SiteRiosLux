@@ -19,6 +19,23 @@ function sanitize(value: string | null, maxLength = 300) {
   return value?.trim().slice(0, maxLength) || undefined
 }
 
+function currentPageUrl() {
+  const pathname = window.location.pathname === '/' ? '/' : window.location.pathname.replace(/\/$/, '')
+  return `${window.location.origin}${pathname}`
+}
+
+function normalizedReferrer() {
+  if (!document.referrer) return undefined
+
+  try {
+    const url = new URL(document.referrer)
+    const pathname = url.pathname === '/' ? '/' : url.pathname.replace(/\/$/, '')
+    return `${url.origin}${pathname}`.slice(0, 500)
+  } catch {
+    return sanitize(document.referrer, 500)
+  }
+}
+
 export function captureAttribution(): Attribution {
   if (typeof window === 'undefined') return {}
 
@@ -39,9 +56,13 @@ export function captureAttribution(): Attribution {
 
   const attribution: Attribution = {
     ...stored,
-    landing_page: stored.landing_page || sanitize(window.location.href, 500),
-    referrer: stored.referrer || sanitize(document.referrer, 500),
-    ...current,
+    landing_page: stored.landing_page || currentPageUrl(),
+    referrer: stored.referrer || normalizedReferrer(),
+  }
+
+
+  for (const [key, value] of Object.entries(current)) {
+    if (!attribution[key as AttributionKey]) attribution[key as AttributionKey] = value
   }
 
   try {

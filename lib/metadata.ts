@@ -14,7 +14,7 @@ const shareImage = {
   url: `${siteConfig.url}/og.png`,
   width: 1200,
   height: 630,
-  alt: 'Rios Lux — Arquitetura de Experiências',
+  alt: 'Logo Rios Lux sobre textura verde-azulada',
   type: 'image/png',
 }
 

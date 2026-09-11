@@ -3,12 +3,11 @@ $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
-$sourcePath = Join-Path $projectRoot 'public\logo.png'
+$sourcePath = Join-Path $projectRoot 'public\brand\rios-lux-monogram-square.png'
 $source = [System.Drawing.Bitmap]::FromFile($sourcePath)
 
 try {
-  # Tighten the generous source artwork margins so the mark remains legible in a browser tab.
-  $cropSize = [Math]::Min(320, [Math]::Min($source.Width, $source.Height))
+  $cropSize = [Math]::Min($source.Width, $source.Height)
   $cropX = [Math]::Floor(($source.Width - $cropSize) / 2)
   $cropY = [Math]::Floor(($source.Height - $cropSize) / 2)
   $sourceRectangle = [System.Drawing.Rectangle]::new($cropX, $cropY, $cropSize, $cropSize)

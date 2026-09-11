@@ -47,9 +47,9 @@ const values = [
 ]
 
 const team = [
-  { name: 'Antônio', role: 'Comercial, Curadoria & Experiência', description: 'Diagnóstico, proposta, negociação e direcionamento da experiência.' },
   { name: 'Isaac', role: 'Growth, Tecnologia & Financeiro', description: 'Estratégia, aquisição, tecnologia, estrutura e gestão financeira.' },
   { name: 'Manoel', role: 'Operações, Fornecedores & Logística', description: 'Viabilidade operacional, parceiros, negociação, produção e logística.' },
+  { name: 'Antônio', role: 'Comercial, Curadoria & Experiência', description: 'Diagnóstico, proposta, negociação e direcionamento da experiência.' },
 ]
 
 const faqs = [
@@ -105,7 +105,7 @@ export default function Home() {
           <p className="eyebrow mb-6 text-sand/80">Rios Lux</p>
           <p className="mb-5 font-serif text-2xl text-brass sm:text-3xl">Experiências que não se repetem.</p>
           <h1 className="max-w-6xl text-balance font-serif text-[clamp(3rem,7.4vw,7.25rem)] leading-[0.9] tracking-[-0.045em] text-white">
-            Eventos e experiências de alto padrão no Rio de Janeiro.
+            Agência de eventos e experiências de alto padrão no Rio de Janeiro.
           </h1>
           <div className="mt-8 grid max-w-5xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end">
             <p className="max-w-2xl text-base leading-relaxed text-sand/85 sm:text-lg">
@@ -247,15 +247,32 @@ export default function Home() {
             <h2 id="home-team-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Três frentes. Uma direção.</h2>
             <p className="mt-6 max-w-2xl leading-relaxed text-sand/65">Responsabilidades complementares conectam visão comercial, estratégia e operação em cada projeto.</p>
           </div>
-          <div className="mt-12 grid border-l border-t border-white/15 lg:grid-cols-3">
-            {team.map((member, index) => (
-              <article key={member.name} className="min-h-64 border-b border-r border-white/15 p-7 sm:p-9">
-                <span className="text-xs font-semibold tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="mt-9 font-serif text-4xl text-white">{member.name}</h3>
-                <p className="mt-4 text-xs font-semibold uppercase leading-relaxed tracking-[0.17em] text-brass">{member.role}</p>
-                <p className="mt-6 leading-relaxed text-sand/68">{member.description}</p>
-              </article>
-            ))}
+          <div className="mt-14 grid overflow-hidden border border-white/15 lg:grid-cols-[1.08fr_0.92fr]">
+            <figure className="relative aspect-[3/2] overflow-hidden bg-forest lg:aspect-auto lg:min-h-[42rem]">
+              <Image
+                src="/images/team/fundadores-rios-lux.webp"
+                alt="Isaac, Manoel e Antônio, fundadores da Rios Lux"
+                fill
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
+              <figcaption className="absolute bottom-0 left-0 p-6 text-xs uppercase tracking-[0.2em] text-sand sm:p-8">
+                Isaac · Manoel · Antônio
+              </figcaption>
+            </figure>
+            <div className="divide-y divide-white/15">
+              {team.map((member, index) => (
+                <article key={member.name} className="grid gap-5 p-7 sm:grid-cols-[auto_1fr] sm:gap-7 sm:p-9">
+                  <span className="font-serif text-2xl text-brass">{String(index + 1).padStart(2, '0')}</span>
+                  <div>
+                    <h3 className="font-serif text-3xl text-white">{member.name}</h3>
+                    <p className="mt-3 text-xs font-semibold uppercase leading-relaxed tracking-[0.15em] text-brass">{member.role}</p>
+                    <p className="mt-4 max-w-xl leading-relaxed text-sand/70">{member.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

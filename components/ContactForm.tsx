@@ -6,7 +6,7 @@ import { LoaderCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { captureAttribution, type Attribution } from '@/lib/attribution'
 import { trackEvent } from '@/lib/analytics'
-import { eventTypes, type LeadField } from '@/lib/lead-validation'
+import { corporateEventTypes, eventTypes, type LeadField } from '@/lib/lead-validation'
 
 type FormData = {
   name: string
@@ -69,6 +69,7 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
   const formStartedAt = useRef(0)
   const submissionId = useRef('')
   const isCorporate = mode === 'corporate'
+  const availableEventTypes = isCorporate ? corporateEventTypes : eventTypes
 
   useEffect(() => {
     attribution.current = captureAttribution()
@@ -124,7 +125,7 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
           privacyAccepted: formData.privacyAccepted,
           website: formData.website,
           source: isCorporate ? 'corporate-landing' : 'contact-page',
-          pageUrl: window.location.href,
+          pageUrl: `${window.location.origin}${window.location.pathname}`,
           attribution: attribution.current,
           formStartedAt: formStartedAt.current,
         }),
@@ -137,9 +138,9 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
         fieldErrors?: FieldErrors
       }
 
-      if (!response.ok || !result.ok) {
+      if (!response.ok || !result.ok || !result.leadId) {
         setFieldErrors(result.fieldErrors || {})
-        setFailureMessage(result.message || 'Não foi possível enviar agora. Tente novamente.')
+        setFailureMessage(result.message || 'Não foi possível confirmar o registro da solicitação. Tente novamente.')
         return
       }
 
@@ -158,7 +159,7 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
         // Analytics still runs when browser storage is unavailable.
       }
 
-      if (!alreadyTracked) {
+      if (!alreadyTracked && !result.duplicate) {
         trackEvent('generate_lead', trackingContext)
         trackEvent('lead_created', trackingContext)
         trackEvent('form_submit', trackingContext)
@@ -283,7 +284,7 @@ export default function ContactForm({ mode = 'general' }: { mode?: FormMode }) {
             aria-describedby={fieldErrors.eventType ? 'lead-event-type-error' : undefined}
           >
             <option value="">Selecione</option>
-            {eventTypes.map((eventType) => <option key={eventType} value={eventType}>{eventType}</option>)}
+            {availableEventTypes.map((eventType) => <option key={eventType} value={eventType}>{eventType}</option>)}
           </select>
         </Field>
 

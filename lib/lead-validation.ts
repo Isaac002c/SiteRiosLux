@@ -5,8 +5,14 @@ export const eventTypes = [
   'Encontro executivo',
   'Lançamento',
   'Experiência de marca',
+  'Evento interno ou confraternização',
+  'Celebração privada',
+  'Evento de alto padrão',
+  'Concierge e hospitalidade',
   'Outro',
 ] as const
+
+export const corporateEventTypes = eventTypes.slice(0, 5)
 
 export type EventType = (typeof eventTypes)[number]
 
@@ -62,6 +68,21 @@ function attributionValue(value: unknown, maxLength: number) {
   return optionalString(value, maxLength)
 }
 
+function normalizedUrlValue(value: unknown, maxLength: number) {
+  const rawValue = stringValue(value, maxLength)
+  if (!rawValue) return undefined
+
+  try {
+    const url = new URL(rawValue)
+    const pathname = url.pathname === '/' || !url.pathname.endsWith('/')
+      ? url.pathname
+      : url.pathname.slice(0, -1)
+    return `${url.origin}${pathname}`.slice(0, maxLength)
+  } catch {
+    return undefined
+  }
+}
+
 export function validateLeadPayload(input: unknown): LeadValidationResult {
   const raw = input && typeof input === 'object' ? input as Record<string, unknown> : {}
   const errors: Partial<Record<LeadField, string>> = {}
@@ -104,8 +125,8 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
     gclid: attributionValue(rawAttribution.gclid, 500),
     gbraid: attributionValue(rawAttribution.gbraid, 500),
     wbraid: attributionValue(rawAttribution.wbraid, 500),
-    landing_page: attributionValue(rawAttribution.landing_page, 500),
-    referrer: attributionValue(rawAttribution.referrer, 500),
+    landing_page: normalizedUrlValue(rawAttribution.landing_page, 500),
+    referrer: normalizedUrlValue(rawAttribution.referrer, 500),
   }
 
   Object.keys(attribution).forEach((key) => {
@@ -128,7 +149,7 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
       location,
       message,
       source,
-      pageUrl: stringValue(raw.pageUrl, 500),
+      pageUrl: normalizedUrlValue(raw.pageUrl, 500) || '',
       attribution,
       privacyAccepted: true,
       formStartedAt: Number(raw.formStartedAt) || 0,

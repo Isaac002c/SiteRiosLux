@@ -94,7 +94,7 @@ const nextConfig = {
       },
       {
         source: '/casos-sucesso',
-        destination: '/cases',
+        destination: '/experiencias',
         statusCode: 301
       },
       {

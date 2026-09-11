@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
@@ -28,16 +29,19 @@ const values = [
 const team = [
   {
     name: 'Antônio',
+    image: '/images/team/antonio.webp',
     role: 'Comercial, Curadoria & Experiência',
     description: 'Conduz diagnóstico, proposta, negociação, fechamento e direcionamento da experiência.',
   },
   {
     name: 'Isaac',
+    image: '/images/team/isaac.webp',
     role: 'Growth, Tecnologia & Financeiro',
     description: 'Conduz estratégia, aquisição, tecnologia, estrutura e gestão financeira.',
   },
   {
     name: 'Manoel',
+    image: '/images/team/manoel.webp',
     role: 'Operações, Fornecedores & Logística',
     description: 'Conduz viabilidade operacional, parceiros, negociação, produção e logística.',
   },
@@ -85,13 +89,25 @@ export default function Sobre() {
             <h2 id="about-team-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Especialidades diferentes. Uma responsabilidade compartilhada.</h2>
             <p className="mt-6 max-w-3xl leading-relaxed text-sand/65">A estrutura foi desenhada para manter diagnóstico, estratégia e execução conectados desde o primeiro contato.</p>
           </div>
-          <div className="mt-12 grid border-l border-t border-white/15 lg:grid-cols-3">
+          <p className="mt-8 text-sm text-sand/75 sm:hidden">Deslize para conhecer os fundadores →</p>
+          <div className="mobile-snap-carousel mt-4 grid gap-5 sm:mt-12 lg:grid-cols-3" role="region" aria-label="Fundadores da Rios Lux">
             {team.map((member, index) => (
-              <article key={member.name} className="min-h-72 border-b border-r border-white/15 p-7 sm:p-9">
-                <span className="text-xs font-semibold tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="mt-10 font-serif text-4xl text-white">{member.name}</h3>
-                <p className="mt-4 text-xs font-semibold uppercase leading-relaxed tracking-[0.17em] text-brass">{member.role}</p>
-                <p className="mt-6 leading-relaxed text-sand/68">{member.description}</p>
+              <article key={member.name} className="mobile-snap-item overflow-hidden border border-white/15 bg-white/[0.025]">
+                <div className="relative aspect-[4/5] overflow-hidden bg-forest">
+                  <Image
+                    src={member.image}
+                    alt={`Retrato de ${member.name}, fundador da Rios Lux`}
+                    fill
+                    sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 84vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+                <div className="p-7 sm:p-8">
+                  <span className="text-xs font-semibold tracking-[0.2em] text-brass">{String(index + 1).padStart(2, '0')}</span>
+                  <h3 className="mt-7 font-serif text-4xl text-white">{member.name}</h3>
+                  <p className="mt-4 text-xs font-semibold uppercase leading-relaxed tracking-[0.15em] text-brass">{member.role}</p>
+                  <p className="mt-5 leading-relaxed text-sand/70">{member.description}</p>
+                </div>
               </article>
             ))}
           </div>

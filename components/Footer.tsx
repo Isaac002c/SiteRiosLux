@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { createWhatsAppUrl, siteConfig } from '@/config/site'
@@ -24,8 +25,10 @@ export default function Footer() {
       <div className="page-shell py-16 sm:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.15fr_0.9fr_0.75fr_1fr]">
           <div>
-            <Link href="/" className="inline-flex min-h-11 items-center font-serif text-2xl tracking-[0.18em]">RIOS LUX</Link>
-            <p className="mt-3 text-[10px] uppercase tracking-[0.25em] text-brass">{siteConfig.descriptor}</p>
+            <Link href="/" aria-label="Rios Lux — página inicial" className="inline-flex min-h-11 items-center">
+              <Image src="/brand/rios-lux-wordmark.png" alt="Rios Lux" width={639} height={336} className="h-24 w-auto object-contain" />
+            </Link>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-brass">{siteConfig.descriptor}</p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-sand/65">
               Consultoria, planejamento e execução de eventos e experiências no Rio de Janeiro.
             </p>

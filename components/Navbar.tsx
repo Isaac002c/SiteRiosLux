@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import HeaderCta from '@/components/HeaderCta'
@@ -14,11 +15,14 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/90 backdrop-blur-xl">
       <nav className="mx-auto flex h-20 max-w-[90rem] items-center justify-between px-5 sm:px-8 lg:px-12" aria-label="Navegação principal">
-        <Link href="/" className="group flex min-h-11 min-w-0 items-center gap-3">
-          <span className="font-serif text-xl tracking-[0.18em] text-white sm:text-2xl">RIOS LUX</span>
-          <span className="hidden border-l border-brass/50 pl-3 text-[9px] uppercase leading-tight tracking-[0.22em] text-sand/65 sm:block">
-            Arquitetura<br />de experiências
-          </span>
+        <Link href="/" aria-label="Rios Lux — página inicial" className="flex min-h-11 items-center">
+          <Image
+            src="/brand/rios-lux-wordmark.png"
+            alt="Rios Lux"
+            width={639}
+            height={336}
+            className="h-14 w-auto object-contain"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -31,7 +35,7 @@ export default function Navbar() {
         </div>
 
         <details className="group lg:hidden">
-          <summary className="inline-flex h-11 w-11 cursor-pointer list-none items-center justify-center border border-white/15 text-white [&::-webkit-details-marker]:hidden">
+          <summary aria-controls="mobile-navigation" className="inline-flex h-11 w-11 cursor-pointer list-none items-center justify-center border border-white/15 text-white [&::-webkit-details-marker]:hidden">
             <span className="sr-only group-open:hidden">Abrir menu</span>
             <span className="sr-only hidden group-open:inline">Fechar menu</span>
             <Menu aria-hidden="true" className="group-open:hidden" size={21} />

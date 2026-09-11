@@ -23,12 +23,12 @@ const experiences = [
     description: 'Jantares, networking, reuniões especiais e ocasiões corporativas.',
   },
   {
-    title: 'Lançamentos',
-    description: 'Produtos, marcas, empreendimentos e momentos importantes.',
+    title: 'Lançamentos e ativações',
+    description: 'Produtos, marcas e mensagens apresentados por uma experiência coerente.',
   },
   {
-    title: 'Brand Experiences',
-    description: 'Experiências que aproximam marca, mensagem e público.',
+    title: 'Eventos internos',
+    description: 'Convenções, confraternizações e encontros que aproximam equipes e lideranças.',
   },
 ]
 
@@ -149,7 +149,7 @@ const faqs = [
   },
 ]
 
-const whatsappMessage = siteConfig.leadFollowUpMessage
+const whatsappMessage = siteConfig.corporateWhatsappMessage
 
 export default function EventosCorporativosRioDeJaneiro() {
   const pageUrl = `${siteConfig.url}${path}`
@@ -221,7 +221,7 @@ export default function EventosCorporativosRioDeJaneiro() {
           </h1>
           <div className="mt-8 grid max-w-6xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end">
             <p className="max-w-3xl text-lg leading-relaxed text-sand/85 sm:text-xl">
-              Estratégia, curadoria, fornecedores e produção coordenados pela Rios Lux para transformar encontros empresariais em experiências cuidadosamente executadas.
+              Para empresas, marcas e lideranças: estratégia, curadoria, fornecedores e produção coordenados pela Rios Lux para transformar encontros em experiências cuidadosamente executadas.
             </p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link href="#solicitar-proposta" data-track-event="click_request_proposal" data-track-label="corporate_hero" className="button-primary">
@@ -415,7 +415,7 @@ export default function EventosCorporativosRioDeJaneiro() {
             <p className="eyebrow mb-7">O que acontece depois</p>
             <ol className="space-y-7">
               {[
-                'O backend registra sua solicitação no CRM.',
+                'Sua solicitação fica registrada para análise da equipe.',
                 'Nossa equipe analisa o contexto enviado.',
                 'Entramos em contato para entender os próximos passos.',
               ].map((item, index) => (

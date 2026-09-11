@@ -6,15 +6,15 @@ type IndexableRoute = {
 }
 
 export const indexableRoutes = [
-  { path: '/', priority: 1, changeFrequency: 'weekly', lastModified: '2026-09-08' },
+  { path: '/', priority: 1, changeFrequency: 'weekly', lastModified: '2026-09-10' },
   { path: '/servicos', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-08' },
-  { path: '/eventos-corporativos-rio-de-janeiro', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-08' },
+  { path: '/eventos-corporativos-rio-de-janeiro', priority: 0.9, changeFrequency: 'monthly', lastModified: '2026-09-10' },
   { path: '/eventos-privados-rio-de-janeiro', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/experiencias-de-marca', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/concierge-rio-de-janeiro', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/eventos-de-luxo-rio-de-janeiro', priority: 0.8, changeFrequency: 'monthly', lastModified: '2026-09-08' },
   { path: '/experiencias', priority: 0.7, changeFrequency: 'monthly' },
-  { path: '/sobre', priority: 0.6, changeFrequency: 'yearly', lastModified: '2026-09-08' },
+  { path: '/sobre', priority: 0.6, changeFrequency: 'yearly', lastModified: '2026-09-10' },
   { path: '/contato', priority: 0.8, changeFrequency: 'yearly' },
   { path: '/politica-de-privacidade', priority: 0.25, changeFrequency: 'yearly' },
   { path: '/faq', priority: 0.6, changeFrequency: 'monthly', lastModified: '2026-09-08' },

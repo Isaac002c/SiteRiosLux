@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
@@ -15,47 +15,41 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
+export const viewport: Viewport = {
+  colorScheme: 'dark',
+  themeColor: '#0B1E1B',
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: 'Rios Lux | Eventos de Alto Padrão no Rio de Janeiro',
-  description: 'Eventos corporativos, celebrações privadas e experiências de alto padrão no Rio de Janeiro, com planejamento, consultoria e produção integrada.',
+  title: 'Agência de Eventos no Rio de Janeiro | Rios Lux',
+  description: 'Agência de eventos no Rio de Janeiro para projetos corporativos, celebrações privadas e experiências de marca, com planejamento e produção integrada.',
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
   category: 'eventos',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-      'max-video-preview': -1,
-    },
-  },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     url: '/',
     siteName: siteConfig.name,
-    title: 'Rios Lux | Eventos de Alto Padrão no Rio de Janeiro',
-    description: 'Eventos corporativos, celebrações privadas e experiências no Rio de Janeiro, com planejamento, consultoria e produção integrada.',
+    title: 'Agência de Eventos no Rio de Janeiro | Rios Lux',
+    description: 'Eventos corporativos, celebrações privadas e experiências de marca no Rio de Janeiro, com planejamento e produção integrada.',
     images: [
       {
         url: 'https://www.agenciarioslux.com.br/og.png',
         width: 1200,
         height: 630,
-        alt: 'Rios Lux — Arquitetura de Experiências',
+        alt: 'Logo Rios Lux sobre textura verde-azulada',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rios Lux | Eventos de Alto Padrão no Rio de Janeiro',
-    description: 'Eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
+    title: 'Agência de Eventos no Rio de Janeiro | Rios Lux',
+    description: 'Eventos corporativos, celebrações privadas e experiências de marca no Rio de Janeiro.',
     images: ['https://www.agenciarioslux.com.br/og.png'],
   },
   appleWebApp: {
@@ -66,6 +60,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-48.png', type: 'image/png', sizes: '48x48' },
       { url: '/favicon.png', type: 'image/png', sizes: '192x192' },
       { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
     ],
@@ -98,9 +93,9 @@ export default function RootLayout({
         url: `${siteConfig.url}/`,
         logo: {
           '@type': 'ImageObject',
-          url: `${siteConfig.url}/icon-512.png`,
-          width: 512,
-          height: 512,
+          url: `${siteConfig.url}/brand/rios-lux-wordmark.png`,
+          width: 639,
+          height: 336,
         },
         image: `${siteConfig.url}/og.png`,
         email: siteConfig.email,

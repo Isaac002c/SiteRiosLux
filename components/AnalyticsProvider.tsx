@@ -3,6 +3,7 @@ import AnalyticsEvents from '@/components/AnalyticsEvents'
 
 const gaIdPattern = /^G-[A-Z0-9]+$/
 const gtmIdPattern = /^GTM-[A-Z0-9]+$/
+const googleAdsId = 'AW-18060312094'
 
 export default function AnalyticsProvider() {
   const configuredGtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim().toUpperCase()
@@ -27,14 +28,14 @@ export default function AnalyticsProvider() {
             />
           </noscript>
         </>
-      ) : gaId ? (
+      ) : (
         <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaId}');`}
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`} strategy="afterInteractive" />
+          <Script id="google-tag" strategy="afterInteractive">
+            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${googleAdsId}');${gaId ? `gtag('config','${gaId}');` : ''}`}
           </Script>
         </>
-      ) : null}
+      )}
       <AnalyticsEvents />
     </>
   )
