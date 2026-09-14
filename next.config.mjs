@@ -78,6 +78,11 @@ const nextConfig = {
         statusCode: 301
       },
       {
+        source: '/eventos/corporativos',
+        destination: '/eventos-corporativos-rio-de-janeiro',
+        statusCode: 301
+      },
+      {
         source: '/eventos-corporativos-completo',
         destination: '/eventos-corporativos-rio-de-janeiro',
         statusCode: 301

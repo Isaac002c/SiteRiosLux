@@ -49,6 +49,8 @@ Domínio canônico: `https://www.agenciarioslux.com.br`
 - Formulário Corporate limitado a opções B2B; formulário geral ampliado para as demais frentes reais.
 - Logo oficial aplicada a header, versão mobile, footer, Open Graph e schema Organization.
 - Monograma oficial aplicado a `favicon.ico`, PNG 48×48, PNG 192×192, apple-touch-icon 180×180 e ícone 512×512.
+- A Home declara um único favicon canônico de 192×192 no HTML para evitar seleção ambígua pelo Google; o `.ico` permanece disponível como fallback para navegadores antigos.
+- O `Organization.logo` usa o monograma quadrado oficial de 500×500, com URL pública, estável e rastreável.
 - Fotografias reais dos três fundadores na Home e retratos reais individuais na página Sobre, convertidos para WebP responsivo.
 - Espaçamento entre grandes seções elevado para até 144 px no desktop, preservando 80/96 px em telas menores.
 - Título, descrição e H1 da Home ajustados para a intenção comercial de agência de eventos no Rio de Janeiro.
@@ -94,6 +96,7 @@ A arquitetura futura para `qualified_lead` e `converted_lead` está documentada 
 - 19 URLs no sitemap; todas responderam 200 no build de produção.
 - Todas têm um H1, canonical, descrição, Open Graph, Twitter Card e nenhum overflow horizontal no desktop auditado.
 - Nenhum link interno do conjunto rastreado termina em 404 ou redirect.
+- O endereço legado `/eventos/corporativos`, ainda exibido pelo Google, redireciona em um único salto para `/eventos-corporativos-rio-de-janeiro`.
 - JSON-LD parseado sem erro; Organization contém apenas nome, URL, logo, telefone, e-mail, Instagram e área atendida informados no projeto.
 - `favicon.ico` contém 16×16, 32×32 e 48×48. Os demais ícones têm dimensões declaradas e URL pública estável.
 - `robots.txt` permite o conteúdo relevante, bloqueia `/api/` e referencia o sitemap.
