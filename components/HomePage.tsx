@@ -37,7 +37,6 @@ export default function HomePage({ locale }: { locale: Locale }) {
       <div className="rule-grid page-shell relative z-10 flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-12 pt-24 sm:pb-16 lg:pb-20">
         <p className="eyebrow mb-7">{content.eyebrow}</p><h1 className="editorial-title max-w-[78rem] text-white">{content.title}</h1>
         <div className="mt-8 grid max-w-6xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="max-w-3xl text-base leading-relaxed text-sand/88 sm:text-lg lg:text-xl">{content.intro}</p><p className="mt-3 text-sm text-sand/60">{content.location}</p></div><div className="flex flex-col gap-3 sm:flex-row"><Link href={routes.contact[locale]} data-track-event="proposal_request" data-track-label="home_hero" className="button-primary">{shared.primaryCta}<ArrowRight className="ml-2" size={16} /></Link><a href={createWhatsAppUrl(shared.whatsappMessage as string)} target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click" data-track-label="home_hero" className="button-secondary"><MessageCircle className="mr-2" size={16} />{shared.secondaryCta}</a></div></div>
-        <p className="mt-5 text-[9px] uppercase tracking-[0.16em] text-sand/45">{shared.reference}</p>
       </div>
     </section>
 

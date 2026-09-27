@@ -19,7 +19,6 @@ export default function ServicePage({ locale, service }: { locale: Locale; servi
     scope: locale === 'pt' ? 'Escopo coordenado' : locale === 'en' ? 'Coordinated scope' : 'Alcance coordinado',
     value: locale === 'pt' ? 'O que muda para o cliente' : locale === 'en' ? 'What changes for the client' : 'Qué cambia para el cliente',
     faq: locale === 'pt' ? 'Perguntas frequentes' : locale === 'en' ? 'Frequently asked questions' : 'Preguntas frecuentes',
-    reference: shared.reference,
   }
   const schema = {
     '@context': 'https://schema.org', '@graph': [
@@ -37,7 +36,6 @@ export default function ServicePage({ locale, service }: { locale: Locale; servi
       <div className="page-shell relative z-10 flex min-h-[78svh] flex-col justify-end pb-12 pt-24 sm:pb-16 lg:pb-20">
         <p className="eyebrow mb-6">{content.eyebrow}</p><h1 className="max-w-[76rem] text-balance font-serif text-[clamp(3.2rem,7.5vw,8rem)] font-medium leading-[0.87] tracking-[-0.045em]">{content.title}</h1>
         <div className="mt-8 grid max-w-6xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end"><p className="max-w-3xl text-lg leading-relaxed text-sand/82 sm:text-xl">{content.intro}</p><div className="flex flex-col gap-3 sm:flex-row"><Link href="#iniciar" data-track-event="proposal_request" data-track-label={service + '_hero'} className="button-primary">{shared.primaryCta}<ArrowRight className="ml-2" size={16} /></Link><a href={createWhatsAppUrl(shared.whatsappMessage as string)} target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click" data-track-label={service + '_hero'} className="button-secondary"><MessageCircle className="mr-2" size={16} />WhatsApp</a></div></div>
-        <p className="mt-5 text-[9px] uppercase tracking-[0.16em] text-sand/45">{labels.reference}</p>
       </div>
     </section>
 
