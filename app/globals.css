@@ -17,6 +17,7 @@
 
   body {
     @apply overflow-x-hidden bg-ink font-sans text-white antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
@@ -34,7 +35,7 @@
 
 @layer components {
   .page-shell {
-    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[96rem] px-5 sm:px-8 lg:px-12;
   }
 
   .section-space {
@@ -42,7 +43,7 @@
   }
 
   .eyebrow {
-    @apply text-[11px] font-semibold uppercase tracking-[0.3em] text-brass;
+    @apply text-[10px] font-semibold uppercase tracking-[0.32em] text-brass;
   }
 
   .bg-canvas .eyebrow {
@@ -54,19 +55,19 @@
   }
 
   .button-primary {
-    @apply inline-flex min-h-12 items-center justify-center bg-brass px-7 py-3.5 text-sm font-semibold text-ink transition duration-300 hover:bg-sand;
+    @apply inline-flex min-h-12 items-center justify-center bg-brass px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-ink transition duration-300 hover:bg-sand;
   }
 
   .button-secondary {
-    @apply inline-flex min-h-12 items-center justify-center border border-white/35 px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:border-white hover:bg-white hover:text-ink;
+    @apply inline-flex min-h-12 items-center justify-center border border-white/35 px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white transition duration-300 hover:border-white hover:bg-white hover:text-ink;
   }
 
   .button-dark {
-    @apply inline-flex min-h-12 items-center justify-center bg-ink px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:bg-forest;
+    @apply inline-flex min-h-12 items-center justify-center bg-ink px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white transition duration-300 hover:bg-forest;
   }
 
   .form-field {
-    @apply min-h-12 w-full rounded-none border border-white/20 bg-white/[0.045] px-4 py-3 text-base text-white placeholder:text-sand/65 transition focus:border-brass;
+    @apply min-h-12 w-full rounded-none border border-white/20 bg-white/[0.04] px-4 py-3 text-base text-white placeholder:text-sand/45 transition focus:border-brass;
   }
 
   select.form-field {
@@ -88,6 +89,19 @@
 
   .hero-reveal {
     animation: hero-reveal 800ms ease-out both;
+  }
+
+  .editorial-title {
+    @apply text-balance font-serif text-[clamp(3.35rem,8vw,8.75rem)] font-medium leading-[0.82] tracking-[-0.045em];
+  }
+
+  .rule-grid {
+    background-image: linear-gradient(to right, rgb(255 255 255 / 0.055) 1px, transparent 1px);
+    background-size: 25% 100%;
+  }
+
+  .image-label {
+    @apply absolute bottom-3 right-3 bg-ink/75 px-3 py-2 text-[9px] uppercase tracking-[0.16em] text-sand/70 backdrop-blur-sm;
   }
 }
 

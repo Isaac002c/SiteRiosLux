@@ -19,6 +19,24 @@ function json(body: Record<string, unknown>, status: number) {
   return Response.json(body, { status, headers: responseHeaders })
 }
 
+function messages(locale: string) {
+  if (locale.startsWith('en')) return {
+    origin: 'Invalid request origin.', rate: 'Too many attempts. Please wait a few minutes and try again.',
+    large: 'The request is too large.', parse: 'We could not read the request.', review: 'Review the highlighted fields.',
+    unavailable: 'Form delivery is temporarily unavailable. Please contact us on WhatsApp.', failure: 'We could not record your enquiry. Your information is still filled in; please try again.',
+  }
+  if (locale.startsWith('es')) return {
+    origin: 'Origen de la solicitud inválido.', rate: 'Demasiados intentos. Espere unos minutos e inténtelo de nuevo.',
+    large: 'La solicitud es demasiado grande.', parse: 'No fue posible interpretar la solicitud.', review: 'Revise los campos destacados.',
+    unavailable: 'El formulario no está disponible temporalmente. Contáctenos por WhatsApp.', failure: 'No fue posible registrar su solicitud. Sus datos siguen completos; inténtelo nuevamente.',
+  }
+  return {
+    origin: 'Origem da solicitação inválida.', rate: 'Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.',
+    large: 'Solicitação muito grande.', parse: 'Não foi possível interpretar a solicitação.', review: 'Revise os campos destacados.',
+    unavailable: 'O recebimento está temporariamente indisponível. Fale conosco pelo WhatsApp.', failure: 'Não foi possível registrar sua solicitação agora. Seus dados continuam preenchidos; tente novamente.',
+  }
+}
+
 function isSameOrigin(request: Request) {
   const origin = request.headers.get('origin')
   if (!origin) return false
@@ -59,12 +77,13 @@ function checkRateLimit(request: Request) {
 }
 
 export async function POST(request: Request) {
-  if (!isSameOrigin(request)) return json({ ok: false, message: 'Origem da solicitação inválida.' }, 403)
+  let copy = messages(request.headers.get('accept-language') || 'pt')
+  if (!isSameOrigin(request)) return json({ ok: false, message: copy.origin }, 403)
 
   const rateLimit = checkRateLimit(request)
   if (!rateLimit.allowed) {
     return Response.json(
-      { ok: false, message: 'Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.' },
+      { ok: false, message: copy.rate },
       {
         status: 429,
         headers: { ...responseHeaders, 'Retry-After': String(rateLimit.retryAfter) },
@@ -73,21 +92,23 @@ export async function POST(request: Request) {
   }
 
   const contentLength = Number(request.headers.get('content-length') || 0)
-  if (contentLength > 24000) return json({ ok: false, message: 'Solicitação muito grande.' }, 413)
+  if (contentLength > 24000) return json({ ok: false, message: copy.large }, 413)
 
   let input: unknown
 
   try {
     const body = await request.text()
-    if (body.length > 24000) return json({ ok: false, message: 'Solicitação muito grande.' }, 413)
+    if (body.length > 24000) return json({ ok: false, message: copy.large }, 413)
     input = JSON.parse(body)
   } catch {
-    return json({ ok: false, message: 'Não foi possível interpretar a solicitação.' }, 400)
+    return json({ ok: false, message: copy.parse }, 400)
   }
+
+  if (input && typeof input === 'object' && 'locale' in input) copy = messages(String((input as Record<string, unknown>).locale || 'pt'))
 
   const validation = validateLeadPayload(input)
   if (!validation.success) {
-    return json({ ok: false, message: 'Revise os campos destacados.', fieldErrors: validation.fieldErrors }, 422)
+    return json({ ok: false, message: copy.review, fieldErrors: validation.fieldErrors }, 422)
   }
 
   if (validation.data.website) return json({ ok: true }, 201)
@@ -100,9 +121,7 @@ export async function POST(request: Request) {
     return json(
       {
         ok: false,
-        message: unavailable
-          ? 'O recebimento está temporariamente indisponível. Fale conosco pelo WhatsApp.'
-          : 'Não foi possível registrar sua solicitação agora. Seus dados continuam preenchidos; tente novamente.',
+        message: unavailable ? copy.unavailable : copy.failure,
       },
       503,
     )

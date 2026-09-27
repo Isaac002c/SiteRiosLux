@@ -1,0 +1,60 @@
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowDownRight, ArrowRight, MessageCircle } from 'lucide-react'
+import StructuredData from '@/components/StructuredData'
+import { createWhatsAppUrl, siteConfig } from '@/config/site'
+import { common, homeContent } from '@/lib/site-content'
+import { routes, ui, type Locale } from '@/lib/i18n'
+
+const team = [
+  { name: 'Isaac', roles: { pt: 'Growth, Tecnologia & Financeiro', en: 'Growth, Technology & Finance', es: 'Growth, Tecnología y Finanzas' } },
+  { name: 'Manoel', roles: { pt: 'Operações, Fornecedores & Logística', en: 'Operations, Suppliers & Logistics', es: 'Operaciones, Proveedores y Logística' } },
+  { name: 'Antônio', roles: { pt: 'Comercial, Curadoria & Experiência', en: 'Commercial, Curation & Experience', es: 'Comercial, Curaduría y Experiencia' } },
+]
+
+const references = [
+  { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1600&q=84', alt: 'Wedding dinner atmosphere' },
+  { src: 'https://images.unsplash.com/photo-1507501336603-6e31db2be093?auto=format&fit=crop&w=1600&q=84', alt: 'Editorial table setting' },
+  { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=84', alt: 'Live event atmosphere' },
+]
+
+export default function HomePage({ locale }: { locale: Locale }) {
+  const content = homeContent[locale]
+  const shared = common[locale]
+  const labels = ui[locale]
+  const services = [
+    { number: '01', label: 'Private', title: locale === 'pt' ? 'Celebrações pessoais, conduzidas por inteiro.' : locale === 'en' ? 'Personal celebrations, led as a whole.' : 'Celebraciones personales, conducidas por completo.', href: routes.private[locale] },
+    { number: '02', label: 'Corporate', title: locale === 'pt' ? 'Encontros que servem a um objetivo de negócio.' : locale === 'en' ? 'Gatherings built around a business outcome.' : 'Encuentros al servicio de un objetivo de negocio.', href: routes.corporate[locale] },
+    { number: '03', label: 'Brand Experience', title: locale === 'pt' ? 'Estratégia de marca transformada em presença.' : locale === 'en' ? 'Brand strategy translated into live presence.' : 'Estrategia de marca transformada en presencia.', href: routes.brand[locale] },
+    { number: '04', label: 'Concierge', title: locale === 'pt' ? 'Hospitalidade antes, durante e ao redor do evento.' : locale === 'en' ? 'Hospitality before, during and around the event.' : 'Hospitalidad antes, durante y alrededor del evento.', href: routes.concierge[locale] },
+  ]
+
+  return <div>
+    <StructuredData data={{ '@context': 'https://schema.org', '@type': 'Service', name: content.title, provider: { '@id': siteConfig.url + '/#organization' }, areaServed: { '@type': 'Country', name: 'Brazil' } }} />
+    <section className="relative min-h-[calc(100svh-4.5rem)] overflow-hidden bg-ink">
+      <Image src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2400&q=86" alt="Editorial event atmosphere" fill priority sizes="100vw" className="object-cover object-center" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,20,17,.9)_0%,rgba(5,20,17,.56)_52%,rgba(5,20,17,.2)_100%)]" /><div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/20" />
+      <div className="rule-grid page-shell relative z-10 flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-12 pt-24 sm:pb-16 lg:pb-20">
+        <p className="eyebrow mb-7">{content.eyebrow}</p><h1 className="editorial-title max-w-[78rem] text-white">{content.title}</h1>
+        <div className="mt-8 grid max-w-6xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="max-w-3xl text-base leading-relaxed text-sand/88 sm:text-lg lg:text-xl">{content.intro}</p><p className="mt-3 text-sm text-sand/60">{content.location}</p></div><div className="flex flex-col gap-3 sm:flex-row"><Link href={routes.contact[locale]} data-track-event="proposal_request" data-track-label="home_hero" className="button-primary">{shared.primaryCta}<ArrowRight className="ml-2" size={16} /></Link><a href={createWhatsAppUrl(shared.whatsappMessage as string)} target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click" data-track-label="home_hero" className="button-secondary"><MessageCircle className="mr-2" size={16} />{shared.secondaryCta}</a></div></div>
+        <p className="mt-5 text-[9px] uppercase tracking-[0.16em] text-sand/45">{shared.reference}</p>
+      </div>
+    </section>
+
+    <section className="section-space bg-canvas text-ink"><div className="page-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24"><div><p className="eyebrow mb-5">{content.directionKicker}</p><h2 className="max-w-3xl font-serif text-5xl font-medium leading-[0.98] sm:text-6xl lg:text-7xl">{content.directionTitle}</h2></div><div className="flex flex-col justify-end border-l border-ink/20 pl-6 sm:pl-10"><p className="max-w-2xl text-lg leading-relaxed text-ink/72 sm:text-xl">{content.directionCopy}</p><div className="mt-10 grid grid-cols-2 gap-px bg-ink/15 text-[11px] uppercase tracking-[0.12em] text-ink/70 sm:grid-cols-4">{(locale === 'pt' ? ['Espaço', 'Fornecedores', 'Logística', 'Operação'] : locale === 'en' ? ['Venue', 'Suppliers', 'Logistics', 'Operations'] : ['Espacio', 'Proveedores', 'Logística', 'Operación']).map((item) => <span key={item} className="bg-canvas p-4">{item}</span>)}</div></div></div></section>
+
+    <section className="section-space bg-ink"><div className="page-shell"><div className="mb-12 flex flex-col justify-between gap-6 sm:flex-row sm:items-end"><div><p className="eyebrow mb-5">{content.servicesKicker}</p><h2 className="max-w-4xl font-serif text-4xl font-medium leading-none sm:text-6xl">{content.servicesTitle}</h2></div><Link href={routes.contact[locale]} className="inline-flex min-h-11 items-center text-sm text-sand/65 transition hover:text-white">{labels.contact}<ArrowDownRight className="ml-2" size={17} /></Link></div><div className="grid border-l border-t border-white/15 sm:grid-cols-2 xl:grid-cols-4">{services.map((service) => <Link href={service.href} key={service.label} className="group flex min-h-80 flex-col justify-between border-b border-r border-white/15 p-7 transition hover:bg-white/[0.035] sm:p-8"><div className="flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-brass"><span>{service.number}</span><span>{service.label}</span></div><div><h3 className="font-serif text-3xl font-medium leading-[1.03] text-white">{service.title}</h3><p className="mt-7 inline-flex items-center text-xs font-semibold uppercase tracking-[0.14em] text-brass">{locale === 'pt' ? 'Conhecer' : locale === 'en' ? 'Explore' : 'Conocer'}<ArrowRight className="ml-2 transition group-hover:translate-x-1" size={15} /></p></div></Link>)}</div></div></section>
+
+    <section className="section-space bg-forest"><div className="page-shell grid gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24"><div><p className="eyebrow mb-5">{content.whyKicker}</p><h2 className="font-serif text-5xl font-medium leading-[0.98] sm:text-6xl">{content.whyTitle}</h2></div><div className="grid border-l border-t border-white/15 sm:grid-cols-2">{content.why.map((item, index) => <article key={item.title} className="min-h-56 border-b border-r border-white/15 p-7 sm:p-9"><span className="font-serif text-2xl text-brass">{String(index + 1).padStart(2, '0')}</span><h3 className="mt-9 font-serif text-3xl text-white">{item.title}</h3><p className="mt-4 leading-relaxed text-sand/68">{item.description}</p></article>)}</div></div></section>
+
+    <section className="section-space bg-canvas text-ink"><div className="page-shell grid gap-14 lg:grid-cols-[0.62fr_1.38fr] lg:gap-24"><div><p className="eyebrow mb-5">{shared.processKicker}</p><h2 className="font-serif text-5xl font-medium leading-[0.98] sm:text-6xl">{shared.processTitle}</h2></div><ol className="divide-y divide-ink/20 border-y border-ink/20">{shared.process.map((step, index) => <li key={step.title} className="grid gap-3 py-7 sm:grid-cols-[0.13fr_0.3fr_0.57fr] sm:items-start sm:gap-6"><span className="font-serif text-2xl text-brass-dark">{String(index + 1).padStart(2, '0')}</span><h3 className="font-serif text-2xl font-medium">{step.title}</h3><p className="leading-relaxed text-ink/65">{step.description}</p></li>)}</ol></div></section>
+
+    <section className="bg-ink"><div className="page-shell grid min-h-[38rem] gap-0 lg:grid-cols-[1.1fr_0.9fr]"><div className="relative min-h-[26rem] lg:-ml-12"><Image src="/images/team/fundadores-rios-lux.webp" alt="Isaac, Manoel and Antônio, Rios Lux founders" fill sizes="(min-width:1024px) 58vw,100vw" className="object-cover object-center" /></div><div className="flex flex-col justify-center py-16 lg:pl-16"><p className="eyebrow mb-5">{content.teamKicker}</p><h2 className="font-serif text-4xl font-medium leading-none sm:text-5xl">{content.teamTitle}</h2><p className="mt-6 max-w-xl leading-relaxed text-sand/68">{content.teamCopy}</p><div className="mt-9 divide-y divide-white/15 border-y border-white/15">{team.map((member) => <div key={member.name} className="flex items-center justify-between gap-4 py-4"><span className="font-serif text-2xl text-white">{member.name}</span><span className="max-w-[15rem] text-right text-[10px] uppercase leading-relaxed tracking-[0.13em] text-brass">{member.roles[locale]}</span></div>)}</div><Link href={routes.about[locale]} className="mt-7 inline-flex items-center text-xs font-semibold uppercase tracking-[0.14em] text-brass">{labels.about}<ArrowRight className="ml-2" size={15} /></Link></div></div></section>
+
+    <section className="section-space bg-canvas text-ink"><div className="page-shell"><div className="mb-12 max-w-4xl"><p className="eyebrow mb-5">{content.referencesKicker}</p><h2 className="font-serif text-5xl font-medium leading-[0.95] sm:text-6xl">{content.referencesTitle}</h2><p className="mt-6 max-w-2xl leading-relaxed text-ink/65">{content.referencesCopy}</p></div><div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr_0.85fr]">{references.map((image, index) => <figure key={image.src} className={'relative overflow-hidden bg-forest ' + (index === 0 ? 'aspect-[4/5] lg:aspect-[4/3]' : 'aspect-[4/5]')}><Image src={image.src} alt={image.alt} fill sizes="(min-width:1024px) 40vw,100vw" className="object-cover transition duration-700 hover:scale-[1.02]" /><figcaption className="image-label">{shared.reference}</figcaption></figure>)}</div><Link href={routes.projects[locale]} className="mt-8 inline-flex items-center text-xs font-semibold uppercase tracking-[0.14em] text-brass-dark">{labels.nav.projects}<ArrowRight className="ml-2" size={15} /></Link></div></section>
+
+    <section className="section-space bg-forest"><div className="page-shell grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="eyebrow mb-5">{content.coverageKicker}</p><h2 className="max-w-5xl font-serif text-5xl font-medium leading-[0.95] sm:text-7xl">{content.coverageTitle}</h2><p className="mt-7 max-w-3xl leading-relaxed text-sand/70">{content.coverageCopy}</p></div><Link href={routes.coverage[locale]} className="button-secondary">{labels.nav.coverage}<ArrowRight className="ml-2" size={16} /></Link></div></section>
+
+    <section className="section-space bg-ink"><div className="page-shell"><h2 className="max-w-6xl font-serif text-5xl font-medium leading-[0.92] sm:text-7xl lg:text-8xl">{content.finalTitle}</h2><div className="mt-10 flex flex-col gap-3 border-t border-white/15 pt-8 sm:flex-row"><Link href={routes.contact[locale]} data-track-event="proposal_request" data-track-label="home_final" className="button-primary">{shared.primaryCta}<ArrowRight className="ml-2" size={16} /></Link><a href={createWhatsAppUrl(shared.whatsappMessage as string)} target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click" data-track-label="home_final" className="button-secondary">{shared.secondaryCta}</a></div></div></section>
+  </div>
+}

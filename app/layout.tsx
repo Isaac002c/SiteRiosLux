@@ -1,17 +1,18 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Cormorant_Garamond, Manrope } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import AnalyticsProvider from '@/components/AnalyticsProvider'
 import StructuredData from '@/components/StructuredData'
+import MobileWhatsApp, { DocumentLanguage } from '@/components/MobileWhatsApp'
 import { siteConfig } from '@/config/site'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
-const playfair = Playfair_Display({
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400'],
+  variable: '--font-serif',
+  weight: ['400', '500'],
   display: 'swap',
 })
 
@@ -22,8 +23,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: 'Agência de Eventos no Rio de Janeiro | Rios Lux',
-  description: 'Agência de eventos no Rio de Janeiro para projetos corporativos, celebrações privadas e experiências de marca, com planejamento e produção integrada.',
+  title: 'Eventos e Experiências de Alto Padrão no Brasil | Rios Lux',
+  description: 'Planejamento, curadoria e produção completa para eventos privados, corporativos e experiências de marca no Brasil.',
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: '/',
     siteName: siteConfig.name,
-    title: 'Agência de Eventos no Rio de Janeiro | Rios Lux',
-    description: 'Eventos corporativos, celebrações privadas e experiências de marca no Rio de Janeiro, com planejamento e produção integrada.',
+    title: 'Eventos e Experiências de Alto Padrão no Brasil | Rios Lux',
+    description: 'Planejamento, curadoria e produção completa de eventos privados, corporativos e experiências de marca no Brasil.',
     images: [
       {
         url: 'https://www.agenciarioslux.com.br/og.png',
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Agência de Eventos no Rio de Janeiro | Rios Lux',
-    description: 'Eventos corporativos, celebrações privadas e experiências de marca no Rio de Janeiro.',
+    description: 'Eventos privados, corporativos e experiências de marca no Brasil.',
     images: ['https://www.agenciarioslux.com.br/og.png'],
   },
   appleWebApp: {
@@ -83,7 +84,7 @@ export default function RootLayout({
         '@id': `${siteConfig.url}/#organization`,
         name: siteConfig.name,
         alternateName: ['RiosLux', 'Rioslux', 'Agência Rios Lux'],
-        description: 'Planejamento e produção de eventos corporativos, celebrações privadas e experiências no Rio de Janeiro.',
+        description: 'Planejamento, curadoria e produção completa de eventos privados, corporativos e experiências de marca no Brasil.',
         url: `${siteConfig.url}/`,
         logo: {
           '@type': 'ImageObject',
@@ -102,12 +103,9 @@ export default function RootLayout({
           contactType: 'customer service',
           email: siteConfig.email,
           telephone: siteConfig.phoneHref,
-          availableLanguage: 'Portuguese',
+          availableLanguage: ['Portuguese', 'English', 'Spanish'],
         },
-        areaServed: {
-          '@type': 'City',
-          name: 'Rio de Janeiro',
-        },
+        areaServed: { '@type': 'Country', name: 'Brazil' },
         sameAs: [siteConfig.social.instagram],
       },
       {
@@ -127,13 +125,15 @@ export default function RootLayout({
       <head>
         <StructuredData data={schemaData} />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body className={`${manrope.variable} ${cormorant.variable} antialiased`}>
+        <DocumentLanguage />
         <AnalyticsProvider />
         <Navbar />
-        <main className="pt-20 min-h-screen">
+        <main className="min-h-screen pt-[4.5rem] max-sm:pb-20">
           {children}
         </main>
         <Footer />
+        <MobileWhatsApp />
       </body>
     </html>
   )

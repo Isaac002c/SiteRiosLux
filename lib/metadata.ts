@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { siteConfig } from '@/config/site'
+import { localeInfo, routes, type Locale, type RouteKey } from '@/lib/i18n'
 
 type PageMetadataOptions = {
   title: string
@@ -47,6 +48,50 @@ export function createPageMetadata({
       title,
       description,
       images,
+    },
+  }
+}
+
+export function createLocalizedMetadata({
+  title,
+  description,
+  locale,
+  routeKey,
+  index = true,
+}: {
+  title: string
+  description: string
+  locale: Locale
+  routeKey: RouteKey
+  index?: boolean
+}): Metadata {
+  const path = routes[routeKey][locale]
+  const languages = {
+    'pt-BR': routes[routeKey].pt,
+    en: routes[routeKey].en,
+    es: routes[routeKey].es,
+    'x-default': routes[routeKey].pt,
+  }
+
+  return {
+    title,
+    description,
+    alternates: { canonical: path, languages },
+    robots: { index, follow: true },
+    openGraph: {
+      type: 'website',
+      locale: localeInfo[locale].og,
+      siteName: siteConfig.name,
+      title,
+      description,
+      url: path,
+      images: [shareImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [shareImage.url],
     },
   }
 }

@@ -52,7 +52,7 @@ export type LeadValidationResult =
   | { success: false; fieldErrors: Partial<Record<LeadField, string>> }
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const phonePattern = /^\d{10,13}$/
+const phonePattern = /^\d{8,15}$/
 const submissionIdPattern = /^[a-zA-Z0-9-]{20,80}$/
 const datePattern = /^\d{4}-\d{2}-\d{2}$/
 
@@ -85,6 +85,12 @@ function normalizedUrlValue(value: unknown, maxLength: number) {
 
 export function validateLeadPayload(input: unknown): LeadValidationResult {
   const raw = input && typeof input === 'object' ? input as Record<string, unknown> : {}
+  const locale = raw.locale === 'en' || raw.locale === 'es' ? raw.locale : 'pt'
+  const messages = locale === 'en'
+    ? { name: 'Enter your name.', company: 'Enter the company name.', phone: 'Enter a valid WhatsApp number.', email: 'Enter a valid email.', event: 'Select the event type.', date: 'Enter a valid date.', guests: 'Enter a valid guest count.', message: 'Tell us a little more about the event.', privacy: 'Please accept the Privacy Policy.' }
+    : locale === 'es'
+      ? { name: 'Ingrese su nombre.', company: 'Ingrese el nombre de la empresa.', phone: 'Ingrese un WhatsApp válido.', email: 'Ingrese un correo válido.', event: 'Seleccione el tipo de evento.', date: 'Ingrese una fecha válida.', guests: 'Ingrese una cantidad válida de invitados.', message: 'Cuéntenos un poco más sobre el evento.', privacy: 'Acepte la Política de Privacidad.' }
+      : { name: 'Informe seu nome.', company: 'Informe a empresa.', phone: 'Informe um WhatsApp válido.', email: 'Informe um e-mail válido.', event: 'Selecione o tipo de evento.', date: 'Informe uma data válida.', guests: 'Informe uma quantidade válida de convidados.', message: 'Conte um pouco mais sobre o evento.', privacy: 'Confirme a leitura da Política de Privacidade.' }
   const errors: Partial<Record<LeadField, string>> = {}
   const name = stringValue(raw.name, 100)
   const company = stringValue(raw.company, 140)
@@ -98,18 +104,18 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
   const guestsNumber = raw.guests === '' || raw.guests == null ? undefined : Number(raw.guests)
   const source = raw.source === 'contact-page' ? 'contact-page' : 'corporate-landing'
 
-  if (name.length < 2) errors.name = 'Informe seu nome.'
-  if (source === 'corporate-landing' && company.length < 2) errors.company = 'Informe a empresa.'
-  if (company.length === 1) errors.company = 'Informe o nome completo da empresa.'
-  if (!phonePattern.test(phoneDigits)) errors.whatsapp = 'Informe um WhatsApp com DDD.'
-  if (!emailPattern.test(email)) errors.email = 'Informe um e-mail válido.'
-  if (!eventTypes.includes(eventType as EventType)) errors.eventType = 'Selecione o tipo de evento.'
-  if (date && (!datePattern.test(date) || Number.isNaN(Date.parse(`${date}T12:00:00Z`)))) errors.date = 'Informe uma data válida.'
+  if (name.length < 2) errors.name = messages.name
+  if (source === 'corporate-landing' && company.length < 2) errors.company = messages.company
+  if (company.length === 1) errors.company = messages.company
+  if (!phonePattern.test(phoneDigits)) errors.whatsapp = messages.phone
+  if (!emailPattern.test(email)) errors.email = messages.email
+  if (!eventTypes.includes(eventType as EventType)) errors.eventType = messages.event
+  if (date && (!datePattern.test(date) || Number.isNaN(Date.parse(`${date}T12:00:00Z`)))) errors.date = messages.date
   if (guestsNumber !== undefined && (!Number.isInteger(guestsNumber) || guestsNumber < 1 || guestsNumber > 100000)) {
-    errors.guests = 'Informe uma quantidade válida de convidados.'
+    errors.guests = messages.guests
   }
-  if (message.length < 10) errors.message = 'Conte um pouco mais sobre o evento.'
-  if (raw.privacyAccepted !== true) errors.privacyAccepted = 'Confirme a leitura da Política de Privacidade.'
+  if (message.length < 10) errors.message = messages.message
+  if (raw.privacyAccepted !== true) errors.privacyAccepted = messages.privacy
 
   if (Object.keys(errors).length > 0) return { success: false, fieldErrors: errors }
 
