@@ -100,9 +100,6 @@
     background-size: 25% 100%;
   }
 
-  .image-label {
-    @apply absolute bottom-3 right-3 bg-ink/75 px-3 py-2 text-[9px] uppercase tracking-[0.16em] text-sand/70 backdrop-blur-sm;
-  }
 }
 
 @keyframes hero-reveal {

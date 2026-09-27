@@ -8,7 +8,6 @@ type Item = { title: string; description: string }
 export const common = {
   pt: {
     brand: 'Arquitetura de Experiências',
-    reference: 'Imagem de referência — não representa projeto realizado.',
     primaryCta: 'Planejar um evento', secondaryCta: 'Falar com a Rios Lux',
     whatsappMessage: 'Olá, conheci a Rios Lux e gostaria de conversar sobre meu evento.',
     processKicker: 'Método Rios Lux', processTitle: 'Clareza do primeiro briefing à operação.',
@@ -24,7 +23,6 @@ export const common = {
   },
   en: {
     brand: 'Experience Architecture',
-    reference: 'Reference image — not a delivered Rios Lux project.',
     primaryCta: 'Plan an event', secondaryCta: 'Talk to Rios Lux',
     whatsappMessage: 'Hello, I found Rios Lux and would like to discuss my event in Brazil.',
     processKicker: 'The Rios Lux method', processTitle: 'Clarity from the first briefing to on-site delivery.',
@@ -40,7 +38,6 @@ export const common = {
   },
   es: {
     brand: 'Arquitectura de Experiencias',
-    reference: 'Imagen de referencia — no representa un proyecto realizado por Rios Lux.',
     primaryCta: 'Planificar un evento', secondaryCta: 'Hablar con Rios Lux',
     whatsappMessage: 'Hola, conocí Rios Lux y me gustaría conversar sobre mi evento en Brasil.',
     processKicker: 'Método Rios Lux', processTitle: 'Claridad desde el primer briefing hasta la operación.',
