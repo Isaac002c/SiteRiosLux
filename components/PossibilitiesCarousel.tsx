@@ -134,7 +134,7 @@ export default function PossibilitiesCarousel({ possibilities }: PossibilitiesCa
               >
                 <Image
                   src={possibility.image}
-                  alt={`Referência visual para ${possibility.title.toLowerCase()}`}
+                  alt={`Atmosfera de ${possibility.title.toLowerCase()}`}
                   fill
                   sizes="(min-width: 1440px) 1344px, (min-width: 640px) calc(100vw - 4rem), calc(100vw - 2.5rem)"
                   className="object-cover transition duration-700 group-hover:scale-[1.025]"
@@ -142,7 +142,7 @@ export default function PossibilitiesCarousel({ possibilities }: PossibilitiesCa
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-ink/10" />
                 <div className="absolute inset-x-0 bottom-0 p-6 sm:p-9 lg:p-12">
                   <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-brass">
-                    {possibility.category} · referência visual
+                    {possibility.category} · possibilidade
                   </p>
                   <h3 className="max-w-xl font-serif text-3xl text-white sm:text-4xl">{possibility.title}</h3>
                 </div>

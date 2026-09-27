@@ -13,6 +13,7 @@ export async function saveLead(payload: LeadPayload, clientFingerprint: string) 
 
   if (!endpoint || !token) throw new Error('CRM_INTEGRATION_NOT_CONFIGURED')
 
+  const { investmentRange, ...compatiblePayload } = payload
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
@@ -21,7 +22,12 @@ export async function saveLead(payload: LeadPayload, clientFingerprint: string) 
       'User-Agent': 'RiosLuxWebsite/1.0',
       'X-Rios-Lux-Client': clientFingerprint,
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      ...compatiblePayload,
+      message: investmentRange
+        ? `${payload.message}\n\nFaixa de investimento prevista: ${investmentRange}`
+        : payload.message,
+    }),
     cache: 'no-store',
     signal: AbortSignal.timeout(12000),
   })

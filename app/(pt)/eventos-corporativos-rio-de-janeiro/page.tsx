@@ -365,13 +365,13 @@ export default function EventosCorporativosRioDeJaneiro() {
         </div>
       </section>
 
-      <section className="section-space bg-canvas text-ink" aria-labelledby="references-title">
+      <section className="section-space bg-canvas text-ink" aria-labelledby="possibilities-title">
         <div className="page-shell">
           <div className="mb-12 max-w-4xl">
-            <p className="eyebrow mb-5">Referências e conceitos</p>
-            <h2 id="references-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Possibilidades Rios Lux.</h2>
+            <p className="eyebrow mb-5">Atmosferas e formatos</p>
+            <h2 id="possibilities-title" className="font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">Possibilidades Rios Lux.</h2>
             <p className="mt-5 max-w-3xl leading-relaxed text-ink/65">
-              Imagens de referência para apresentar atmosferas e formatos possíveis. Não representam eventos ou cases realizados pela Rios Lux.
+              Escala, ritmo, hospitalidade e presença de marca podem assumir formatos diferentes, sempre coordenados a partir do objetivo do encontro.
             </p>
           </div>
           <PossibilitiesCarousel possibilities={possibilities} />

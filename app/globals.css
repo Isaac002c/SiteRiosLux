@@ -158,3 +158,39 @@
     scroll-snap-stop: always;
   }
 }
+
+@media (max-width: 1023px) {
+  .media-snap-carousel {
+    display: flex !important;
+    gap: 1rem;
+    margin-inline: -1.25rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-inline: 1.25rem;
+    padding-bottom: 0.75rem;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .media-snap-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .media-snap-carousel > .media-snap-item {
+    flex: 0 0 min(84vw, 28rem);
+    width: min(84vw, 28rem);
+    border-width: 1px !important;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .media-snap-carousel {
+    margin-inline: -2rem;
+    padding-inline: 2rem;
+    scroll-padding-inline: 2rem;
+  }
+}

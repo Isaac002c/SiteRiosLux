@@ -16,10 +16,10 @@ type BlogArticleProps = {
 
 export default function BlogArticle({ category, title, intro, sections }: BlogArticleProps) {
   const related = category === 'Private'
-    ? { href: '/eventos-privados-rio-de-janeiro', label: 'Conheça nossas experiências privadas' }
+    ? { href: '/private', label: 'Conheça nossas experiências privadas' }
     : category === 'Rio de Janeiro'
-      ? { href: '/servicos', label: 'Conheça as frentes de atuação da Rios Lux' }
-      : { href: '/eventos-corporativos-rio-de-janeiro', label: 'Conheça nossa produção de eventos corporativos' }
+      ? { href: '/onde-atuamos', label: 'Conheça nossa atuação no Brasil' }
+      : { href: '/corporate', label: 'Conheça nossa produção de eventos corporativos' }
 
   return (
     <article className="bg-canvas text-ink">

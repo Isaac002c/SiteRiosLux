@@ -53,10 +53,7 @@ export default function Experiencias() {
             </h1>
             <div>
               <p className="max-w-xl text-lg leading-relaxed text-ink/68">
-                Referências de atmosferas e formatos que podem orientar uma conversa inicial com a Rios Lux.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-ink/70">
-                Todas as imagens abaixo são referências visuais de banco de imagens e não representam trabalhos realizados pela Rios Lux.
+                Atmosferas e formatos que ajudam a abrir uma conversa sobre intenção, escala, ritmo e hospitalidade.
               </p>
             </div>
           </div>
@@ -65,19 +62,19 @@ export default function Experiencias() {
 
       <section className="bg-canvas pb-24 text-ink lg:pb-32">
         <div className="page-shell">
-          <p className="mb-4 text-sm text-ink/70 sm:hidden">Deslize para explorar as referências →</p>
-          <div className="mobile-snap-carousel grid gap-x-6 gap-y-12 lg:grid-cols-2" role="region" aria-label="Referências visuais de experiências">
+          <p className="mb-4 text-sm text-ink/70 lg:hidden">Deslize para explorar as possibilidades →</p>
+          <div className="media-snap-carousel grid gap-x-6 gap-y-12 lg:grid-cols-2" role="region" aria-label="Possibilidades de experiências">
             {concepts.map((concept, index) => (
               <article
                 key={concept.title}
                 data-track-event="experience_view"
                 data-track-label={concept.category.toLowerCase()}
-                className={`mobile-snap-item ${index % 3 === 0 ? 'lg:col-span-2' : ''}`}
+                className={`media-snap-item ${index % 3 === 0 ? 'lg:col-span-2' : ''}`}
               >
                 <div className={`relative aspect-[4/3] overflow-hidden bg-ink/5 ${index % 3 === 0 ? 'lg:aspect-[16/7]' : ''}`}>
                   <Image
                     src={concept.image}
-                    alt={`Imagem de referência: ${concept.title.toLowerCase()}`}
+                    alt={`Atmosfera de ${concept.title.toLowerCase()}`}
                     fill
                     sizes={index % 3 === 0 ? '(max-width: 639px) 84vw, 100vw' : '(max-width: 639px) 84vw, (min-width: 1024px) 50vw, 100vw'}
                     className="object-cover transition duration-700 hover:scale-[1.02]"
@@ -100,7 +97,7 @@ export default function Experiencias() {
         <div className="page-shell grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p className="eyebrow mb-5">Seu ponto de partida</p>
-            <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">Uma referência não é uma fórmula. Sua experiência começa do zero.</h2>
+            <h2 className="max-w-4xl font-serif text-4xl leading-tight sm:text-6xl">Uma direção estética não é uma fórmula. Sua experiência começa do zero.</h2>
           </div>
           <Link href="/contato" data-track-event="contact_start" data-track-label="experiences" className="button-primary">
             Solicitar consultoria <ArrowRight className="ml-2" size={16} />

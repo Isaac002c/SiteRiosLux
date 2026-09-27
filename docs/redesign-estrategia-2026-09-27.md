@@ -10,7 +10,7 @@ Data: 27 de setembro de 2026
 - O método em cinco etapas: Entendimento, Curadoria, Planejamento, Produção e Experiência.
 - Os valores Excelência, Confiança e Curadoria.
 - A equipe fundadora, apresentada com responsabilidades reais e complementares.
-- A transparência editorial que separa referências visuais de projetos entregues.
+- A direção visual editorial, sem atribuir as imagens de atmosfera a projetos ou cases realizados.
 - A API de leads, atribuição de campanhas e instrumentação para Google Analytics, Google Ads e Tag Manager.
 
 ### Reformulado
@@ -51,7 +51,7 @@ Personalidade: sofisticada, discreta, madura, segura, objetiva e contemporânea.
 - Paleta: verde profundo, verde floresta, canvas mineral, areia e latão fosco.
 - Tipografia: Cormorant Garamond para expressão editorial e Manrope para clareza funcional.
 - Grid: largura ampla, linhas finas, grandes áreas de respiro e assimetria controlada.
-- Fotografia: equipe real em contexto institucional; imagens de atmosfera explicitamente identificadas como referências.
+- Fotografia: equipe real em contexto institucional e imagens de atmosfera integradas ao storytelling, sem alegações de cases.
 - Componentes: botões em caixa alta, cards modulares, formulários sem arredondamentos genéricos e hierarquia de texto de alto contraste.
 - Movimento: transições discretas e respeito a `prefers-reduced-motion`.
 
@@ -86,7 +86,7 @@ Cada página estratégica possui correspondência localizada nos três idiomas e
 
 ### Home
 
-Hero nacional → proposta “uma única direção” → frentes → benefícios → método → equipe → referências transparentes → atuação → CTA.
+Hero nacional → proposta “uma única direção” → frentes → benefícios → método → equipe → atmosferas → atuação → CTA.
 
 ### Private e páginas de serviço
 
@@ -98,7 +98,7 @@ Hero contextual → como a operação funciona no destino → logística especí
 
 ### Projetos
 
-Posicionamento sobre privacidade → referências identificadas → estrutura prevista para cases reais → CTA.
+Posicionamento sobre direção e discrição → atmosferas selecionadas → estrutura pronta para futuros cases comprováveis → CTA.
 
 ## 6. Conversão e mensuração
 
@@ -107,13 +107,13 @@ Posicionamento sobre privacidade → referências identificadas → estrutura pr
 - CTA persistente de WhatsApp no mobile.
 - Eventos instrumentados: `whatsapp_click`, `generate_lead`, `form_start`, `form_submit`, `phone_click`, `proposal_request` e `event_type_selected`.
 - Atribuição preservada para UTMs, `gclid`, `gbraid` e `wbraid`.
-- Campos de qualificação: tipo, data, cidade, estado, convidados, empresa quando aplicável e contexto do projeto.
+- Campos de qualificação: tipo, data, cidade, estado, convidados, empresa quando aplicável, faixa de investimento e contexto do projeto.
 
 ## 7. SEO técnico
 
 - Titles e descriptions próprios por idioma e intenção.
 - Canonical e `hreflang` por página.
-- Sitemap com 45 URLs estratégicas e alternates multilíngues.
+- Sitemap com 53 URLs estratégicas, incluindo editorial e FAQ, e alternates multilíngues nas páginas localizadas.
 - JSON-LD de Organization, WebSite, Service, BreadcrumbList e FAQPage quando aplicável.
 - Redirecionamentos permanentes das URLs antigas para a nova arquitetura.
 - Imagens responsivas em AVIF/WebP, componentes estáticos e carregamento prioritário apenas no hero.
@@ -123,7 +123,7 @@ Posicionamento sobre privacidade → referências identificadas → estrutura pr
 - Build de produção: aprovado.
 - TypeScript: aprovado.
 - ESLint sem warnings: aprovado.
-- Smoke test das 45 URLs do sitemap: todas retornando HTTP 200.
+- Smoke test das 53 URLs do sitemap: todas retornando HTTP 200.
 - QA visual: home e Private verificadas em desktop e mobile.
 - Verificação de overflow mobile: nenhum overflow horizontal.
-- Verificação de preço público: nenhum valor monetário ou mínimo encontrado no código público.
+- Verificação de preço público: nenhum valor monetário ou mínimo fora do formulário de qualificação.

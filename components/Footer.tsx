@@ -17,6 +17,7 @@ export default function Footer() {
   const navigation = [
     { href: routes.projects[locale], label: labels.nav.projects }, { href: routes.coverage[locale], label: labels.nav.coverage },
     { href: routes.about[locale], label: labels.about }, { href: routes.contact[locale], label: labels.contact },
+    ...(locale === 'pt' ? [{ href: '/blog', label: 'Editorial' }, { href: '/faq', label: 'Perguntas frequentes' }] : []),
   ]
 
   return <footer className="border-t border-white/10 bg-ink text-white"><div className="page-shell py-16 sm:py-20">

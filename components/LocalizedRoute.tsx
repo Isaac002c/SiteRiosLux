@@ -35,14 +35,14 @@ export const localizedPages: Record<'en' | 'es', Record<string, PageDef>> = {
 
 const institutionalMeta = {
   en: {
-    projects: ['Selected Projects | Rios Lux', 'Real projects and visual references presented with transparency and respect for client privacy.'],
+    projects: ['Projects and Experience Direction | Rios Lux', 'Discover how Rios Lux connects aesthetics, hospitality, logistics and operations across events and experiences.'],
     coverage: ['Where We Work in Brazil | Rios Lux', 'Based in Rio de Janeiro and working across São Paulo, Minas Gerais, Espírito Santo and other Brazilian destinations.'],
     about: ['About Rios Lux | Experience Architecture', 'Meet the team, values and method behind Rios Lux events and experiences across Brazil.'],
     contact: ['Contact Rios Lux | Plan an Event in Brazil', 'Discuss a private event, corporate gathering or brand experience with Rios Lux.'],
     privacy: ['Privacy Policy | Rios Lux', 'How Rios Lux processes information submitted through this website.'],
   },
   es: {
-    projects: ['Proyectos Seleccionados | Rios Lux', 'Proyectos reales y referencias visuales presentados con transparencia y respeto por la privacidad.'],
+    projects: ['Proyectos y Dirección de Experiencias | Rios Lux', 'Conozca cómo Rios Lux conecta estética, hospitalidad, logística y operación en eventos y experiencias.'],
     coverage: ['Dónde Trabajamos en Brasil | Rios Lux', 'Con base en Río de Janeiro y actuación en São Paulo, Minas Gerais, Espírito Santo y otros destinos.'],
     about: ['Sobre Rios Lux | Arquitectura de Experiencias', 'Conozca al equipo, los valores y el método detrás de Rios Lux.'],
     contact: ['Contacto Rios Lux | Planifique un Evento en Brasil', 'Converse con Rios Lux sobre un evento privado, corporativo o experiencia de marca.'],

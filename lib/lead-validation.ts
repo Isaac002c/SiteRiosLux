@@ -14,7 +14,17 @@ export const eventTypes = [
 
 export const corporateEventTypes = eventTypes.slice(0, 5)
 
+export const investmentRanges = [
+  'Até R$30 mil',
+  'R$30 mil – R$50 mil',
+  'R$50 mil – R$100 mil',
+  'R$100 mil – R$200 mil',
+  'Acima de R$200 mil',
+  'Ainda estamos definindo',
+] as const
+
 export type EventType = (typeof eventTypes)[number]
+export type InvestmentRange = (typeof investmentRanges)[number]
 
 export type LeadPayload = {
   submissionId: string
@@ -26,6 +36,7 @@ export type LeadPayload = {
   date?: string
   guests?: number
   location?: string
+  investmentRange?: InvestmentRange
   message: string
   source: 'corporate-landing' | 'contact-page'
   pageUrl: string
@@ -44,6 +55,7 @@ export type LeadField =
   | 'date'
   | 'guests'
   | 'location'
+  | 'investmentRange'
   | 'message'
   | 'privacyAccepted'
 
@@ -87,10 +99,10 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
   const raw = input && typeof input === 'object' ? input as Record<string, unknown> : {}
   const locale = raw.locale === 'en' || raw.locale === 'es' ? raw.locale : 'pt'
   const messages = locale === 'en'
-    ? { name: 'Enter your name.', company: 'Enter the company name.', phone: 'Enter a valid WhatsApp number.', email: 'Enter a valid email.', event: 'Select the event type.', date: 'Enter a valid date.', guests: 'Enter a valid guest count.', message: 'Tell us a little more about the event.', privacy: 'Please accept the Privacy Policy.' }
+    ? { name: 'Enter your name.', company: 'Enter the company name.', phone: 'Enter a valid WhatsApp number.', email: 'Enter a valid email.', event: 'Select the event type.', date: 'Enter a valid date.', guests: 'Enter a valid guest count.', investment: 'Select a valid investment range.', message: 'Tell us a little more about the event.', privacy: 'Please accept the Privacy Policy.' }
     : locale === 'es'
-      ? { name: 'Ingrese su nombre.', company: 'Ingrese el nombre de la empresa.', phone: 'Ingrese un WhatsApp válido.', email: 'Ingrese un correo válido.', event: 'Seleccione el tipo de evento.', date: 'Ingrese una fecha válida.', guests: 'Ingrese una cantidad válida de invitados.', message: 'Cuéntenos un poco más sobre el evento.', privacy: 'Acepte la Política de Privacidad.' }
-      : { name: 'Informe seu nome.', company: 'Informe a empresa.', phone: 'Informe um WhatsApp válido.', email: 'Informe um e-mail válido.', event: 'Selecione o tipo de evento.', date: 'Informe uma data válida.', guests: 'Informe uma quantidade válida de convidados.', message: 'Conte um pouco mais sobre o evento.', privacy: 'Confirme a leitura da Política de Privacidade.' }
+      ? { name: 'Ingrese su nombre.', company: 'Ingrese el nombre de la empresa.', phone: 'Ingrese un WhatsApp válido.', email: 'Ingrese un correo válido.', event: 'Seleccione el tipo de evento.', date: 'Ingrese una fecha válida.', guests: 'Ingrese una cantidad válida de invitados.', investment: 'Seleccione un rango de inversión válido.', message: 'Cuéntenos un poco más sobre el evento.', privacy: 'Acepte la Política de Privacidad.' }
+      : { name: 'Informe seu nome.', company: 'Informe a empresa.', phone: 'Informe um WhatsApp válido.', email: 'Informe um e-mail válido.', event: 'Selecione o tipo de evento.', date: 'Informe uma data válida.', guests: 'Informe uma quantidade válida de convidados.', investment: 'Selecione uma faixa de investimento válida.', message: 'Conte um pouco mais sobre o evento.', privacy: 'Confirme a leitura da Política de Privacidade.' }
   const errors: Partial<Record<LeadField, string>> = {}
   const name = stringValue(raw.name, 100)
   const company = stringValue(raw.company, 140)
@@ -100,6 +112,7 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
   const eventType = stringValue(raw.eventType, 80)
   const date = optionalString(raw.date, 10)
   const location = optionalString(raw.location, 140)
+  const investmentRange = optionalString(raw.investmentRange, 40)
   const message = stringValue(raw.message, 2000)
   const guestsNumber = raw.guests === '' || raw.guests == null ? undefined : Number(raw.guests)
   const source = raw.source === 'contact-page' ? 'contact-page' : 'corporate-landing'
@@ -114,6 +127,7 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
   if (guestsNumber !== undefined && (!Number.isInteger(guestsNumber) || guestsNumber < 1 || guestsNumber > 100000)) {
     errors.guests = messages.guests
   }
+  if (investmentRange && !investmentRanges.includes(investmentRange as InvestmentRange)) errors.investmentRange = messages.investment
   if (message.length < 10) errors.message = messages.message
   if (raw.privacyAccepted !== true) errors.privacyAccepted = messages.privacy
 
@@ -153,6 +167,7 @@ export function validateLeadPayload(input: unknown): LeadValidationResult {
       date,
       guests: guestsNumber,
       location,
+      investmentRange: investmentRange as InvestmentRange | undefined,
       message,
       source,
       pageUrl: normalizedUrlValue(raw.pageUrl, 500) || '',

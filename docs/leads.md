@@ -12,7 +12,7 @@ O formulário envia os dados para `POST /api/leads`. A rota valida os campos, ap
 - Fase inicial: `NOVO`, identificada também como mapeada pelas tags operacionais.
 - Identificação operacional: tags `rios-lux`, `site` e `mapeado`.
 - Origem: `GOOGLE` quando existe `gclid` ou `utm_source=google`; nos demais casos, `SITE`.
-- Informações de evento, URL, consentimento, UTMs, GCLID, GBRAID e WBRAID ficam registradas nas notas do lead. URLs de entrada, página e referência são normalizadas sem query string ou fragmento.
+- Informações de evento, faixa de investimento, URL, consentimento, UTMs, GCLID, GBRAID e WBRAID ficam registradas nas notas do lead. URLs de entrada, página e origem são normalizadas sem query string ou fragmento.
 - Cada envio recebe uma chave única para evitar duplicidade em novas tentativas do navegador.
 
 O WhatsApp permanece como contato alternativo e é medido como conversão secundária. Na página Corporate, a mensagem inicial descreve apenas a intenção de conversar; ela não afirma que o formulário já foi enviado.

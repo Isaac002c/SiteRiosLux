@@ -5,7 +5,7 @@ import { createPageMetadata } from '@/lib/metadata'
 
 export const metadata = createPageMetadata({
   title: 'Perguntas Frequentes | Rios Lux',
-  description: 'Respostas sobre o processo de consultoria, planejamento e produção de experiências da Rios Lux no Rio de Janeiro.',
+  description: 'Respostas sobre planejamento, curadoria, produção e atuação da Rios Lux em eventos e experiências no Brasil.',
   path: '/faq',
 })
 
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: 'A Rios Lux atende empresas no Rio de Janeiro?',
-    a: 'Sim. A comunicação e a atuação apresentadas neste site estão concentradas no Rio de Janeiro. Cada projeto é avaliado conforme data, local, dimensão e viabilidade.',
+    a: 'Sim. A base da Rios Lux está no Rio de Janeiro. Também estruturamos projetos em outras regiões do Brasil conforme data, escopo, logística e viabilidade operacional.',
   },
   {
     q: 'Como funciona o planejamento de um evento?',
@@ -40,7 +40,7 @@ const faqs = [
   },
   {
     q: 'A Rios Lux atende eventos fora do Rio de Janeiro?',
-    a: 'A comunicação atual está concentrada no Rio de Janeiro. Projetos em outros locais podem ser avaliados diretamente com a equipe, sem promessa prévia de disponibilidade.',
+    a: 'Sim. Projetos em São Paulo, Minas Gerais, Espírito Santo e outros destinos do Brasil são avaliados conforme data, escopo, logística, fornecedores e viabilidade operacional.',
   },
   {
     q: 'O que pode fazer parte do escopo da Rios Lux?',
@@ -106,10 +106,10 @@ export default function FAQ() {
             <Link href="/contato" data-track-event="contact_start" data-track-label="faq" className="button-dark">Falar com a Rios Lux</Link>
           </div>
           <nav aria-label="Serviços relacionados" className="mt-12 grid gap-3 border-t border-ink/20 pt-8 sm:grid-cols-2">
-            <Link href="/eventos-corporativos-rio-de-janeiro" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Eventos corporativos no Rio de Janeiro</Link>
+            <Link href="/corporate" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Eventos corporativos</Link>
             <Link href="/eventos-privados-rio-de-janeiro" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Eventos privados no Rio de Janeiro</Link>
-            <Link href="/experiencias-de-marca" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Experiências de marca</Link>
-            <Link href="/concierge-rio-de-janeiro" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Concierge no Rio de Janeiro</Link>
+            <Link href="/brand-experience" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Experiências de marca</Link>
+            <Link href="/concierge" className="text-sm font-semibold text-ink underline decoration-brass-dark/60 underline-offset-4">Concierge e hospitalidade</Link>
           </nav>
         </div>
       </section>

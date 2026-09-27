@@ -7,6 +7,13 @@ import { createWhatsAppUrl, siteConfig } from '@/config/site'
 import { common, getServiceContent, routeKeyForService, type ServiceKey } from '@/lib/site-content'
 import { routes, type Locale } from '@/lib/i18n'
 
+const heroAlts: Record<ServiceKey, Record<Locale, string>> = {
+  private: { pt: 'Mesa preparada para uma celebração privada', en: 'Table prepared for a private celebration', es: 'Mesa preparada para una celebración privada' },
+  corporate: { pt: 'Ambiente contemporâneo para encontro corporativo', en: 'Contemporary setting for a corporate gathering', es: 'Ambiente contemporáneo para un encuentro corporativo' },
+  brand: { pt: 'Experiência presencial com luz e produção de palco', en: 'Live brand experience with lighting and stage production', es: 'Experiencia de marca con iluminación y producción escénica' },
+  concierge: { pt: 'Mesa de hospitalidade preparada para convidados', en: 'Hospitality table prepared for guests', es: 'Mesa de hospitalidad preparada para invitados' },
+}
+
 export default function ServicePage({ locale, service }: { locale: Locale; service: ServiceKey }) {
   const content = getServiceContent(locale, service)
   const shared = common[locale]
@@ -14,6 +21,9 @@ export default function ServicePage({ locale, service }: { locale: Locale; servi
   const path = routes[routeKey][locale]
   const pageUrl = siteConfig.url + path
   const formMode = service === 'corporate' ? 'corporate' : service === 'private' ? 'private' : 'general'
+  const primaryCta = service === 'private'
+    ? locale === 'pt' ? 'Planejar meu evento' : locale === 'en' ? 'Plan my event' : 'Planificar mi evento'
+    : shared.primaryCta
   const labels = {
     possibilities: locale === 'pt' ? 'Formatos' : locale === 'en' ? 'Formats' : 'Formatos',
     scope: locale === 'pt' ? 'Escopo coordenado' : locale === 'en' ? 'Coordinated scope' : 'Alcance coordinado',
@@ -31,11 +41,11 @@ export default function ServicePage({ locale, service }: { locale: Locale; servi
   return <div>
     <StructuredData data={schema} />
     <section className="relative min-h-[78svh] overflow-hidden bg-ink">
-      <Image src={content.image} alt="Editorial event reference" fill priority sizes="100vw" className="object-cover" />
+      <Image src={content.image} alt={heroAlts[service][locale]} fill priority sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,20,17,.92)_0%,rgba(5,20,17,.58)_58%,rgba(5,20,17,.25)_100%)]" />
       <div className="page-shell relative z-10 flex min-h-[78svh] flex-col justify-end pb-12 pt-24 sm:pb-16 lg:pb-20">
         <p className="eyebrow mb-6">{content.eyebrow}</p><h1 className="max-w-[76rem] text-balance font-serif text-[clamp(3.2rem,7.5vw,8rem)] font-medium leading-[0.87] tracking-[-0.045em]">{content.title}</h1>
-        <div className="mt-8 grid max-w-6xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end"><p className="max-w-3xl text-lg leading-relaxed text-sand/82 sm:text-xl">{content.intro}</p><div className="flex flex-col gap-3 sm:flex-row"><Link href="#iniciar" data-track-event="proposal_request" data-track-label={service + '_hero'} className="button-primary">{shared.primaryCta}<ArrowRight className="ml-2" size={16} /></Link><a href={createWhatsAppUrl(shared.whatsappMessage as string)} target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click" data-track-label={service + '_hero'} className="button-secondary"><MessageCircle className="mr-2" size={16} />WhatsApp</a></div></div>
+        <div className="mt-8 grid max-w-6xl gap-7 border-t border-white/25 pt-7 lg:grid-cols-[1fr_auto] lg:items-end"><div><p className="max-w-3xl text-lg leading-relaxed text-sand/82 sm:text-xl">{content.intro}</p>{content.location ? <p className="mt-3 max-w-3xl text-sm leading-relaxed text-sand/60">{content.location}</p> : null}</div><div className="flex flex-col gap-3 sm:flex-row"><Link href="#iniciar" data-track-event="proposal_request" data-track-label={service + '_hero'} className="button-primary">{primaryCta}<ArrowRight className="ml-2" size={16} /></Link><a href={createWhatsAppUrl(shared.whatsappMessage as string)} target="_blank" rel="noopener noreferrer" data-track-event="whatsapp_click" data-track-label={service + '_hero'} className="button-secondary"><MessageCircle className="mr-2" size={16} />{shared.secondaryCta}</a></div></div>
       </div>
     </section>
 

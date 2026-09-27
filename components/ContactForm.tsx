@@ -6,14 +6,14 @@ import { LoaderCircle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { captureAttribution, type Attribution } from '@/lib/attribution'
 import { trackEvent } from '@/lib/analytics'
-import { corporateEventTypes, eventTypes, type LeadField } from '@/lib/lead-validation'
+import { corporateEventTypes, eventTypes, investmentRanges, type LeadField } from '@/lib/lead-validation'
 import { routes, type Locale } from '@/lib/i18n'
 
 type FormMode = 'general' | 'corporate' | 'private'
 type FieldErrors = Partial<Record<LeadField, string>>
-type FormData = { name: string; company: string; whatsapp: string; email: string; eventType: string; date: string; guests: string; city: string; state: string; message: string; privacyAccepted: boolean; website: string }
+type FormData = { name: string; company: string; whatsapp: string; email: string; eventType: string; date: string; guests: string; city: string; state: string; investmentRange: string; message: string; privacyAccepted: boolean; website: string }
 
-const initialForm: FormData = { name: '', company: '', whatsapp: '', email: '', eventType: '', date: '', guests: '', city: '', state: '', message: '', privacyAccepted: false, website: '' }
+const initialForm: FormData = { name: '', company: '', whatsapp: '', email: '', eventType: '', date: '', guests: '', city: '', state: '', investmentRange: '', message: '', privacyAccepted: false, website: '' }
 
 const copy = {
   pt: {
@@ -21,6 +21,7 @@ const copy = {
     whatsapp: 'WhatsApp', phonePlaceholder: 'DDD + número', email: 'E-mail', emailPlaceholder: 'seu@email.com',
     eventType: 'Tipo de evento', select: 'Selecione', date: 'Data ou período', dateHint: 'se definido', guests: 'Número aproximado de convidados',
     city: 'Cidade', cityPlaceholder: 'Ex.: Rio de Janeiro', state: 'Estado', statePlaceholder: 'Ex.: RJ',
+    investmentRange: 'Faixa de investimento prevista', investmentOptions: ['Até R$30 mil', 'R$30 mil – R$50 mil', 'R$50 mil – R$100 mil', 'R$100 mil – R$200 mil', 'Acima de R$200 mil', 'Ainda estamos definindo'],
     message: 'Conte-nos sobre o evento', messagePlaceholder: 'Compartilhe o objetivo, o perfil dos convidados e o que já está definido.',
     privacyA: 'Li e concordo com a', privacyB: 'e autorizo o uso dos dados para atendimento desta solicitação.',
     submit: 'Enviar solicitação', submitting: 'Enviando…', sent: 'Ao enviar, nossa equipe receberá as informações para analisar sua solicitação e entrar em contato.',
@@ -32,6 +33,7 @@ const copy = {
     whatsapp: 'WhatsApp', phonePlaceholder: 'Country code + number', email: 'Email', emailPlaceholder: 'you@email.com',
     eventType: 'Event type', select: 'Select', date: 'Date or period', dateHint: 'if defined', guests: 'Approximate guest count',
     city: 'City', cityPlaceholder: 'E.g. Rio de Janeiro', state: 'State / region', statePlaceholder: 'E.g. RJ',
+    investmentRange: 'Expected investment range', investmentOptions: ['Up to BRL 30,000', 'BRL 30,000–50,000', 'BRL 50,000–100,000', 'BRL 100,000–200,000', 'Above BRL 200,000', 'Still being defined'],
     message: 'Tell us about the event', messagePlaceholder: 'Share the purpose, guest profile and what is already defined.',
     privacyA: 'I have read and agree to the', privacyB: 'and authorise the use of my data to respond to this enquiry.',
     submit: 'Send enquiry', submitting: 'Sending…', sent: 'Our team will review the information and contact you to discuss the next steps.',
@@ -43,6 +45,7 @@ const copy = {
     whatsapp: 'WhatsApp', phonePlaceholder: 'Código de país + número', email: 'Correo electrónico', emailPlaceholder: 'usted@email.com',
     eventType: 'Tipo de evento', select: 'Seleccione', date: 'Fecha o período', dateHint: 'si está definido', guests: 'Número aproximado de invitados',
     city: 'Ciudad', cityPlaceholder: 'Ej.: Río de Janeiro', state: 'Estado / región', statePlaceholder: 'Ej.: RJ',
+    investmentRange: 'Rango de inversión previsto', investmentOptions: ['Hasta BRL 30.000', 'BRL 30.000–50.000', 'BRL 50.000–100.000', 'BRL 100.000–200.000', 'Más de BRL 200.000', 'Aún estamos definiendo'],
     message: 'Cuéntenos sobre el evento', messagePlaceholder: 'Comparta el objetivo, el perfil de invitados y lo que ya está definido.',
     privacyA: 'He leído y acepto la', privacyB: 'y autorizo el uso de mis datos para responder a esta solicitud.',
     submit: 'Enviar solicitud', submitting: 'Enviando…', sent: 'Nuestro equipo analizará la información y se comunicará para conversar sobre los próximos pasos.',
@@ -101,7 +104,7 @@ export default function ContactForm({ mode = 'general', locale = 'pt' }: { mode?
         body: JSON.stringify({
           submissionId: id.current, name: data.name, company: data.company, whatsapp: data.whatsapp, email: data.email,
           eventType: data.eventType, date: data.date || undefined, guests: data.guests ? Number(data.guests) : undefined,
-          location: [data.city, data.state].filter(Boolean).join(' / ') || undefined, message: data.message,
+          location: [data.city, data.state].filter(Boolean).join(' / ') || undefined, investmentRange: data.investmentRange || undefined, message: data.message,
           privacyAccepted: data.privacyAccepted, website: data.website, locale,
           source: isCorporate ? 'corporate-landing' : 'contact-page',
           pageUrl: window.location.origin + window.location.pathname, attribution: attribution.current, formStartedAt: startedAt.current,
@@ -125,6 +128,7 @@ export default function ContactForm({ mode = 'general', locale = 'pt' }: { mode?
     <Field id="lead-city" label={labels.city} error={errors.location}><input id="lead-city" autoComplete="address-level2" maxLength={100} value={data.city} onChange={(e) => update('city', e.target.value)} className="form-field" placeholder={labels.cityPlaceholder} /></Field>
     <Field id="lead-state" label={labels.state}><input id="lead-state" autoComplete="address-level1" maxLength={40} value={data.state} onChange={(e) => update('state', e.target.value)} className="form-field" placeholder={labels.statePlaceholder} /></Field>
     <Field id="lead-guests" label={labels.guests} hint={labels.optional} error={errors.guests}><input id="lead-guests" type="number" min="1" max="100000" inputMode="numeric" value={data.guests} onChange={(e) => update('guests', e.target.value)} className="form-field" placeholder="80" /></Field>
+    <Field id="lead-investment" label={labels.investmentRange} hint={labels.optional} error={errors.investmentRange}><select id="lead-investment" value={data.investmentRange} onChange={(e) => update('investmentRange', e.target.value)} className="form-field"><option value="">{labels.select}</option>{investmentRanges.map((value, index) => <option key={value} value={value}>{labels.investmentOptions[index]}</option>)}</select></Field>
     <div className="sm:col-span-2"><Field id="lead-message" label={labels.message} required error={errors.message}><textarea id="lead-message" required minLength={10} maxLength={2000} rows={5} value={data.message} onChange={(e) => update('message', e.target.value)} className="form-field resize-y" placeholder={labels.messagePlaceholder} /></Field></div>
     <div className="absolute left-[-10000px] h-px w-px overflow-hidden" aria-hidden="true"><label htmlFor="lead-website">Website</label><input id="lead-website" tabIndex={-1} autoComplete="off" value={data.website} onChange={(e) => update('website', e.target.value)} /></div>
     <div className="sm:col-span-2"><label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-sand/75"><input type="checkbox" required checked={data.privacyAccepted} onChange={(e) => update('privacyAccepted', e.target.checked)} className="mt-1 size-4 shrink-0 accent-[#b8945b]" /><span>{labels.privacyA} <Link href={routes.privacy[locale]} className="underline decoration-brass/60 underline-offset-4">{locale === 'en' ? 'Privacy Policy' : locale === 'es' ? 'Política de Privacidad' : 'Política de Privacidade'}</Link> {labels.privacyB}</span></label>{errors.privacyAccepted ? <p className="mt-2 text-sm text-[#f3b6a8]">{errors.privacyAccepted}</p> : null}</div>

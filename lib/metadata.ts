@@ -52,6 +52,55 @@ export function createPageMetadata({
   }
 }
 
+const rootCopy: Record<Locale, { title: string; description: string }> = {
+  pt: {
+    title: 'Eventos e Experiências de Alto Padrão no Brasil | Rios Lux',
+    description: 'Planejamento, curadoria e produção completa para eventos privados, corporativos e experiências de marca no Brasil.',
+  },
+  en: {
+    title: 'High-End Events and Experiences Across Brazil | Rios Lux',
+    description: 'Private celebrations, corporate events and brand experiences planned with precision across Brazil.',
+  },
+  es: {
+    title: 'Eventos y Experiencias de Alto Nivel en Brasil | Rios Lux',
+    description: 'Planificación, curaduría y producción integral de eventos privados, corporativos y experiencias de marca en Brasil.',
+  },
+}
+
+export function createRootMetadata(locale: Locale): Metadata {
+  const copy = rootCopy[locale]
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title: copy.title,
+    description: copy.description,
+    applicationName: siteConfig.name,
+    authors: [{ name: siteConfig.name }],
+    creator: siteConfig.name,
+    publisher: siteConfig.name,
+    category: 'eventos',
+    openGraph: {
+      type: 'website',
+      locale: localeInfo[locale].og,
+      siteName: siteConfig.name,
+      title: copy.title,
+      description: copy.description,
+      images: [shareImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: copy.title,
+      description: copy.description,
+      images: [shareImage.url],
+    },
+    appleWebApp: { capable: true, statusBarStyle: 'black-translucent', title: 'Rios Lux' },
+    icons: {
+      icon: [{ url: '/favicon.png', type: 'image/png', sizes: '192x192' }],
+      apple: [{ url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }],
+    },
+    manifest: '/manifest.json',
+  }
+}
+
 export function createLocalizedMetadata({
   title,
   description,
