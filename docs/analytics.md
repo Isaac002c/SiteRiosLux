@@ -1,17 +1,12 @@
 # Mensuração da Rios Lux
 
-O Google Analytics 4 `G-9X21JG8W4C` é a Google tag base instalada no layout global. O Google Ads `AW-18060312094` é configurado como destino adicional na mesma instância de `gtag.js`, em todas as páginas, inclusive `/obrigado`.
+O Google Tag Manager `GTM-PD4M4HG5` é a única tag carregada diretamente pelo site, em todas as páginas e idiomas, inclusive nas páginas de obrigado.
 
-A tag base já permite reconhecimento da conta. Para atribuir `generate_lead` a uma ação de conversão específica do Google Ads, ainda é necessário criar ou selecionar essa ação na conta e configurar o respectivo rótulo de conversão no GTM ou fornecer o snippet de evento correspondente.
+O snippet principal é inserido no `<head>` e o fallback `noscript` aparece imediatamente após a abertura do `<body>`. GA4, Google Ads e qualquer outro destino devem ser configurados exclusivamente dentro desse contêiner.
 
-O projeto também está preparado para Google Tag Manager ou Google Analytics 4. Configure uma das variáveis na Vercel e publique novamente:
+As cargas diretas que existiam para GA4 `G-9X21JG8W4C` e Google Ads `AW-18060312094` foram removidas para evitar duplicidade. Esses identificadores só devem ser adicionados como tags dentro do GTM quando estiverem efetivamente em uso.
 
-- `NEXT_PUBLIC_GTM_ID=GTM-...` (recomendado quando Google Ads e GA4 serão gerenciados juntos)
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID=G-...` (substitui o ID padrão de GA4)
-
-Quando o GTM existe, apenas ele é carregado para evitar tags e eventos duplicados. Nesse caso, as tags `G-9X21JG8W4C` e `AW-18060312094` devem ser configuradas dentro do contêiner GTM. Sem GTM, o GA4 carrega a biblioteca uma vez e o Google Ads usa a mesma Google tag como destino adicional.
-
-Eventos principais disponíveis no `dataLayer`/GA4:
+Eventos principais disponíveis no `dataLayer` para acionadores do GTM:
 
 - `form_start`
 - `generate_lead` (conversão principal; ocorre somente após a confirmação do backend com um `lead_id` novo)
@@ -34,6 +29,6 @@ Cada evento pode incluir `label`, usado para identificar a origem do CTA. Os eve
 
 O `lead_id` é retornado pelo HUB somente depois da persistência. Respostas sem ID e leads identificados como duplicados não disparam a conversão principal. Um marcador por lead no `sessionStorage` evita nova contagem na mesma sessão. Nome, e-mail e telefone não são enviados ao `dataLayer`.
 
-O `dataLayer` é inicializado mesmo sem ID configurado, permitindo validar a implementação antes de conectar GTM, GA4 e Google Ads. Antes de ativar campanhas, valide os eventos no modo Preview do GTM ou DebugView do GA4.
+O `dataLayer` é inicializado antes dos eventos do site. Antes de ativar campanhas, valide os acionadores no modo Preview do GTM e, quando o GA4 estiver configurado dentro do contêiner, no DebugView.
 
 O backend limita cada origem a doze tentativas em dez minutos na camada do site e repassa apenas um fingerprint não reversível ao HUB. A rota também aplica honeypot, validação e limite de payload. O endereço bruto do visitante não é salvo no lead.

@@ -1,42 +1,20 @@
-import Script from 'next/script'
 import AnalyticsEvents from '@/components/AnalyticsEvents'
 
-const gaIdPattern = /^G-[A-Z0-9]+$/
-const gtmIdPattern = /^GTM-[A-Z0-9]+$/
-const googleAdsId = 'AW-18060312094'
-const googleAnalyticsId = 'G-9X21JG8W4C'
+export const googleTagManagerId = 'GTM-PD4M4HG5'
+export const googleTagManagerScript = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${googleTagManagerId}');`
 
 export default function AnalyticsProvider() {
-  const configuredGtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim().toUpperCase()
-  const configuredGaId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim().toUpperCase() || googleAnalyticsId
-  const gtmId = configuredGtmId && gtmIdPattern.test(configuredGtmId) ? configuredGtmId : null
-  const gaId = configuredGaId && gaIdPattern.test(configuredGaId) ? configuredGaId : googleAnalyticsId
-
   return (
     <>
-      {gtmId ? (
-        <>
-          <Script id="google-tag-manager" strategy="afterInteractive">
-            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');`}
-          </Script>
-          <noscript>
-            <iframe
-              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-              height="0"
-              width="0"
-              className="hidden"
-              title="Google Tag Manager"
-            />
-          </noscript>
-        </>
-      ) : (
-        <>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} strategy="afterInteractive" />
-          <Script id="google-tag" strategy="afterInteractive">
-            {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${gaId}');gtag('config','${googleAdsId}');`}
-          </Script>
-        </>
-      )}
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+          height="0"
+          width="0"
+          style={{ display: 'none', visibility: 'hidden' }}
+          title="Google Tag Manager"
+        />
+      </noscript>
       <AnalyticsEvents />
     </>
   )

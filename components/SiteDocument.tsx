@@ -1,5 +1,5 @@
 import { Cormorant_Garamond, Manrope } from 'next/font/google'
-import AnalyticsProvider from '@/components/AnalyticsProvider'
+import AnalyticsProvider, { googleTagManagerScript } from '@/components/AnalyticsProvider'
 import Footer from '@/components/Footer'
 import MobileWhatsApp from '@/components/MobileWhatsApp'
 import Navbar from '@/components/Navbar'
@@ -63,9 +63,14 @@ export default function SiteDocument({ children, locale }: { children: React.Rea
 
   return (
     <html lang={localeInfo[locale].html}>
+      {/* Next.js App Router supports an inline pre-hydration script in the root document head. */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
+      <head>
+        <script id="google-tag-manager" dangerouslySetInnerHTML={{ __html: googleTagManagerScript }} />
+      </head>
       <body className={`${manrope.variable} ${cormorant.variable} antialiased`}>
-        <StructuredData data={schemaData} />
         <AnalyticsProvider />
+        <StructuredData data={schemaData} />
         <Navbar />
         <main className="min-h-screen pt-[4.5rem] max-sm:pb-20">{children}</main>
         <Footer />
