@@ -1,5 +1,5 @@
 import { Cormorant_Garamond, Manrope } from 'next/font/google'
-import AnalyticsProvider, { googleTagManagerScript } from '@/components/AnalyticsProvider'
+import AnalyticsProvider, { googleAdsId, googleAdsScript, googleTagManagerId, googleTagManagerScript } from '@/components/AnalyticsProvider'
 import Footer from '@/components/Footer'
 import MobileWhatsApp from '@/components/MobileWhatsApp'
 import Navbar from '@/components/Navbar'
@@ -67,8 +67,19 @@ export default function SiteDocument({ children, locale }: { children: React.Rea
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         <script id="google-tag-manager" dangerouslySetInnerHTML={{ __html: googleTagManagerScript }} />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`} />
+        <script id="google-ads-tag" dangerouslySetInnerHTML={{ __html: googleAdsScript }} />
       </head>
       <body className={`${manrope.variable} ${cormorant.variable} antialiased`}>
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${googleTagManagerId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            title="Google Tag Manager"
+          />
+        </noscript>
         <AnalyticsProvider />
         <StructuredData data={schemaData} />
         <Navbar />

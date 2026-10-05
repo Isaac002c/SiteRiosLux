@@ -1,10 +1,12 @@
 # Mensuração da Rios Lux
 
-O Google Tag Manager `GTM-PD4M4HG5` é a única tag carregada diretamente pelo site, em todas as páginas e idiomas, inclusive nas páginas de obrigado.
+O Google Tag Manager `GTM-PD4M4HG5` e a tag base Google Ads `AW-18060312094` são carregados no documento global, em todas as páginas e idiomas, inclusive nas páginas de obrigado. Ambos compartilham o `dataLayer`.
 
-O snippet principal é inserido no `<head>` e o fallback `noscript` aparece imediatamente após a abertura do `<body>`. GA4, Google Ads e qualquer outro destino devem ser configurados exclusivamente dentro desse contêiner.
+O snippet do GTM e o snippet de configuração do Google Ads são inseridos no `<head>`. O fallback `noscript` aparece como primeiro elemento do `<body>`.
 
-As cargas diretas que existiam para GA4 `G-9X21JG8W4C` e Google Ads `AW-18060312094` foram removidas para evitar duplicidade. Esses identificadores só devem ser adicionados como tags dentro do GTM quando estiverem efetivamente em uso.
+As cargas diretas que existiam para GA4 `G-9X21JG8W4C` foram removidas. Não adicione uma segunda tag base `AW-18060312094` no GTM. Tags e destinos adicionais, como GA4, podem ser gerenciados no contêiner.
+
+A tag base do Google Ads identifica o destino da conta. Para registrar uma conversão específica de lead, ainda é necessário configurar no Google Ads a ação e seu rótulo de conversão; o ID base sozinho não substitui esse rótulo.
 
 Eventos principais disponíveis no `dataLayer` para acionadores do GTM:
 
